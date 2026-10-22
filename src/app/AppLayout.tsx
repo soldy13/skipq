@@ -9,6 +9,7 @@ import { DemoPanel, DemoPill } from '../components/DemoPanel';
 import { useStore } from '../store/useStore';
 import { useUi } from '../store/useUi';
 import { Notifications } from './Notifications';
+import { DEMO_LANE } from '../features/useDock';
 import { useT } from '../i18n/useT';
 
 /** A laptop lid or a throttled background tab must not fast-forward the demo by hours. */
@@ -47,7 +48,17 @@ export function AppLayout() {
 
   return (
     <PhoneFrame tr={tr}>
-      <OverlayHost className={styles.app} style={{ '--sq-dock': `${dock}px` } as CSSProperties}>
+      <OverlayHost
+        className={styles.app}
+        style={
+          {
+            '--sq-dock': `${dock}px`,
+            '--sq-demo-lane': `${DEMO_LANE}px`,
+            // Docked: the pill sits in the bar's lane (bar height − lane padding − pill); otherwise just above the tab bar.
+            '--sq-pill-lift': dock > 0 ? `${dock - DEMO_LANE}px` : 'var(--sq-3)',
+          } as CSSProperties
+        }
+      >
         <main className={styles.screen} id="main">
           <Outlet />
         </main>

@@ -1,3 +1,12 @@
+.section {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.groupLabel {
+  font: var(--sq-heading);
+}
+
 .group {
   display: flex;
   flex-wrap: wrap;

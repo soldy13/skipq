@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 import styles from './Chip.module.css';
 import { IconCheck, IconLock } from './icons';
 
@@ -24,10 +24,19 @@ export function Chip({ children, selected = false, disabled, locked, badge, icon
   );
 }
 
-export function ChipGroup({ label, children }: { label: string; children: ReactNode }) {
+/** A labelled row of chips. `showLabel` prints the label as a section heading (order screen). */
+export function ChipGroup({ label, children, showLabel = false }: { label: string; children: ReactNode; showLabel?: boolean }) {
+  const id = useId();
   return (
-    <div role="group" aria-label={label} className={styles.group}>
-      {children}
+    <div className={styles.section}>
+      {showLabel ? (
+        <h3 id={id} className={styles.groupLabel}>
+          {label}
+        </h3>
+      ) : null}
+      <div role="group" aria-label={showLabel ? undefined : label} aria-labelledby={showLabel ? id : undefined} className={styles.group}>
+        {children}
+      </div>
     </div>
   );
 }

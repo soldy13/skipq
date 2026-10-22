@@ -6,6 +6,7 @@ import { ScreenHeader } from '../ScreenHeader';
 import { useDock } from '../useDock';
 import { orderPath } from './orderText';
 import { Button } from '../../components/Button';
+import { RichText } from '../../components/RichText';
 import { BoxTag } from '../../components/BoxTag';
 import { LockerGrid } from '../../components/LockerGrid';
 import { StatusPill } from '../../components/StatusPill';
@@ -20,7 +21,8 @@ import { useBoxUsage, useNow } from '../../store/hooks';
 import { useT, type Translator } from '../../i18n/useT';
 import { configSummary, drinkName } from '../../i18n/drinkText';
 
-const UNLOCK_DOCK = 96;
+/** Dock height: 12 top + 64 unlock button + 16 bottom (same bar as the order CTA). */
+const UNLOCK_DOCK = 92;
 const UNLOCK_MS = 1000;
 
 function countdown(ms: number): string {
@@ -123,18 +125,33 @@ function OrderStatusView({ order, tr }: { order: Order; tr: Translator }) {
 
       {(status === 'scheduled' || status === 'brewing') && !opened ? (
         <>
-          {status === 'brewing' ? <p className={s.body}>{tr.t('status.brewingEta', { n: Math.max(1, Math.ceil((order.readyAt - now) / MINUTE)) })}</p> : null}
+          <section className={s.card}>
+            <div className={s.readyTop}>
+              <BoxTag n={order.boxId} size="lg" />
+              <div className={s.hold}>
+                <span>{tr.t('status.boxReserved')}</span>
+                {status === 'brewing' ? (
+                  <span className={s.leftLine}>{tr.t('status.brewingEta', { n: Math.max(1, Math.ceil((order.readyAt - now) / MINUTE)) })}</span>
+                ) : null}
+              </div>
+            </div>
+            <div className={s.map}>
+              <LockerGrid total={usage.total} inUse={usage.inUse} mine={new Set([order.boxId])} tr={tr} size="mini" showLegend={false} />
+            </div>
+          </section>
           <Timeline order={order} status={status} tr={tr} />
         </>
       ) : null}
 
       {(ready || phase === 'unlocking') && !opened ? (
-        <section className={s.readyCard}>
+        <section className={`${s.card} ${s.readyCard}`}>
           <div className={s.readyTop}>
             <BoxTag n={order.boxId} size="lg" />
             <div className={s.hold}>
               <span>{tr.t('pickup.heldUntil', { time: tr.time(order.holdUntil) })}</span>
-              <span className={`${s.left} sq-mono`}>{tr.t('status.left', { time: countdown(order.holdUntil - now) })}</span>
+              <span className={s.leftLine}>
+                <RichText text={tr.t('status.left')} nodes={{ time: <span className={`${s.left} sq-mono`}>{countdown(order.holdUntil - now)}</span> }} />
+              </span>
             </div>
           </div>
           <div className={s.map}>

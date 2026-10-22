@@ -6,6 +6,8 @@ import { useStore } from '../store/useStore';
 import { useUi } from '../store/useUi';
 import { useT } from '../i18n/useT';
 import { drinkNameInline } from '../i18n/drinkText';
+import { orderStatus } from '../domain/orders';
+import { RAJSKA } from '../data/machines';
 
 /** Real seconds a ready banner stays up before it tucks itself away. */
 const BANNER_MS = 8000;
@@ -17,6 +19,9 @@ export function Notifications() {
   const location = useLocation();
   const notice = useStore((s) => s.inbox[0]);
   const order = useStore((s) => (notice ? s.orders.find((o) => o.id === notice.orderId) : undefined));
+  const now = useStore((s) => s.clock.now);
+  // A time jump can carry a queued order past its hold; never announce a coffee that's no longer waiting.
+  const stillReady = order !== undefined && orderStatus(order, now, RAJSKA.brewMinutes) === 'ready';
   const dismissNotice = useStore((s) => s.dismissNotice);
   const undoOrder = useStore((s) => s.undoOrder);
   const toast = useUi((s) => s.toast);
@@ -28,17 +33,17 @@ export function Notifications() {
 
   useEffect(() => {
     if (!notice) return;
-    if (alreadyThere || !order) {
+    if (alreadyThere || !stillReady) {
       dismissNotice(notice.id);
       return;
     }
     const timer = window.setTimeout(() => dismissNotice(notice.id), BANNER_MS);
     return () => window.clearTimeout(timer);
-  }, [notice, order, alreadyThere, dismissNotice]);
+  }, [notice, stillReady, alreadyThere, dismissNotice]);
 
   return (
     <>
-      {notice && order && !alreadyThere ? (
+      {notice && order && stillReady && !alreadyThere ? (
         <PushBanner
           key={notice.id}
           from={tr.t('push.from')}

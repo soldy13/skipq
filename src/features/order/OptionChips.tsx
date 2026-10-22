@@ -24,7 +24,7 @@ export function OptionChips({ tr, payment, addons, milk, bean, onMilk, onBean, o
   return (
     <>
       {milk !== null ? (
-        <ChipGroup label={tr.t('milk.label')}>
+        <ChipGroup label={tr.t('milk.label')} showLabel>
           {MILKS.map((m) => {
             const locked = isOptionLocked({ kind: 'milk', value: m }, payment, addons);
             return (
@@ -41,7 +41,7 @@ export function OptionChips({ tr, payment, addons, milk, bean, onMilk, onBean, o
           })}
         </ChipGroup>
       ) : null}
-      <ChipGroup label={tr.t('bean.label')}>
+      <ChipGroup label={tr.t('bean.label')} showLabel>
         {BEANS.map((b) => {
           const locked = isOptionLocked({ kind: 'bean', value: b }, payment, addons);
           return (

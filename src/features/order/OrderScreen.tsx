@@ -10,7 +10,6 @@ import { DrinkInfoSheet } from './DrinkInfoSheet';
 import { useOrderFlow } from './useOrderFlow';
 import { paymentSegments, slotLabel } from './orderText';
 import { Button, IconButton } from '../../components/Button';
-import { DailyLimit } from '../../components/DailyLimit';
 import { Segmented } from '../../components/Segmented';
 import { SlotGrid } from '../../components/SlotGrid';
 import { StrengthDots } from '../../components/StrengthDots';
@@ -24,7 +23,8 @@ import { useBookings, useNow, useSlotGrid, useWorld } from '../../store/hooks';
 import { useT } from '../../i18n/useT';
 import { drinkMeta, drinkName, drinkNameInline } from '../../i18n/drinkText';
 
-const CTA_DOCK = 84;
+/** Dock height: 12 top + 52 button + 16 bottom. */
+const CTA_DOCK = 80;
 
 function parseParams(drinkId: DrinkId, params: URLSearchParams): { milk: Milk | null; bean: Bean; slot: number | null } {
   const isMilk = drinkById(drinkId).type === 'milk';
@@ -103,11 +103,11 @@ function OrderForm({ drinkId }: { drinkId: DrinkId }) {
         <h1 className={styles.title}>{drinkName(drinkId, tr)}</h1>
         <p className={o.meta}>
           <span>{drinkMeta(drinkId, tr)}</span>
-          <StrengthDots value={drink.strength} label={tr.t('compare.strengthOf', { n: drink.strength })} />
+          <StrengthDots value={drink.strength} label={tr.t('compare.strengthOf', { n: drink.strength })} word={tr.t('compare.strength')} />
         </p>
       </header>
 
-      <section className={o.section}>
+      <section className={o.options}>
         <OptionChips tr={tr} payment={payment} addons={world.addons} milk={config.milk} bean={config.bean} onMilk={setMilk} onBean={setBean} onLocked={setAddon} />
       </section>
 
@@ -120,7 +120,6 @@ function OrderForm({ drinkId }: { drinkId: DrinkId }) {
           {tr.t('payment.title')}
         </h3>
         <Segmented<PaymentChoice> label={tr.t('payment.title')} value={payment} onChange={setChosenPayment} options={paymentSegments(opts, tr)} />
-        {planOption?.reason === 'limit' ? <DailyLimit used={planOption.used ?? 0} max={planOption.max ?? 0} tr={tr} variant="banner" /> : null}
         {planOption?.reason === 'notCovered' ? (
           <Button variant="tertiary" className={o.upgrade} onClick={() => navigate('/plans')}>
             {tr.t('payment.upgrade')}

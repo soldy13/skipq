@@ -157,7 +157,7 @@ export function ActionsSection({ tr }: { tr: Translator }) {
             value="single"
             onChange={() => undefined}
             options={[
-              { value: 'plan', label: tr.t('payment.plan'), sublabel: tr.t('limit.counter', { used: 3, max: 3 }), disabled: true, reason: tr.t('payment.limitReached') },
+              { value: 'plan', label: tr.t('payment.plan'), sublabel: tr.t('limit.counter', { used: 3, max: 3 }), disabled: true, reason: tr.t('limit.reached') },
               { value: 'pack', label: tr.t('payment.pack'), sublabel: tr.tp('payment.packLeft', 1) },
               { value: 'single', label: tr.t('payment.single'), sublabel: tr.price(29) },
             ]}

@@ -15,6 +15,7 @@ export function PickupSheet({ open, selected, onSelect, onClose }: { open: boole
         selected={selected}
         now={now}
         tr={tr}
+        hideTitle
         onSelect={(start) => {
           onSelect(start);
           onClose();

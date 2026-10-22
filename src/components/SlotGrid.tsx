@@ -13,6 +13,8 @@ export interface SlotGridProps {
   onSelect: (start: number | null) => void;
   now: number;
   tr: Translator;
+  /** The surrounding sheet or screen already titles it. */
+  hideTitle?: boolean;
 }
 
 function sublabel(slot: SlotInfo, tr: Translator): string | undefined {
@@ -21,18 +23,22 @@ function sublabel(slot: SlotInfo, tr: Translator): string | undefined {
   return undefined;
 }
 
-export function SlotGrid({ grid, selected, onSelect, now, tr }: SlotGridProps) {
+export function SlotGrid({ grid, selected, onSelect, now, tr, hideTitle = false }: SlotGridProps) {
   const titleId = useId();
   const first = grid.slots[0]?.start;
   const otherDay = first !== undefined && first !== null && !isSameDay(first, now);
   return (
-    <section className={styles.wrap} aria-labelledby={titleId}>
-      <div className={styles.head}>
-        <h3 id={titleId} className={styles.title}>
-          {tr.t('slot.grid')}
-        </h3>
-        {otherDay && first ? <span className={styles.day}>{tr.date(first)}</span> : null}
-      </div>
+    <section className={styles.wrap} aria-labelledby={hideTitle ? undefined : titleId} aria-label={hideTitle ? tr.t('slot.grid') : undefined}>
+      {hideTitle && !otherDay ? null : (
+        <div className={styles.head}>
+          {hideTitle ? null : (
+            <h3 id={titleId} className={styles.title}>
+              {tr.t('slot.grid')}
+            </h3>
+          )}
+          {otherDay && first ? <span className={styles.day}>{tr.date(first)}</span> : null}
+        </div>
+      )}
       <div className={styles.grid}>
         <SlotChip
           isNow

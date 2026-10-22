@@ -1,11 +1,18 @@
 import { useEffect } from 'react';
 import { useUi } from '../store/useUi';
+import { DEMO_HIDDEN } from '../app/demoFlag';
 
-/** While mounted, tells the shell a bottom action is docked so the demo pill and toasts float above it. */
+/** Extra top padding a docked bar keeps for the demo pill, so the pill never sits on top of content. */
+export const DEMO_LANE = DEMO_HIDDEN ? 0 : 44;
+
+/**
+ * While mounted, tells the shell a bottom action is docked (its full height in px, without the demo lane):
+ * toasts float above it and the demo pill moves into the bar's lane.
+ */
 export function useDock(px: number): void {
   const setDock = useUi((s) => s.setDock);
   useEffect(() => {
-    setDock(px);
+    setDock(px > 0 ? px + DEMO_LANE : 0);
     return () => setDock(0);
   }, [px, setDock]);
 }

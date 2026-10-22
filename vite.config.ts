@@ -6,7 +6,12 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: './',
   plugins: [react()],
-  server: { host: true, port: 5173 },
+  server: {
+    host: true,
+    port: 5173,
+    // Test coverage and review captures are written into the project; they're not app sources.
+    watch: { ignored: ['**/coverage/**', '**/.impeccable/**', '**/dist/**'] },
+  },
   test: {
     environment: 'jsdom',
     include: ['src/**/*.test.{ts,tsx}'],

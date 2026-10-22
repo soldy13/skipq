@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T15:57:09.249Z",
+  "generatedAt": "2026-10-22T19:56:36.000Z",
   "title": "Design System: SkipQ",
   "extensions": {
     "colorMeta": {
@@ -335,7 +335,11 @@
       },
       "heading": {
         "displayName": "Heading",
-        "purpose": "Section titles, drink and plan names."
+        "purpose": "Section titles, order-screen option headings, drink and plan names."
+      },
+      "heading-sm": {
+        "displayName": "Heading Small",
+        "purpose": "Drink names on usual cards and menu rows; the Unlock label."
       },
       "body": {
         "displayName": "Body",
@@ -359,14 +363,18 @@
       },
       "numeric": {
         "displayName": "Numeric",
-        "purpose": "Big mono counters, stat values, the Demo clock."
+        "purpose": "Big mono counters, stat values, the Demo clock, the pickup countdown."
+      },
+      "numeric-md": {
+        "displayName": "Numeric Medium",
+        "purpose": "Gift-code input and plan prices."
       }
     },
     "shadows": [
       {
         "name": "e1 (Lift)",
         "value": "0 1px 2px rgba(20,16,14,.06), 0 4px 12px rgba(20,16,14,.06)",
-        "purpose": "The live order card, Unlock button, checked segment, Demo pill."
+        "purpose": "The live order card, the ready status card, Unlock button, checked segment, Demo pill."
       },
       {
         "name": "e2 (Float)",
@@ -487,6 +495,22 @@
       "description": "The machine in miniature: 30 doors on an Espresso rail, yours in Vanilla.",
       "html": "<div class=\"ds-strip\"><i></i><i class=\"ds-mine\"></i><i></i><i class=\"ds-taken\"></i><i></i><i class=\"ds-taken\"></i><i></i><i></i><i class=\"ds-taken\"></i><i></i></div>",
       "css": ".ds-strip{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;height:20px;width:180px;padding:3px;border-radius:5px;background:var(--sq-espresso)}.ds-strip i{border-radius:1.5px;background:var(--sq-surface)}.ds-strip .ds-taken{background:var(--sq-coffee-200)}.ds-strip .ds-mine{background:var(--sq-vanilla);margin-block:-2px;box-shadow:0 0 0 1px var(--sq-vanilla)}"
+    },
+    {
+      "name": "Usual Card",
+      "kind": "card",
+      "refersTo": "usual-card",
+      "description": "A usual drink with a tonal one-tap order; Home keeps no Coffee fill.",
+      "html": "<div class=\"ds-usual\"><span class=\"ds-usual-body\"><span class=\"ds-usual-name\">Flat white</span><span class=\"ds-usual-sum\">Oat</span><span class=\"ds-usual-note\">Ordered 23×</span></span><button class=\"ds-usual-order\">Order · Now</button></div>",
+      "css": ".ds-usual{display:flex;align-items:center;gap:8px;padding:8px 12px 8px 8px;border-radius:var(--sq-r-lg);background:var(--sq-surface);border:1px solid var(--sq-line)}.ds-usual-body{flex:1;display:grid;gap:2px;min-width:0;padding:8px 24px 8px 12px;border-radius:var(--sq-r-md);transition:background-color var(--sq-quick)}.ds-usual-body:hover{background:color-mix(in srgb,var(--sq-coffee-100) 55%,transparent)}.ds-usual-name{font:var(--sq-heading);font-size:18px;line-height:24px}.ds-usual-sum{font:var(--sq-body-sm);color:var(--sq-espresso)}.ds-usual-note{font:var(--sq-caption);font-weight:400;color:var(--sq-stone)}.ds-usual-order{flex:none;min-height:44px;padding:8px 16px;border:0;border-radius:var(--sq-r-md);background:var(--sq-coffee-100);color:var(--sq-coffee-700);font:var(--sq-button);cursor:pointer}.ds-usual-order:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}"
+    },
+    {
+      "name": "Docked Action",
+      "kind": "custom",
+      "refersTo": "bottom-dock",
+      "description": "The committing action docked on the tab bar, with the Demo pill lane above it.",
+      "html": "<div class=\"ds-dock\"><button class=\"ds-dock-btn\">Order flat white · Now</button></div>",
+      "css": ".ds-dock{padding:calc(12px + 44px) 20px 16px;background:var(--sq-foam);box-shadow:0 -1px 0 var(--sq-line)}.ds-dock-btn{display:flex;width:100%;align-items:center;justify-content:center;min-height:52px;padding:8px 24px;border:0;border-radius:var(--sq-r-md);background:var(--sq-coffee);color:var(--sq-surface);font:var(--sq-button);cursor:pointer}.ds-dock-btn:hover{background:var(--sq-coffee-700)}.ds-dock-btn:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}"
     }
   ],
   "narrative": {
@@ -527,6 +551,11 @@
         "section": "typography"
       },
       {
+        "name": "The Struck Means Full Rule",
+        "body": "Strike-through means one thing: a Full slot. Nothing else is struck through, including disabled segments and locked options, which mute to Stone instead.",
+        "section": "typography"
+      },
+      {
         "name": "The Mono Numbers Rule",
         "body": "Times, box numbers, codes, counters, ml/mg values and prices go in DM Mono with tabular figures. Units beside them stay in DM Sans (the Amount helper sets the unit at 0.62 em, with a 12 px minimum).",
         "section": "typography"
@@ -535,6 +564,16 @@
         "name": "The Flat-Card Rule",
         "body": "Cards are flat, with a Surface fill and a Line border. Only the one live order card on a screen gets Lift.",
         "section": "elevation"
+      },
+      {
+        "name": "The Docked Action Rule",
+        "body": "A screen's committing action docks at the bottom, on the tab bar, inside the bottom third. Short content never lifts it into the middle of the screen.",
+        "section": "layout"
+      },
+      {
+        "name": "The Reserved at Payment Rule",
+        "body": "The box is reserved at payment, so from Scheduled onwards the status screen shows it as the Vanilla plate plus the mini locker map. A box number never waits for Ready to appear.",
+        "section": "components"
       }
     ],
     "dos": [
@@ -544,6 +583,8 @@
       "Do keep one Coffee-filled primary per screen. Use the Espresso 64 px Unlock as the only exception.",
       "Do show status as icon plus word plus colour, using the status text/tint pairs.",
       "Do use the motion tokens: 150 ms ease-out for state changes, 240 ms base for sheets and fills, and 420 ms reward (with overshoot) only for arrivals such as unlock, order placed, your box settling, and toasts. Reduced motion collapses all three to 150 ms.",
+      "Do dock a screen's committing action (order, unlock) at the bottom on the tab bar, with the Demo pill lane above it, and float the toast above the dock.",
+      "Do show the box as the Vanilla plate plus the mini locker map from Scheduled onwards.",
       "Do keep touch targets at 44 px or more (52 for primary, 64 for unlock), and let labels wrap or step down instead of fixing widths."
     ],
     "donts": [
@@ -552,6 +593,7 @@
       "Don't put Stone text on Vanilla. Use Bean.",
       "Don't set Instrument Serif below 24 px or use it for UI labels.",
       "Don't use the overline style as a kicker or eyebrow above a heading or section. It only names a data tile or a Demo panel group.",
+      "Don't strike through anything except a Full slot. Disabled options mute to Stone.",
       "Don't add shadows to ordinary cards. Lift is for the one live card and for controls that sit on top.",
       "Don't use product-photo menus, loyalty-card gamification, or urgency devices such as countdown badges and red dots.",
       "Don't use glyph or emoji icons. Icons are the 24 px, 1.75-stroke line set."

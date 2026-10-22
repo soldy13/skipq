@@ -39,9 +39,10 @@
 }
 
 .meta {
-  display: flex;
-  align-items: center;
-  gap: var(--sq-3);
+  /* Size + caffeine on one line, strength on its own: every row has the same rhythm in both languages. */
+  display: grid;
+  justify-items: start;
+  gap: 2px;
   font: var(--sq-body-sm);
   font-variant-numeric: tabular-nums;
   color: var(--sq-stone);

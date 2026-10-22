@@ -1,4 +1,7 @@
 .screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   padding-bottom: 0;
 }
 
@@ -17,10 +20,13 @@
   gap: var(--sq-3);
 }
 
+.options {
+  display: grid;
+  gap: var(--sq-6);
+}
+
 .label {
   font: var(--sq-heading);
-  font-size: 17px;
-  line-height: 24px;
 }
 
 .upgrade {
@@ -32,8 +38,10 @@
   position: sticky;
   bottom: 0;
   z-index: 2;
+  /* Short content: the bar still sits on the tab bar, where the demo pill's lane expects it. */
+  margin-top: auto;
   margin-inline: calc(-1 * var(--sq-gutter));
-  padding: var(--sq-3) var(--sq-gutter) var(--sq-4);
+  padding: calc(var(--sq-3) + var(--sq-demo-lane, 0px)) var(--sq-gutter) var(--sq-4);
   background: var(--sq-foam);
   box-shadow: 0 -1px 0 var(--sq-line);
 }

@@ -1,4 +1,7 @@
 .screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   padding-bottom: 0;
 }
 
@@ -65,14 +68,19 @@
   font-weight: 500;
 }
 
-/* Ready: the plate, the countdown and the machine. */
-.readyCard {
+/* The plate and the machine: the box is reserved from payment, so it shows from Scheduled on. */
+.card {
   display: grid;
   gap: var(--sq-4);
   padding: var(--sq-5);
   border-radius: var(--sq-r-lg);
   background: var(--sq-surface);
-  border: 1px solid color-mix(in srgb, var(--sq-ready) 30%, var(--sq-line));
+  border: 1px solid var(--sq-line);
+}
+
+/* Ready: lifted, with the countdown. */
+.readyCard {
+  border-color: color-mix(in srgb, var(--sq-ready) 30%, var(--sq-line));
   box-shadow: var(--sq-e1);
 }
 
@@ -97,9 +105,13 @@
   text-align: right;
 }
 
+.leftLine {
+  font: var(--sq-body-sm);
+  color: var(--sq-espresso);
+}
+
 .left {
   font: var(--sq-numeric);
-  color: var(--sq-espresso);
 }
 
 .opened {
@@ -133,8 +145,10 @@
   position: sticky;
   bottom: 0;
   z-index: 2;
+  /* Short content: the bar still sits on the tab bar, where the demo pill's lane expects it. */
+  margin-top: auto;
   margin-inline: calc(-1 * var(--sq-gutter));
-  padding: var(--sq-3) var(--sq-gutter) var(--sq-5);
+  padding: calc(var(--sq-3) + var(--sq-demo-lane, 0px)) var(--sq-gutter) var(--sq-4);
   background: var(--sq-foam);
   box-shadow: 0 -1px 0 var(--sq-line);
 }

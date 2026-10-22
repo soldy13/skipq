@@ -93,7 +93,6 @@ export const cs: Dict = {
   'payment.packLeft.few': 'Zbývají {n} kredity',
   'payment.packLeft.other': 'Zbývá {n} kreditů',
   'payment.notCovered': 'Černé předplatné platí jen na černou kávu',
-  'payment.limitReached': 'Dnešní limit je vyčerpaný',
   'payment.upgrade': 'Přejít na mléčné předplatné',
 
   'milk.label': 'Mléko',
@@ -262,6 +261,7 @@ export const cs: Dict = {
   'status.step.brew': 'Začneme připravovat',
   'status.step.ready': 'Hotovo v boxu {n}',
   'status.step.hold': 'Počká do',
+  'status.boxReserved': 'Rezervovaný pro tebe',
   'status.left': 'zbývá {time}',
   'status.expiredBody': 'Box {n} čekal do {time}. Nikdo ho neodemkl, tak se vrátil automatu. Propadlá káva se počítá jako vypitá.',
   'status.pickedUpBody': 'Vyzvednuto v {time} z boxu {n}.',

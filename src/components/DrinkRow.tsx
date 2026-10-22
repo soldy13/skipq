@@ -11,6 +11,8 @@ export interface DrinkRowProps {
   typeLabel: string;
   strength: number;
   strengthLabel: string;
+  /** Visible word before the dots: "Strength". */
+  strengthWord: string;
   infoLabel: string;
   onOpen: () => void;
   onInfo: () => void;
@@ -18,7 +20,7 @@ export interface DrinkRowProps {
   note?: string;
 }
 
-export function DrinkRow({ name, meta, typeLabel, strength, strengthLabel, infoLabel, onOpen, onInfo, note }: DrinkRowProps) {
+export function DrinkRow({ name, meta, typeLabel, strength, strengthLabel, strengthWord, infoLabel, onOpen, onInfo, note }: DrinkRowProps) {
   return (
     <div className={styles.row}>
       <button type="button" className={styles.main} onClick={onOpen}>
@@ -28,7 +30,7 @@ export function DrinkRow({ name, meta, typeLabel, strength, strengthLabel, infoL
         </span>
         <span className={styles.meta}>
           <span>{meta}</span>
-          <StrengthDots value={strength} label={strengthLabel} />
+          <StrengthDots value={strength} label={strengthLabel} word={strengthWord} />
         </span>
         {note ? <span className={styles.note}>{note}</span> : null}
         <IconChevronRight size={18} className={styles.chev} />

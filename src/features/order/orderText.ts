@@ -40,7 +40,12 @@ export function paymentSegments(opts: PaymentOptions, tr: Translator): SegmentOp
         label: tr.t('payment.plan'),
         sublabel: tr.t('limit.counter', { used: Math.min(o.used ?? 0, o.max ?? 0), max: o.max ?? 0 }),
         disabled: !o.available,
-        reason: o.reason === 'limit' ? tr.t('payment.limitReached') : o.reason === 'notCovered' ? tr.t('payment.notCovered') : undefined,
+        reason:
+          o.reason === 'limit'
+            ? tr.t((o.max ?? 0) === 1 ? 'limit.reachedOne' : 'limit.reached')
+            : o.reason === 'notCovered'
+              ? tr.t('payment.notCovered')
+              : undefined,
       };
     }
     if (o.method === 'pack') return { value: 'pack', label: tr.t('payment.pack'), sublabel: tr.tp('payment.packLeft', o.credits ?? 0) };

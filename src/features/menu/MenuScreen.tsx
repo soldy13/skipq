@@ -34,6 +34,7 @@ export function MenuScreen() {
             typeLabel={tr.t(`drink.type.${d.type}`)}
             strength={d.strength}
             strengthLabel={tr.t('compare.strengthOf', { n: d.strength })}
+            strengthWord={tr.t('compare.strength')}
             infoLabel={tr.t('common.info', { drink: d.name[tr.lang] })}
             note={plan?.type === 'black' && d.type === 'milk' ? tr.t('payment.notCovered') : undefined}
             onOpen={() => navigate(orderPath(defaultConfig(d.id)))}

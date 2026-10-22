@@ -91,7 +91,6 @@ export const en = {
   'payment.packLeft.few': '{n} credits left',
   'payment.packLeft.other': '{n} credits left',
   'payment.notCovered': 'Black plan covers black drinks only',
-  'payment.limitReached': 'Today’s allowance is used',
   'payment.upgrade': 'Upgrade to Milk plan',
 
   'milk.label': 'Milk',
@@ -260,6 +259,7 @@ export const en = {
   'status.step.brew': 'Brewing starts',
   'status.step.ready': 'Ready in box {n}',
   'status.step.hold': 'Held until',
+  'status.boxReserved': 'Reserved for you',
   'status.left': '{time} left',
   'status.expiredBody': 'Box {n} waited until {time}. Nobody unlocked it, so the box went back to the machine. An expired coffee still counts as used.',
   'status.pickedUpBody': 'Picked up at {time} from box {n}.',

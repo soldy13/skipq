@@ -62,11 +62,6 @@
   opacity: 1;
 }
 
-.option:disabled .label {
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-}
-
 .reasons {
   display: grid;
   gap: var(--sq-1);
