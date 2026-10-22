@@ -1,0 +1,63 @@
+/* Shared screen scaffolding: gutter, rhythm, and room for the demo pill above the tab bar. */
+.screen {
+  display: grid;
+  align-content: start;
+  gap: var(--sq-6);
+  padding: calc(var(--sq-safe-top) + var(--sq-8)) var(--sq-gutter) var(--sq-14);
+}
+
+.header {
+  display: grid;
+  gap: var(--sq-1);
+}
+
+.dateLine {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+.display {
+  font: var(--sq-display);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.title {
+  font: var(--sq-title);
+  text-wrap: balance;
+}
+
+.sectionTitle {
+  font: var(--sq-heading);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sq-3);
+}
+
+.wip {
+  display: grid;
+  gap: var(--sq-3);
+  padding: var(--sq-5);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-coffee-100);
+}
+
+.wip p {
+  font: var(--sq-body-sm);
+  color: var(--sq-coffee-900);
+  text-wrap: pretty;
+}
+
+.wip a {
+  font: var(--sq-body-sm);
+  font-weight: 600;
+  justify-self: start;
+}
+
+.stack {
+  display: grid;
+  gap: var(--sq-3);
+}

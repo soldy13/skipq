@@ -1,0 +1,72 @@
+.row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: var(--sq-3);
+  width: 100%;
+  min-height: 48px;
+  padding: var(--sq-2) var(--sq-3);
+  border-radius: var(--sq-r-md);
+  text-align: left;
+}
+
+.clickable {
+  grid-template-columns: 32px 1fr auto 18px;
+}
+
+.clickable:hover {
+  background: var(--sq-coffee-100);
+}
+
+.rank {
+  font-size: 14px;
+  color: var(--sq-stone);
+  text-align: right;
+}
+
+.podium .rank {
+  color: var(--sq-coffee);
+  font-weight: 500;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: var(--sq-2);
+  min-width: 0;
+  font: var(--sq-body);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.you {
+  padding: 1px 7px;
+  border-radius: var(--sq-r-pill);
+  background: var(--sq-coffee);
+  color: var(--sq-on-coffee);
+  font: var(--sq-caption);
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.chev {
+  color: var(--sq-coffee-900);
+}
+
+/* Your row: Vanilla, Coffee-900 text — Stone never sits on Vanilla. */
+.mine {
+  background: var(--sq-vanilla);
+  color: var(--sq-coffee-900);
+}
+
+.mine .rank {
+  color: var(--sq-coffee-900);
+}
+
+.mine.clickable:hover {
+  background: color-mix(in srgb, var(--sq-vanilla) 80%, var(--sq-coffee-200));
+}

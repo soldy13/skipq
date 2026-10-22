@@ -1,0 +1,99 @@
+.wrap {
+  display: grid;
+  gap: var(--sq-2);
+}
+
+.track {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: var(--sq-1);
+  padding: var(--sq-1);
+  border-radius: var(--sq-r-md);
+  background: var(--sq-coffee-100);
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: var(--sq-tap);
+  padding: var(--sq-2) var(--sq-2);
+  border-radius: calc(var(--sq-r-md) - var(--sq-1));
+  color: var(--sq-coffee-700);
+  text-align: center;
+  transition:
+    background-color var(--sq-quick),
+    box-shadow var(--sq-quick),
+    color var(--sq-quick);
+}
+
+.option:hover:not(:disabled):not(.checked) {
+  background: color-mix(in srgb, var(--sq-surface) 50%, transparent);
+}
+
+.label {
+  font: var(--sq-button);
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.sub {
+  font: var(--sq-caption);
+  font-weight: 400;
+  color: inherit;
+  text-wrap: balance;
+}
+
+.checked {
+  background: var(--sq-surface);
+  color: var(--sq-espresso);
+  box-shadow: var(--sq-e1);
+}
+
+.checked .sub {
+  color: var(--sq-stone);
+}
+
+.option:disabled {
+  color: var(--sq-stone);
+  opacity: 1;
+}
+
+.option:disabled .label {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.reasons {
+  display: grid;
+  gap: var(--sq-1);
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+.reasons strong {
+  color: var(--sq-espresso);
+  font-weight: 600;
+}
+
+/* Dark variant for the demo panel. */
+.dark {
+  background: var(--sq-espresso-raised);
+}
+
+.dark .option {
+  color: var(--sq-on-dark-2);
+}
+
+.dark .checked {
+  background: var(--sq-foam);
+  color: var(--sq-espresso);
+  box-shadow: none;
+}
+
+.dark .option:hover:not(:disabled):not(.checked) {
+  background: var(--sq-line-on-dark);
+}

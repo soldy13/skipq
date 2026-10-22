@@ -1,0 +1,19 @@
+.dots {
+  display: inline-flex;
+  gap: 3px;
+  vertical-align: middle;
+}
+
+.dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.on {
+  background: var(--sq-coffee);
+}
+
+.off {
+  box-shadow: inset 0 0 0 1.25px var(--sq-coffee-200);
+}

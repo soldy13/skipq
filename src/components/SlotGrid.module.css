@@ -1,0 +1,28 @@
+.wrap {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sq-3);
+}
+
+.title {
+  font: var(--sq-heading);
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.day {
+  font: var(--sq-caption);
+  color: var(--sq-coffee);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sq-2);
+}

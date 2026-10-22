@@ -1,0 +1,95 @@
+/* Gift moments are Vanilla; text on Vanilla is Coffee-900, never Stone. */
+.ticket {
+  position: relative;
+  display: grid;
+  gap: var(--sq-3);
+  padding: var(--sq-5);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-vanilla);
+  color: var(--sq-coffee-900);
+}
+
+/* Perforation between the stub and the code. */
+.ticket::before {
+  content: '';
+  position: absolute;
+  left: var(--sq-5);
+  right: var(--sq-5);
+  top: 64px;
+  border-top: 1.5px dashed color-mix(in srgb, var(--sq-coffee) 35%, transparent);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sq-2);
+  min-height: 28px;
+  padding-bottom: var(--sq-3);
+}
+
+.drink {
+  flex: 1;
+  font: var(--sq-body);
+  font-weight: 600;
+}
+
+.code {
+  margin-top: var(--sq-2);
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--sq-espresso);
+}
+
+.valid {
+  font: var(--sq-body-sm);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sq-2);
+  margin-top: var(--sq-1);
+}
+
+.actions button {
+  background: var(--sq-surface);
+}
+
+.actions button:hover:not(:disabled) {
+  background: var(--sq-foam);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'code status'
+    'drink status';
+  align-items: center;
+  column-gap: var(--sq-3);
+  row-gap: 2px;
+  padding: var(--sq-3) 0;
+  border-bottom: 1px solid var(--sq-line);
+}
+
+.rowCode {
+  grid-area: code;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.rowDrink {
+  grid-area: drink;
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+.rowStatus {
+  grid-area: status;
+  justify-self: end;
+}

@@ -1,0 +1,65 @@
+.meter {
+  display: grid;
+  align-content: start;
+  gap: var(--sq-2);
+  padding: var(--sq-4);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-surface);
+  border: 1px solid var(--sq-line);
+}
+
+.title {
+  font: var(--sq-overline);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sq-stone);
+}
+
+.value {
+  font: var(--sq-body);
+  font-weight: 600;
+}
+
+.num {
+  font: var(--sq-numeric);
+  margin-inline-end: 1px;
+}
+
+/* The machine in miniature: an Espresso rail of 30 doors, same colours as the LockerGrid. */
+.strip {
+  display: grid;
+  gap: 2px;
+  height: 20px;
+  margin-top: var(--sq-1);
+  padding: 3px;
+  border-radius: 5px;
+  background: var(--sq-espresso);
+}
+
+.strip li {
+  border-radius: 1.5px;
+  transition: background-color var(--sq-base);
+}
+
+.free {
+  background: var(--sq-surface);
+}
+
+.taken {
+  background: var(--sq-coffee-200);
+}
+
+/* Your door: solid Vanilla, a touch taller so it holds up at tile width. */
+.mine {
+  background: var(--sq-vanilla);
+  margin-block: -2px;
+  box-shadow: 0 0 0 1px var(--sq-vanilla);
+}
+
+.few .num {
+  color: var(--sq-brewing);
+}
+
+.full .value {
+  color: var(--sq-espresso);
+}

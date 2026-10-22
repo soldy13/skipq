@@ -1,0 +1,16 @@
+.host {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Covers the host; only its children take pointer events. */
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--sq-z-sheet);
+}
+
+.layer > * {
+  pointer-events: auto;
+}

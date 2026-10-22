@@ -1,0 +1,154 @@
+/* App-wide base. Colours come only from tokens.css; derived values mix tokens, never hex. */
+
+:root {
+  --sq-scrim: color-mix(in srgb, var(--sq-espresso) 44%, transparent);
+  --sq-on-coffee: var(--sq-surface);
+  --sq-on-espresso: var(--sq-foam);
+  --sq-espresso-raised: color-mix(in srgb, var(--sq-espresso) 88%, var(--sq-foam));
+  --sq-line-on-dark: color-mix(in srgb, var(--sq-foam) 16%, transparent);
+  --sq-tabbar-h: 64px;
+  --sq-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --sq-safe-top: env(safe-area-inset-top, 0px);
+
+  --sq-z-tabbar: 10;
+  --sq-z-demo-pill: 20;
+  --sq-z-sheet: 40;
+  --sq-z-toast: 50;
+  --sq-z-push: 60;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--sq-foam);
+  color: var(--sq-espresso);
+  font: var(--sq-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
+  caret-color: var(--sq-coffee);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ol,
+ul,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  touch-action: manipulation;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: var(--sq-coffee);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+::selection {
+  background: var(--sq-vanilla);
+  color: var(--sq-coffee-900);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  box-shadow: var(--sq-focus);
+  outline: 2px solid transparent; /* stays visible in forced-colours mode */
+}
+
+/* Numbers that line up: counters, times, prices in tables. */
+.sq-mono {
+  font-family: var(--sq-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.sq-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Thin, warm scrollbars where the platform shows them. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sq-coffee-200) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sq-coffee-200);
+  border-radius: var(--sq-r-pill);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

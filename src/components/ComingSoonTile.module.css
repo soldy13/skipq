@@ -1,0 +1,64 @@
+.tile {
+  display: flex;
+  align-items: center;
+  gap: var(--sq-3);
+  width: 100%;
+  padding: var(--sq-4);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-surface);
+  border: 1px dashed var(--sq-coffee-200);
+  text-align: left;
+  transition: border-color var(--sq-quick);
+}
+
+.tile:hover {
+  border-color: var(--sq-coffee-400);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--sq-r-md);
+  background: var(--sq-coffee-100);
+  color: var(--sq-coffee);
+}
+
+.text {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sq-2);
+}
+
+.title {
+  font: var(--sq-body);
+  font-weight: 600;
+}
+
+.badge {
+  padding: 1px 8px;
+  border-radius: var(--sq-r-pill);
+  background: var(--sq-vanilla);
+  color: var(--sq-coffee-900);
+  font: var(--sq-caption);
+}
+
+.desc {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+.chev {
+  flex: none;
+  color: var(--sq-stone);
+}

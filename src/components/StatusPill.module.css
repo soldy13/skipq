@@ -1,0 +1,62 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--sq-r-pill);
+  font: var(--sq-caption);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sm {
+  min-height: 28px;
+  padding: 4px 10px 4px 8px;
+}
+
+.md {
+  min-height: 34px;
+  padding: 6px 14px 6px 10px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.scheduled {
+  background: var(--sq-scheduled-bg);
+  color: var(--sq-scheduled);
+}
+
+.brewing {
+  background: var(--sq-brewing-bg);
+  color: var(--sq-brewing);
+}
+
+.ready {
+  background: var(--sq-ready-bg);
+  color: var(--sq-ready);
+}
+
+.done {
+  background: var(--sq-disabled-bg);
+  color: var(--sq-stone);
+}
+
+.expired {
+  background: var(--sq-expired-bg);
+  color: var(--sq-expired);
+}
+
+.brewing svg {
+  animation: steam 1.8s ease-in-out infinite;
+}
+
+@keyframes steam {
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brewing svg {
+    animation: none !important;
+  }
+}

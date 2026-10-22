@@ -1,0 +1,71 @@
+.limit {
+  display: grid;
+  align-content: start;
+  gap: var(--sq-2);
+  padding: var(--sq-4);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-surface);
+  border: 1px solid var(--sq-line);
+}
+
+.title {
+  font: var(--sq-overline);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sq-stone);
+}
+
+/* One pip per coffee of the allowance; a cup-shaped slot fills as the day goes. */
+.pips {
+  display: flex;
+  gap: 6px;
+  margin-block: 2px;
+}
+
+.pips li {
+  width: 22px;
+  height: 26px;
+  border-radius: 4px 4px 9px 9px;
+  transition: background-color var(--sq-base);
+}
+
+.used {
+  background: var(--sq-coffee);
+}
+
+.left {
+  background: var(--sq-surface);
+  box-shadow: inset 0 0 0 1.5px var(--sq-coffee-200);
+}
+
+.value {
+  font: var(--sq-body);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sq-2);
+  margin-top: var(--sq-1);
+}
+
+/* Banner: full width on the order screen; pips and counter share a line. */
+.banner {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: var(--sq-3);
+}
+
+.banner .title,
+.banner .note,
+.banner .actions {
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--sq-4);
+  padding: var(--sq-4) 0;
+  border-bottom: 1px solid var(--sq-line);
+}
+
+.text {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font: var(--sq-body);
+  font-weight: 600;
+}
+
+.desc {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+.price {
+  margin-top: 2px;
+  font: var(--sq-caption);
+  font-weight: 400;
+  color: var(--sq-stone);
+}
+
+.price > :first-child {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sq-espresso);
+}

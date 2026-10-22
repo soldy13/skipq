@@ -1,0 +1,69 @@
+.wrap {
+  display: grid;
+  gap: var(--sq-3);
+  margin: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font: var(--sq-body-sm);
+}
+
+.table th,
+.table td {
+  padding: var(--sq-2) 6px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--sq-line);
+}
+
+.table thead th {
+  font: var(--sq-caption);
+  color: var(--sq-stone);
+  padding-block: var(--sq-1) var(--sq-2);
+}
+
+.table tbody th {
+  font-weight: 600;
+}
+
+.table td {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.num {
+  text-align: right !important;
+}
+
+.table tr > :first-child {
+  padding-left: var(--sq-2);
+}
+
+.table tr > :last-child {
+  padding-right: var(--sq-2);
+}
+
+/* The drink you're looking at. Vanilla row: Coffee-900 text only. */
+.current th,
+.current td {
+  background: var(--sq-vanilla);
+  color: var(--sq-coffee-900);
+  border-bottom-color: transparent;
+}
+
+.current > :first-child {
+  border-radius: var(--sq-r-sm) 0 0 var(--sq-r-sm);
+}
+
+.current > :last-child {
+  border-radius: 0 var(--sq-r-sm) var(--sq-r-sm) 0;
+}
+
+.foot {
+  font: var(--sq-caption);
+  font-weight: 400;
+  color: var(--sq-stone);
+}

@@ -1,0 +1,152 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sq-2);
+  min-height: var(--sq-tap);
+  padding: var(--sq-2) var(--sq-5);
+  border-radius: var(--sq-r-md);
+  font: var(--sq-button);
+  text-align: center;
+  text-wrap: balance;
+  transition:
+    background-color var(--sq-quick),
+    color var(--sq-quick),
+    transform var(--sq-quick),
+    box-shadow var(--sq-quick);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.label {
+  min-width: 0;
+}
+
+.block {
+  display: flex;
+  width: 100%;
+}
+
+/* Primary: Coffee fill. One per screen. */
+.primary {
+  min-height: var(--sq-btn-l);
+  padding-inline: var(--sq-6);
+  background: var(--sq-coffee);
+  color: var(--sq-on-coffee);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--sq-coffee-700);
+}
+
+.compact {
+  min-height: var(--sq-tap);
+  padding-inline: var(--sq-4);
+}
+
+/* Secondary: tonal Coffee — sits next to a primary without competing. */
+.secondary {
+  background: var(--sq-coffee-100);
+  color: var(--sq-coffee-700);
+}
+
+.secondary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--sq-coffee-100) 55%, var(--sq-coffee-200));
+}
+
+/* Tertiary: a link that is a button. */
+.tertiary {
+  padding-inline: var(--sq-2);
+  color: var(--sq-coffee);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.tertiary:hover:not(:disabled) {
+  color: var(--sq-coffee-700);
+  text-decoration-thickness: 2px;
+}
+
+/* Unlock: the one Espresso button, 64 px tall, in the bottom third. */
+.unlock {
+  min-height: var(--sq-btn-unlock);
+  padding-inline: var(--sq-6);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-espresso);
+  color: var(--sq-on-espresso);
+  font-size: 18px;
+  box-shadow: var(--sq-e1);
+}
+
+.unlock:hover:not(:disabled) {
+  background: var(--sq-espresso-raised);
+}
+
+.button:disabled {
+  background: var(--sq-disabled-bg);
+  color: var(--sq-stone);
+  box-shadow: none;
+}
+
+.tertiary:disabled {
+  background: none;
+  text-decoration: none;
+}
+
+.loading {
+  cursor: progress;
+}
+
+.loading.primary {
+  background: var(--sq-coffee-700);
+}
+
+.button:focus-visible {
+  box-shadow: var(--sq-focus);
+}
+
+/* Icon button: 44 × 44, label lives in aria-label. */
+.iconButton {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--sq-tap);
+  height: var(--sq-tap);
+  border-radius: var(--sq-r-pill);
+  transition:
+    background-color var(--sq-quick),
+    color var(--sq-quick);
+}
+
+.icon_plain {
+  color: var(--sq-espresso);
+}
+
+.icon_plain:hover:not(:disabled) {
+  background: var(--sq-coffee-100);
+}
+
+.icon_filled {
+  background: var(--sq-coffee-100);
+  color: var(--sq-coffee-700);
+}
+
+.icon_filled:hover:not(:disabled) {
+  background: var(--sq-coffee-200);
+}
+
+.icon_onDark {
+  color: var(--sq-on-espresso);
+}
+
+.icon_onDark:hover:not(:disabled) {
+  background: var(--sq-line-on-dark);
+}
+
+.iconButton:disabled {
+  color: var(--sq-gray);
+}

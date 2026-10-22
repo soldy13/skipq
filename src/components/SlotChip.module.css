@@ -1,0 +1,72 @@
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: var(--sq-slot-h);
+  padding: var(--sq-1) var(--sq-2);
+  border-radius: var(--sq-r-md);
+  background: var(--sq-surface);
+  border: 1px solid var(--sq-line);
+  color: var(--sq-espresso);
+  transition:
+    background-color var(--sq-quick),
+    border-color var(--sq-quick),
+    box-shadow var(--sq-quick);
+}
+
+.slot:hover:not(:disabled) {
+  border-color: var(--sq-coffee-400);
+}
+
+.slot:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.time {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.word {
+  font: var(--sq-button);
+  line-height: 20px;
+}
+
+.sub {
+  font: var(--sq-caption);
+  color: var(--sq-stone);
+}
+
+/* ≤ 3 boxes: amber words, never red. */
+.few .sub {
+  color: var(--sq-brewing);
+  font-weight: 600;
+}
+
+.selected {
+  background: var(--sq-vanilla);
+  border-color: var(--sq-coffee);
+  box-shadow: inset 0 0 0 1px var(--sq-coffee);
+  color: var(--sq-coffee-900);
+}
+
+.selected .sub {
+  color: var(--sq-coffee-900);
+}
+
+/* Full: stays in the grid, struck through, not selectable. */
+.full,
+.slot:disabled {
+  background: var(--sq-disabled-bg);
+  border-color: var(--sq-disabled-bg);
+  color: var(--sq-stone);
+}
+
+.full .time,
+.full .word {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}

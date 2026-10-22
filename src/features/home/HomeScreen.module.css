@@ -1,0 +1,53 @@
+.order {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sq-4);
+  padding: var(--sq-4) var(--sq-4) var(--sq-4) var(--sq-5);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-surface);
+  border: 1px solid var(--sq-line);
+  box-shadow: var(--sq-e1);
+}
+
+.orderText {
+  display: grid;
+  justify-items: start;
+  gap: var(--sq-1);
+  min-width: 0;
+}
+
+/* The ready moment: the serif names the box (brief §7). */
+.readyLine {
+  margin-top: var(--sq-2);
+  font: var(--sq-title);
+  text-wrap: balance;
+  animation: arrive var(--sq-reward) both;
+}
+
+.ready {
+  border-color: color-mix(in srgb, var(--sq-ready) 30%, var(--sq-line));
+}
+
+.ready .drink {
+  margin-top: 0;
+  font: var(--sq-body);
+  font-weight: 600;
+}
+
+.drink {
+  margin-top: var(--sq-1);
+  font: var(--sq-heading);
+}
+
+.meta {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

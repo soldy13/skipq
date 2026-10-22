@@ -1,0 +1,85 @@
+.wrap {
+  display: grid;
+  gap: var(--sq-2);
+  min-width: 0;
+}
+
+.label {
+  font: var(--sq-body-sm);
+  font-weight: 600;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: var(--sq-r-md);
+  background: var(--sq-surface);
+  border: 1.5px solid var(--sq-line);
+  transition:
+    border-color var(--sq-quick),
+    box-shadow var(--sq-quick);
+}
+
+.field:focus-within {
+  border-color: var(--sq-coffee);
+  box-shadow: 0 0 0 4px var(--sq-coffee-100);
+}
+
+.input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 64px;
+  padding: 0 var(--sq-4);
+  border: 0;
+  background: transparent;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sq-espresso);
+}
+
+.input:focus-visible {
+  box-shadow: none;
+}
+
+.input::placeholder {
+  color: var(--sq-stone);
+  opacity: 0.55;
+}
+
+.mark {
+  flex: none;
+  margin-inline-end: var(--sq-4);
+  color: var(--sq-ready);
+}
+
+.complete {
+  border-color: var(--sq-ready);
+}
+
+.invalid,
+.invalid:focus-within {
+  border-color: var(--sq-expired);
+  box-shadow: 0 0 0 4px var(--sq-expired-bg);
+}
+
+.hint {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+.error {
+  display: flex;
+  gap: var(--sq-2);
+  align-items: flex-start;
+  font: var(--sq-body-sm);
+  color: var(--sq-expired);
+}
+
+.error svg {
+  flex: none;
+  margin-top: 1px;
+}

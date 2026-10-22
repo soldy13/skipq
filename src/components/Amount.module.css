@@ -1,0 +1,18 @@
+.amount {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.22em;
+  white-space: nowrap;
+}
+
+.value {
+  font: inherit;
+  font-family: var(--sq-mono);
+}
+
+.unit {
+  font-family: var(--sq-sans);
+  font-size: max(0.62em, 12px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}

@@ -1,0 +1,560 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T15:57:09.249Z",
+  "title": "Design System: SkipQ",
+  "extensions": {
+    "colorMeta": {
+      "coffee": {
+        "role": "primary",
+        "displayName": "Roasted Coffee",
+        "canonical": "var(--sq-coffee)",
+        "tonalRamp": [
+          "#3B2117",
+          "#6E3E2B",
+          "#874F38",
+          "#B9826A",
+          "#E2C6B6",
+          "#F3E7E0",
+          "#FAF3EA",
+          "#FFFFFF"
+        ]
+      },
+      "coffee-100": {
+        "role": "primary",
+        "displayName": "Steamed Milk",
+        "canonical": "var(--sq-coffee-100)",
+        "tonalRamp": [
+          "#3B2117",
+          "#6E3E2B",
+          "#874F38",
+          "#B9826A",
+          "#E2C6B6",
+          "#F3E7E0",
+          "#FAF3EA",
+          "#FFFFFF"
+        ]
+      },
+      "coffee-200": {
+        "role": "primary",
+        "displayName": "Latte",
+        "canonical": "var(--sq-coffee-200)",
+        "tonalRamp": [
+          "#3B2117",
+          "#6E3E2B",
+          "#874F38",
+          "#B9826A",
+          "#E2C6B6",
+          "#F3E7E0",
+          "#FAF3EA",
+          "#FFFFFF"
+        ]
+      },
+      "coffee-400": {
+        "role": "primary",
+        "displayName": "Caramel Line",
+        "canonical": "var(--sq-coffee-400)",
+        "tonalRamp": [
+          "#3B2117",
+          "#6E3E2B",
+          "#874F38",
+          "#B9826A",
+          "#E2C6B6",
+          "#F3E7E0",
+          "#FAF3EA",
+          "#FFFFFF"
+        ]
+      },
+      "coffee-700": {
+        "role": "primary",
+        "displayName": "Dark Roast",
+        "canonical": "var(--sq-coffee-700)",
+        "tonalRamp": [
+          "#3B2117",
+          "#6E3E2B",
+          "#874F38",
+          "#B9826A",
+          "#E2C6B6",
+          "#F3E7E0",
+          "#FAF3EA",
+          "#FFFFFF"
+        ]
+      },
+      "coffee-900": {
+        "role": "primary",
+        "displayName": "Bean",
+        "canonical": "var(--sq-coffee-900)",
+        "tonalRamp": [
+          "#3B2117",
+          "#6E3E2B",
+          "#874F38",
+          "#B9826A",
+          "#E2C6B6",
+          "#F3E7E0",
+          "#FAF3EA",
+          "#FFFFFF"
+        ]
+      },
+      "vanilla": {
+        "role": "secondary",
+        "displayName": "Vanilla Plate",
+        "canonical": "var(--sq-vanilla)",
+        "tonalRamp": [
+          "#160700",
+          "#34220C",
+          "#54412B",
+          "#77624B",
+          "#9B856D",
+          "#C1AA91",
+          "#E4CDB3",
+          "#FFEAD0"
+        ]
+      },
+      "foam": {
+        "role": "neutral",
+        "displayName": "Foam",
+        "canonical": "var(--sq-foam)",
+        "tonalRamp": [
+          "#0F0A05",
+          "#2B261F",
+          "#4A443D",
+          "#6B655D",
+          "#8E8880",
+          "#B3ADA4",
+          "#D7D0C7",
+          "#F4EDE4"
+        ]
+      },
+      "espresso": {
+        "role": "neutral",
+        "displayName": "Espresso",
+        "canonical": "var(--sq-espresso)",
+        "tonalRamp": [
+          "#0E0A08",
+          "#2A2523",
+          "#494441",
+          "#6A6562",
+          "#8D8885",
+          "#B2ACAA",
+          "#D6CFCD",
+          "#F3EDEA"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "var(--sq-surface)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#262626",
+          "#454545",
+          "#666666",
+          "#898989",
+          "#AEAEAE",
+          "#D1D1D1",
+          "#EEEEEE"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "var(--sq-line)",
+        "tonalRamp": [
+          "#0E0A05",
+          "#2A261F",
+          "#49443D",
+          "#6A655D",
+          "#8E8880",
+          "#B3ADA4",
+          "#D6D0C7",
+          "#F4EEE4"
+        ]
+      },
+      "disabled-bg": {
+        "role": "neutral",
+        "displayName": "Spent Cup",
+        "canonical": "var(--sq-disabled-bg)",
+        "tonalRamp": [
+          "#0D0B08",
+          "#282622",
+          "#474541",
+          "#686661",
+          "#8B8984",
+          "#B0ADA9",
+          "#D3D0CC",
+          "#F1EEE9"
+        ]
+      },
+      "gray": {
+        "role": "neutral",
+        "displayName": "Pewter",
+        "canonical": "var(--sq-gray)",
+        "tonalRamp": [
+          "#090C0B",
+          "#242726",
+          "#424645",
+          "#636766",
+          "#868A89",
+          "#ABAFAE",
+          "#CED2D1",
+          "#EBEFEE"
+        ]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Stone",
+        "canonical": "var(--sq-stone)",
+        "tonalRamp": [
+          "#090C0B",
+          "#242726",
+          "#424645",
+          "#636766",
+          "#868A89",
+          "#ABAFAE",
+          "#CDD2D1",
+          "#EBF0EE"
+        ]
+      },
+      "on-dark-2": {
+        "role": "neutral",
+        "displayName": "Crema Grey",
+        "canonical": "var(--sq-on-dark-2)",
+        "tonalRamp": [
+          "#100A04",
+          "#2D251C",
+          "#4C433A",
+          "#6D645B",
+          "#91877D",
+          "#B6ACA1",
+          "#D9CFC4",
+          "#F7EDE1"
+        ]
+      },
+      "ready": {
+        "role": "status",
+        "displayName": "Ready",
+        "canonical": "var(--sq-ready)",
+        "tonalRamp": [
+          "#001400",
+          "#003215",
+          "#105233",
+          "#387453",
+          "#5C9975",
+          "#80BE99",
+          "#A3E2BC",
+          "#C0FFD9"
+        ]
+      },
+      "ready-bg": {
+        "role": "status",
+        "displayName": "Ready Tint",
+        "canonical": "var(--sq-ready-bg)",
+        "tonalRamp": [
+          "#050D09",
+          "#1F2923",
+          "#3D4842",
+          "#5E6962",
+          "#818D85",
+          "#A5B1AA",
+          "#C8D5CD",
+          "#E5F2EA"
+        ]
+      },
+      "brewing": {
+        "role": "status",
+        "displayName": "Brewing",
+        "canonical": "var(--sq-brewing)",
+        "tonalRamp": [
+          "#230000",
+          "#441800",
+          "#663900",
+          "#8B5B01",
+          "#B07E36",
+          "#D7A35C",
+          "#FCC67F",
+          "#FFE49C"
+        ]
+      },
+      "brewing-bg": {
+        "role": "status",
+        "displayName": "Brewing Tint",
+        "canonical": "var(--sq-brewing-bg)",
+        "tonalRamp": [
+          "#140900",
+          "#312409",
+          "#504328",
+          "#726448",
+          "#96876A",
+          "#BBAC8E",
+          "#DFCFB0",
+          "#FDEDCD"
+        ]
+      },
+      "expired": {
+        "role": "status",
+        "displayName": "Expired",
+        "canonical": "var(--sq-expired)",
+        "tonalRamp": [
+          "#350000",
+          "#5F0000",
+          "#870001",
+          "#B0342A",
+          "#D95B4D",
+          "#FF8171",
+          "#FFA593",
+          "#FFC5B3"
+        ]
+      },
+      "expired-bg": {
+        "role": "status",
+        "displayName": "Expired Tint",
+        "canonical": "var(--sq-expired-bg)",
+        "tonalRamp": [
+          "#140706",
+          "#322220",
+          "#52403E",
+          "#74615E",
+          "#988481",
+          "#BDA8A6",
+          "#E1CBC8",
+          "#FFE9E6"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Italic serif SkipQ mark on the desktop aside."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home greeting; one per screen."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Screen and sheet titles, the ready line, text stat values."
+      },
+      "heading": {
+        "displayName": "Heading",
+        "purpose": "Section titles, drink and plan names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text and tile values."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Button labels and toast actions."
+      },
+      "body-sm": {
+        "displayName": "Body Small",
+        "purpose": "Secondary lines, hints, chip labels."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Tab labels, pills, badges, legends."
+      },
+      "overline": {
+        "displayName": "Overline",
+        "purpose": "Data-tile labels and Demo panel group titles only; never a kicker above a heading."
+      },
+      "numeric": {
+        "displayName": "Numeric",
+        "purpose": "Big mono counters, stat values, the Demo clock."
+      }
+    },
+    "shadows": [
+      {
+        "name": "e1 (Lift)",
+        "value": "0 1px 2px rgba(20,16,14,.06), 0 4px 12px rgba(20,16,14,.06)",
+        "purpose": "The live order card, Unlock button, checked segment, Demo pill."
+      },
+      {
+        "name": "e2 (Float)",
+        "value": "0 12px 32px rgba(20,16,14,.14)",
+        "purpose": "Bottom sheets, toasts, push banner, desktop phone."
+      },
+      {
+        "name": "focus",
+        "value": "0 0 0 2px var(--sq-coffee), 0 0 0 6px var(--sq-coffee-100)",
+        "purpose": "Visible focus on every focusable element, with a transparent 2 px outline for forced colours."
+      }
+    ],
+    "motion": [
+      {
+        "name": "quick",
+        "value": "150ms ease-out",
+        "purpose": "Colour, border and press state changes."
+      },
+      {
+        "name": "base",
+        "value": "240ms cubic-bezier(.2,.8,.2,1)",
+        "purpose": "Sheets, scrims, fills, switch thumb."
+      },
+      {
+        "name": "reward",
+        "value": "420ms cubic-bezier(.34,1.56,.64,1)",
+        "purpose": "Arrivals only: unlock, order placed, your box settling, toasts, push banner. Reduced motion collapses base and reward to 150ms ease-out."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone-frame",
+        "value": "600px"
+      },
+      {
+        "name": "desktop-aside",
+        "value": "1040px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Coffee fill, 52 px; one per screen.",
+      "html": "<button class=\"ds-btn-primary\">Order for 10:15</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:8px 24px;border:0;border-radius:var(--sq-r-md);background:var(--sq-coffee);color:var(--sq-surface);font:var(--sq-button);cursor:pointer;transition:background-color var(--sq-quick),transform var(--sq-quick),box-shadow var(--sq-quick)}.ds-btn-primary:hover{background:var(--sq-coffee-700)}.ds-btn-primary:active{transform:scale(.98)}.ds-btn-primary:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Tonal Coffee; sits beside a primary without competing.",
+      "html": "<button class=\"ds-btn-secondary\">Change slot</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 20px;border:0;border-radius:var(--sq-r-md);background:var(--sq-coffee-100);color:var(--sq-coffee-700);font:var(--sq-button);cursor:pointer;transition:background-color var(--sq-quick),transform var(--sq-quick)}.ds-btn-secondary:hover{background:color-mix(in srgb,var(--sq-coffee-100) 55%,var(--sq-coffee-200))}.ds-btn-secondary:active{transform:scale(.98)}.ds-btn-secondary:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}"
+    },
+    {
+      "name": "Unlock Button",
+      "kind": "button",
+      "refersTo": "button-unlock",
+      "description": "The one Espresso button, 64 px, bottom third.",
+      "html": "<button class=\"ds-btn-unlock\">Unlock box 14</button>",
+      "css": ".ds-btn-unlock{display:flex;width:100%;align-items:center;justify-content:center;min-height:64px;padding:8px 24px;border:0;border-radius:var(--sq-r-lg);background:var(--sq-espresso);color:var(--sq-foam);font:var(--sq-button);font-size:18px;box-shadow:var(--sq-e1);cursor:pointer;transition:background-color var(--sq-quick),transform var(--sq-quick)}.ds-btn-unlock:hover{background:color-mix(in srgb,var(--sq-espresso) 88%,var(--sq-foam))}.ds-btn-unlock:active{transform:scale(.98)}.ds-btn-unlock:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pill choice; Vanilla when it is yours.",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-chip\">Oat</button><button class=\"ds-chip ds-chip-selected\" aria-pressed=\"true\">Whole milk</button></div>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border-radius:var(--sq-r-pill);background:var(--sq-surface);border:1px solid var(--sq-line);color:var(--sq-espresso);font:var(--sq-body-sm);font-weight:500;cursor:pointer;transition:background-color var(--sq-quick),border-color var(--sq-quick)}.ds-chip:hover{border-color:var(--sq-coffee-400)}.ds-chip:active{transform:scale(.97)}.ds-chip:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}.ds-chip-selected{background:var(--sq-vanilla);border-color:var(--sq-coffee);color:var(--sq-coffee-900)}"
+    },
+    {
+      "name": "Locker Plate",
+      "kind": "custom",
+      "refersTo": "box-tag-lg",
+      "description": "The box number as a Vanilla door plate with a mono numeral.",
+      "html": "<span class=\"ds-boxtag\"><span class=\"ds-boxtag-word\">Box</span><span class=\"ds-boxtag-n\">14</span></span>",
+      "css": ".ds-boxtag{display:inline-flex;align-items:baseline;gap:.35em;padding:8px 14px;border-radius:var(--sq-r-md);background:var(--sq-vanilla);color:var(--sq-coffee-900);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--sq-coffee) 22%,transparent)}.ds-boxtag-word{font-family:var(--sq-sans);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase}.ds-boxtag-n{font-family:var(--sq-mono);font-weight:500;font-size:36px;line-height:40px;font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Status Pill",
+      "kind": "chip",
+      "refersTo": "status-pill-ready",
+      "description": "Icon + word + colour, every time.",
+      "html": "<span class=\"ds-pill ds-pill-ready\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7.5\"/></svg>Ready</span> <span class=\"ds-pill ds-pill-brewing\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 8v4l2.5 2.5\"/></svg>Brewing</span>",
+      "css": ".ds-pill{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:4px 10px 4px 8px;border-radius:var(--sq-r-pill);font:var(--sq-caption);font-weight:600}.ds-pill-ready{background:var(--sq-ready-bg);color:var(--sq-ready)}.ds-pill-brewing{background:var(--sq-brewing-bg);color:var(--sq-brewing)}"
+    },
+    {
+      "name": "Live Order Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The one lifted card: status, drink, ready time, and the plate.",
+      "html": "<div class=\"ds-order\"><div class=\"ds-order-text\"><span class=\"ds-order-drink\">Flat white</span><span class=\"ds-order-meta\">Oat · Ready at 10:15</span></div><span class=\"ds-order-plate\">BOX <b>14</b></span></div>",
+      "css": ".ds-order{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 16px 16px 20px;border-radius:var(--sq-r-lg);background:var(--sq-surface);border:1px solid var(--sq-line);box-shadow:var(--sq-e1)}.ds-order-text{display:grid;gap:4px}.ds-order-drink{font:var(--sq-heading)}.ds-order-meta{font:var(--sq-body-sm);color:var(--sq-stone)}.ds-order-plate{padding:8px 14px;border-radius:var(--sq-r-md);background:var(--sq-vanilla);color:var(--sq-coffee-900);font:600 13px/1 var(--sq-sans);letter-spacing:.06em}.ds-order-plate b{font:500 36px/40px var(--sq-mono);letter-spacing:0}"
+    },
+    {
+      "name": "Code Input",
+      "kind": "input",
+      "refersTo": "code-input",
+      "description": "64 px gift-code field; Coffee border and halo on focus.",
+      "html": "<label class=\"ds-code\"><input class=\"ds-code-input\" placeholder=\"SKQ-XXXX\" aria-label=\"Gift code\"></label>",
+      "css": ".ds-code{display:flex;border-radius:var(--sq-r-md);background:var(--sq-surface);border:1.5px solid var(--sq-line);transition:border-color var(--sq-quick),box-shadow var(--sq-quick)}.ds-code:focus-within{border-color:var(--sq-coffee);box-shadow:0 0 0 4px var(--sq-coffee-100)}.ds-code-input{flex:1;min-width:0;height:64px;padding:0 16px;border:0;outline:none;background:transparent;font:500 26px/1 var(--sq-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sq-espresso)}.ds-code-input::placeholder{color:var(--sq-stone);opacity:.55}"
+    },
+    {
+      "name": "Tab Bar",
+      "kind": "nav",
+      "refersTo": "tab-bar",
+      "description": "Five tabs; active is Coffee with a Steamed Milk lozenge.",
+      "html": "<nav class=\"ds-tabs\"><a class=\"ds-tab ds-tab-active\" href=\"#\"><span class=\"ds-tab-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z\"/></svg></span>Home</a><a class=\"ds-tab\" href=\"#\"><span class=\"ds-tab-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6\"/></svg></span>Me</a></nav>",
+      "css": ".ds-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));height:64px;background:var(--sq-surface);border-top:1px solid var(--sq-line)}.ds-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--sq-stone);text-decoration:none;font:var(--sq-caption);transition:color var(--sq-quick)}.ds-tab:hover{color:var(--sq-espresso)}.ds-tab:focus-visible{outline:2px solid transparent;box-shadow:inset var(--sq-focus);border-radius:var(--sq-r-sm)}.ds-tab-icon{display:grid;place-items:center;width:48px;height:30px;border-radius:var(--sq-r-pill);transition:background-color var(--sq-base)}.ds-tab-active{color:var(--sq-coffee);font-weight:600}.ds-tab-active .ds-tab-icon{background:var(--sq-coffee-100)}"
+    },
+    {
+      "name": "Box Meter Strip",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "The machine in miniature: 30 doors on an Espresso rail, yours in Vanilla.",
+      "html": "<div class=\"ds-strip\"><i></i><i class=\"ds-mine\"></i><i></i><i class=\"ds-taken\"></i><i></i><i class=\"ds-taken\"></i><i></i><i></i><i class=\"ds-taken\"></i><i></i></div>",
+      "css": ".ds-strip{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;height:20px;width:180px;padding:3px;border-radius:5px;background:var(--sq-espresso)}.ds-strip i{border-radius:1.5px;background:var(--sq-surface)}.ds-strip .ds-taken{background:var(--sq-coffee-200)}.ds-strip .ds-mine{background:var(--sq-vanilla);margin-block:-2px;box-shadow:0 0 0 1px var(--sq-vanilla)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Box Is the Promise",
+    "overview": "**Creative North Star: \"The Box Is the Promise\"**\n\nSkipQ is a warm, plain-spoken phone app for a coffee locker. The whole system exists to answer two questions at a glance: which door holds your coffee, and until when. The ground is Foam, a café-paper off-white; content sits on white Surface cards edged with a 1 px Line border; actions are Coffee; anything that is *yours* (your chosen chip, your slot, your box, your board row, your gift ticket) turns Vanilla. Espresso is reserved for the machine itself and for the tester's instruments: the locker frame, the Unlock button, toasts, the Demo pill and Demo panel.\n\nDensity is phone-native and calm: one column inside a 20 px gutter, 24 px between blocks, cards that hold one thing each. Three families split the work cleanly. Instrument Serif speaks in greetings, titles and the ready moment. DM Sans runs the interface. DM Mono carries every number a student has to read against a clock: times, box numbers, codes, counters, prices. Icons are drawn line icons (24 px grid, 1.75 stroke, round caps), never glyphs or emoji.\n\nThe world refuses the coffee-app defaults it was briefed against: no product-photo menu, no loyalty-card gamification, no fake urgency. Limits are honest and neutral, so nothing about a limit is ever red.",
+    "keyCharacteristics": [
+      "Foam ground, white bordered cards, Coffee actions, Vanilla for \"yours\", Espresso for the machine and the demo tooling.",
+      "The locker plate: the box number is always a Vanilla door plate with a mono numeral.",
+      "The machine is always drawn as an Espresso frame of 6 x 5 doors with handles, at full size or as a 30-door strip.",
+      "Serif only at 24 px and above, for greetings, titles and the ready moment.",
+      "Status is always icon plus word plus colour.",
+      "Mostly flat; a shadow means \"floating\" or \"this one is live\"."
+    ],
+    "rules": [
+      {
+        "name": "The Tokens-Only Rule",
+        "body": "Every colour comes from `tokens.css`. App-level derivatives in `base.css` are `color-mix()` of tokens, never a new hex. The client's hand-off file is binding.",
+        "section": "colors"
+      },
+      {
+        "name": "The Vanilla Means Yours Rule",
+        "body": "Vanilla marks the user's own selection or possession and nothing else. If an element isn't the user's choice, box, row or gift, it isn't Vanilla.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never-Red Limit Rule",
+        "body": "Allowances, credits, and \"few boxes left\" read neutral or amber. Red is for an expired order or an input error, never for a limit.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Coffee Fill Rule",
+        "body": "There is one Coffee-filled primary button per screen. The Espresso 64 px Unlock button is the only exception.",
+        "section": "colors"
+      },
+      {
+        "name": "The Serif Floor Rule",
+        "body": "Instrument Serif never goes below 24 px. It's for greetings, titles and the ready moment, never for UI labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Numbers Rule",
+        "body": "Times, box numbers, codes, counters, ml/mg values and prices go in DM Mono with tabular figures. Units beside them stay in DM Sans (the Amount helper sets the unit at 0.62 em, with a 12 px minimum).",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Card Rule",
+        "body": "Cards are flat, with a Surface fill and a Line border. Only the one live order card on a screen gets Lift.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do take every colour, size, radius and duration from `tokens.css`. Derive new values only by `color-mix()` of tokens.",
+      "Do set every box number as the Vanilla locker plate with a mono numeral.",
+      "Do draw the machine as an Espresso frame of handled doors (6 x 5, or the 30-door strip), with your door in Vanilla.",
+      "Do keep one Coffee-filled primary per screen. Use the Espresso 64 px Unlock as the only exception.",
+      "Do show status as icon plus word plus colour, using the status text/tint pairs.",
+      "Do use the motion tokens: 150 ms ease-out for state changes, 240 ms base for sheets and fills, and 420 ms reward (with overshoot) only for arrivals such as unlock, order placed, your box settling, and toasts. Reduced motion collapses all three to 150 ms.",
+      "Do keep touch targets at 44 px or more (52 for primary, 64 for unlock), and let labels wrap or step down instead of fixing widths."
+    ],
+    "donts": [
+      "Don't use a hex value outside `tokens.css`.",
+      "Don't show any limit, allowance or \"few left\" state in red. Use amber or neutral.",
+      "Don't put Stone text on Vanilla. Use Bean.",
+      "Don't set Instrument Serif below 24 px or use it for UI labels.",
+      "Don't use the overline style as a kicker or eyebrow above a heading or section. It only names a data tile or a Demo panel group.",
+      "Don't add shadows to ordinary cards. Lift is for the one live card and for controls that sit on top.",
+      "Don't use product-photo menus, loyalty-card gamification, or urgency devices such as countdown badges and red dots.",
+      "Don't use glyph or emoji icons. Icons are the 24 px, 1.75-stroke line set."
+    ]
+  }
+}

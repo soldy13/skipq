@@ -1,0 +1,151 @@
+/* Demo tooling is Espresso: visibly a tester's instrument, not part of the product. */
+.controls {
+  display: grid;
+  gap: var(--sq-6);
+  color: var(--sq-on-espresso);
+}
+
+.group {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.groupTitle {
+  font: var(--sq-overline);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sq-on-dark-2);
+}
+
+.clock {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sq-3);
+  font: var(--sq-numeric);
+}
+
+.date {
+  font: var(--sq-body);
+  color: var(--sq-on-dark-2);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sq-2);
+}
+
+.stack {
+  display: grid;
+  gap: var(--sq-2);
+}
+
+.button {
+  min-height: var(--sq-tap);
+  padding: var(--sq-2) var(--sq-4);
+  border-radius: var(--sq-r-md);
+  background: var(--sq-espresso-raised);
+  color: var(--sq-on-espresso);
+  font: var(--sq-body-sm);
+  font-weight: 600;
+  text-align: left;
+  transition: background-color var(--sq-quick);
+}
+
+.button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--sq-espresso) 76%, var(--sq-foam));
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  color: var(--sq-on-dark-2);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--sq-line-on-dark);
+}
+
+.danger {
+  justify-self: start;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--sq-line-on-dark);
+  color: var(--sq-vanilla);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sq-3);
+  font: var(--sq-body-sm);
+}
+
+.input {
+  min-height: var(--sq-tap);
+  padding: 0 var(--sq-3);
+  border-radius: var(--sq-r-sm);
+  border: 1px solid var(--sq-line-on-dark);
+  background: var(--sq-espresso-raised);
+  color: var(--sq-on-espresso);
+  color-scheme: dark;
+  font-size: 16px;
+}
+
+.range {
+  width: 100%;
+  height: var(--sq-tap);
+  accent-color: var(--sq-vanilla);
+}
+
+.note {
+  font: var(--sq-caption);
+  font-weight: 400;
+  color: var(--sq-on-dark-2);
+}
+
+.pill {
+  position: absolute;
+  left: var(--sq-3);
+  bottom: calc(var(--sq-tabbar-h) + var(--sq-safe-bottom) + var(--sq-3));
+  z-index: var(--sq-z-demo-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sq-2);
+  min-height: 32px;
+  padding: 4px 12px;
+  border-radius: var(--sq-r-pill);
+  background: var(--sq-espresso);
+  color: var(--sq-on-espresso);
+  font-size: 12px;
+  line-height: 16px;
+  box-shadow: var(--sq-e1);
+  opacity: 0.92;
+  transition: opacity var(--sq-quick);
+}
+
+/* A 44 px hit area around the slim pill. */
+.pill::before {
+  content: '';
+  position: absolute;
+  inset: -6px -4px;
+}
+
+.pill:hover {
+  opacity: 1;
+}
+
+.pillWord {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.fast {
+  padding: 0 6px;
+  border-radius: var(--sq-r-pill);
+  background: var(--sq-vanilla);
+  color: var(--sq-coffee-900);
+  font-weight: 700;
+}
