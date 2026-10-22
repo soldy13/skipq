@@ -198,3 +198,33 @@ describe('store: ordering', () => {
     expect(state().notified).toEqual([]);
   });
 });
+
+describe('store: plans, add-ons and packs', () => {
+  const limitNow = () => {
+    const s = state();
+    return dailyLimit({ plan: s.plan, orders: s.orders, gifts: s.gifts, nickname: s.profile.nickname, now: s.clock.now, resetAt: s.limitResetAt });
+  };
+
+  it('switches plan instantly and the daily counter follows', () => {
+    state().subscribePlan({ type: 'black', perDay: 1 });
+    expect(state().plan).toEqual({ type: 'black', perDay: 1 });
+    expect(limitNow()).toMatchObject({ max: 1, reached: true }); // 2 plan coffees already today
+  });
+
+  it('subscribes someone who paid per coffee', () => {
+    state().switchPersona('tomas');
+    state().subscribePlan({ type: 'milk', perDay: 3 });
+    expect(limitNow()).toMatchObject({ used: 0, max: 3 });
+  });
+
+  it('cancels a plan back to pay per coffee', () => {
+    state().cancelPlan();
+    expect(state().plan).toBeNull();
+    expect(limitNow()).toMatchObject({ max: 0, reached: false });
+  });
+
+  it('adds pack credits on purchase', () => {
+    state().buyPack(30);
+    expect(state().wallet.packCredits).toBe(30);
+  });
+});

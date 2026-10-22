@@ -168,6 +168,27 @@ components:
     textColor: "{colors.espresso}"
     rounded: "{rounded.lg}"
     padding: "20px"
+  plan-card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.espresso}"
+    typography: "{typography.heading}"
+    rounded: "{rounded.lg}"
+    padding: "16px"
+  plan-card-selected:
+    backgroundColor: "{colors.vanilla}"
+    textColor: "{colors.coffee-900}"
+  pack-tile:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.espresso}"
+    rounded: "{rounded.lg}"
+    padding: "16px 12px"
+  pack-tile-selected:
+    backgroundColor: "{colors.vanilla}"
+    textColor: "{colors.coffee-900}"
+  addon-row:
+    textColor: "{colors.espresso}"
+    typography: "{typography.body}"
+    padding: "16px 0"
   usual-card:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.espresso}"
@@ -330,12 +351,18 @@ A warm coffee-house palette, one brand hue in six steps plus a cream accent, ove
 
 Lettering drawn on the machine is object detail, not a step of the ramp: the 9 px numerals on mini locker doors and the 10–11 px "BOX" word on small and medium plates belong to the drawn object and never set interface text.
 
+A label reused inside a sentence is lower-cased at its first letter ("Your plan: Milk plan, up to 3 a day", "Až 3 denně" becoming "až 3 denně"); on its own, as a segment, chip or card line, it keeps sentence case.
+
 ### Named Rules
 **The Serif Floor Rule.** Instrument Serif never goes below 24 px. It's for greetings, titles and the ready moment, never for UI labels.
 
 **The Struck Means Full Rule.** Strike-through means one thing: a Full slot. Nothing else is struck through, including disabled segments and locked options, which mute to Stone instead.
 
 **The Mono Numbers Rule.** Times, box numbers, codes, counters, ml/mg values and prices go in DM Mono with tabular figures. Units beside them stay in DM Sans (the Amount helper sets the unit at 0.62 em, with a 12 px minimum).
+
+**The Thin Space Rule.** Thousands are grouped with a thin space glued by word joiners (U+2060 U+2009 U+2060), so a number reads "1 199 Kč" or "2 990 mg" everywhere, in both languages, and never "1199". U+202F is not used, because DM Sans draws it almost invisibly. Haléře appear only in per-coffee comparisons ("26.90 Kč", "26,90 Kč"), ungrouped.
+
+**The Bound Phrase Rule.** A no-break space keeps together what must never split at a line end: a price with its unit ("229 Kč / week"), a tier label ("Up to 3 a day", "Až 3 denně"), a count with its noun ("7 credits left"), and every em dash with the word before it.
 
 ## Layout
 
@@ -380,7 +407,7 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Shape:** gently rounded (14 px). Unlock is rounder (22 px).
 - **Primary:** Coffee fill with white text, 52 px tall, 24 px horizontal padding. Hover darkens to Dark Roast. While loading it holds Dark Roast and shows the Spinner.
 - **Secondary:** tonal. Steamed Milk fill with Dark Roast text, 44 px tall. It sits beside a primary without competing.
-- **Tertiary:** a Coffee link that is a button. 1 px underline, thickening to 2 px on hover.
+- **Tertiary:** a Coffee link that is a button. 1 px underline, thickening to 2 px on hover. Standing alone at the start of a column (Cancel plan), it pulls 8 px left so its text sits flush with the gutter while the 44 px hit area stays.
 - **Unlock:** the one Espresso button. 64 px tall, Foam text at 18 px (Heading Small), with Lift. Hover goes to Espresso Raised.
 - **Icon:** a 44 px circle with its label in `aria-label`. Comes in plain (Steamed Milk on hover), filled (Steamed Milk), and on-dark variants.
 - **Disabled:** Spent Cup fill, Stone text, no shadow.
@@ -398,10 +425,11 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Selected:** Vanilla with a 2 px Coffee edge.
 - **Full:** stays in the grid, filled Spent Cup, the time struck through, not selectable. This is the only strike-through in the system.
 - Inside a sheet whose title already names it (the pickup sheet), the grid drops its own title.
+- **Machine full:** Now stays the pickup, struck through as Full, and the docked primary gives way to a Secondary "All boxes taken — next free slot 10:30" that selects that slot when pressed. Only when the machine is closed does the screen pick the first open slot by itself.
 
 ### Cards / Containers
 - **Corner Style:** 22 px.
-- **Background:** Surface on Foam. Selected plan cards turn Vanilla.
+- **Background:** Surface on Foam. Selected plan cards and pack tiles turn Vanilla.
 - **Shadow Strategy:** flat. Only the live order card takes Lift (see Elevation & Depth).
 - **Border:** 1 px Line. Hover on interactive cards changes it to Caramel Line. A ready order card blends 30 % Ready into its border.
 - **Internal Padding:** 16 px, or 16 / 16 / 16 / 20 on the order card.
@@ -445,8 +473,16 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 ### Daily Limit
 - A data tile with one cup-shaped pip per coffee in the allowance: Coffee when used, a Latte outline when left. Below that is a neutral "2 of 3 used" line. It never turns red. A banner variant puts the pips and the counter on one line.
 
+### Plans: Plan Card, Add-on Row and Pack Tile
+- **Plans screen:** a Title, then a Body Stone summary line naming the plan, tier and weekly price (or the per-coffee price, or the pack credits, when there is no plan). With a plan, the Today allowance banner follows. Three sections (Weekly plan, Add-ons, Packs) each open with a Heading, with an optional Body Small Stone note 4 px below; a section stacks at 12 px.
+- **Plan picker:** a tier Segmented ("1 a day" / "Up to 3 a day"), then the Milk and Black plan cards 12 px apart, then the screen's one Coffee primary ("Subscribe · 229 Kč / week", "Switch · …", or disabled "This is your plan"), a Body Small Stone note, and a flush Tertiary "Cancel plan". Cancelling is instant and offers Undo on the toast.
+- **Plan card:** a full-width pressable 22 px card with 16 px padding. The head row holds the name in Heading, which wraps when long (Czech), with an optional "Your plan" badge (caption on a Steamed Milk pill, Dark Roast text) that never breaks, and a 24 px radio that always stays top-right: a 1.5 px Latte ring when empty, a Coffee disc with a white check when selected. Below are "Up to 3 a day · All drinks" in Body Small Stone and the price in Numeric Medium with a Stone "/ week". Selected: Vanilla fill, Coffee border plus a 1 px inset Coffee ring, Bean secondary text, and a Surface badge.
+- **Add-on row:** a list row with Line dividers (a Line top border on the list, a Line bottom border on each row) and 16 px vertical padding. The name is Body at 600, the description Body Small Stone, and the price a mono 14 px Espresso amount at 500 followed by a caption Stone "/ month". The Switch sits at the end, labelled by the name and described by the description. Switching on goes through the checkout sheet; switching off is instant, confirmed by a toast.
+- **Pack tile:** three tiles across with an 8 px gap. A pressable 22 px tile with 16 / 12 padding: the count in DM Mono 500 at 32/36, the unit word in Body Small Stone, the price in mono 16/20 at 500 (never wrapping) 12 px lower, and the per-coffee price in caption Stone. Selected is the same as a plan card. Below the grid, a block Secondary "Buy 30 coffees · 749 Kč" buys the chosen pack, because the screen's one Coffee fill belongs to the plan picker.
+- **Credits line:** when credits remain, a Body Small Espresso line at 600 under the Packs note, with the count in mono ("7 credits left"). It is Espresso, not Coffee, because it reports status and is not a link.
+
 ### Toast and Bottom Sheet
-- **Toast:** Espresso, 14 px corners, Float shadow, rising in on the reward curve. An optional Vanilla Undo action, with a 3 px Vanilla bar that drains linearly across the undo window. It sits 12 px above the tab bar, or above the dock when one is present.
+- **Toast:** Espresso, 14 px corners, Float shadow, rising in on the reward curve. An optional Vanilla undo-style action (Undo for a one-tap order, Undo to restore a cancelled plan), offered for 5 s, with a 3 px Vanilla bar that drains linearly across those 5 s. A toast without an action clears after 3 s. It sits 12 px above the tab bar, or above the dock when one is present.
 - **Bottom sheet:** Surface, with 28 px top corners, a Float shadow, and a 44 % Espresso scrim. It slides up at the base speed. A 36 x 5 Line handle sits at the top, the title is set in serif Title, and the footer has a Line top border. The Demo panel uses the dark Espresso variant.
 - **Checkout sheet:** line items as label and value rows in Body, the label in Stone and the value at 500 right-aligned, divided by Line. The total row has an Espresso 600 label and a 20 px amount. The footer holds the Coffee "Pay N Kč · simulated" button with a centred caption Stone note under it. Payment is simulated with a one-second Spinner and never asks for card data.
 
@@ -468,6 +504,7 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Do** dock a screen's committing action (order, unlock) at the bottom on the tab bar, with the Demo pill lane above it, and float the toast above the dock.
 - **Do** show the box as the Vanilla plate plus the mini locker map from Scheduled onwards.
 - **Do** keep touch targets at 44 px or more (52 for primary, 64 for unlock), and let labels wrap or step down instead of fixing widths.
+- **Do** group thousands with the glued thin space ("1 199 Kč"), and bind prices to units, tier labels, counts to nouns, and em dashes to the word before them with no-break spaces.
 
 ### Don't:
 - **Don't** use a hex value outside `tokens.css`.
@@ -479,3 +516,4 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Don't** add shadows to ordinary cards. Lift is for the one live card and for controls that sit on top.
 - **Don't** use product-photo menus, loyalty-card gamification, or urgency devices such as countdown badges and red dots.
 - **Don't** use glyph or emoji icons. Icons are the 24 px, 1.75-stroke line set.
+- **Don't** write a four-digit number without its thin space ("1199 Kč"), and don't use U+202F for it.

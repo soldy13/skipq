@@ -62,7 +62,8 @@ export function CheckoutSheet({ open, onClose, lines, amount, unit, onPaid }: Ch
         <div className={`${styles.line} ${styles.total}`}>
           <dt>{tr.t('checkout.total')}</dt>
           <dd>
-            <Amount value={amount} unit="Kč" /> {unit}
+            <Amount value={amount} unit="Kč" />
+            {unit ? `\u00A0${unit}` : null}
           </dd>
         </div>
       </dl>

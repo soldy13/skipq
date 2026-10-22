@@ -82,7 +82,17 @@ export function HomeScreen() {
     flow.submit(
       { config: effectiveConfig(config, payment, world.addons), slotStart: pickup, payment },
       (order) => {
-        showToast({ message: tr.t('toast.ordered', { n: order.boxId }), box: order.boxId, undoOrderId: order.id });
+        showToast({
+          message: tr.t('toast.ordered', { n: order.boxId }),
+          box: order.boxId,
+          action: {
+            label: tr.t('common.undo'),
+            run: () => {
+              useStore.getState().undoOrder(order.id);
+              showToast({ message: tr.t('toast.undone') });
+            },
+          },
+        });
         setPickup(null);
       },
       (reason: PlaceFailure) => {

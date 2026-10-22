@@ -116,7 +116,7 @@ export function buildTraffic(now: number, exclude: ReadonlySet<number>, seed = S
 
 /**
  * Demo "set occupied boxes": `count` anonymous orders that are physically in their boxes right now,
- * each held for the rest of the current slot plus one to three more.
+ * each held for the rest of the current slot plus two to five more.
  */
 export function buildOccupancy(now: number, count: number, exclude: ReadonlySet<number>, seed = SEED): Booking[] {
   const rand = mulberry32(seed + count);
@@ -131,8 +131,9 @@ export function buildOccupancy(now: number, count: number, exclude: ReadonlySet<
     boxId,
     bookedAt: now - randomInt(rand, 5, 40) * MINUTE,
     needFrom: now - randomInt(rand, 0, 10) * MINUTE,
-    // At least one full slot past the current one, so a Now order (ready in 2 min) can't squeeze in.
-    until: slotEnd + randomInt(rand, 1, 3) * SLOT,
+    // Two to five slots past the current one: at 30/30 Now and the next slot are full and boxes free up
+    // gradually after that, so "next free slot" lands a little later as in brief F7.
+    until: slotEnd + randomInt(rand, 2, 5) * SLOT,
     releasedAt: null,
   }));
 }

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { formatDayLabel, formatMg, formatPrice, formatPriceExact, formatTime } from './format';
 
-const NNBSP = ' ';
+/** Thin space (brief §9) glued with word joiners so it never breaks; DM Sans draws U+202F almost invisibly. */
+const NNBSP = '\u2060\u2009\u2060';
 const NBSP = ' ';
 
 describe('formatting', () => {

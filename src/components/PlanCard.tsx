@@ -22,8 +22,10 @@ export function PlanCard({ name, allowance, covers, price, unit, selected = fals
   return (
     <button type="button" aria-pressed={selected} className={[styles.card, selected && styles.selected].filter(Boolean).join(' ')} onClick={onSelect}>
       <span className={styles.head}>
-        <span className={styles.name}>{name}</span>
-        {currentLabel ? <span className={styles.badge}>{currentLabel}</span> : null}
+        <span className={styles.nameRow}>
+          <span className={styles.name}>{name}</span>
+          {currentLabel ? <span className={styles.badge}>{currentLabel}</span> : null}
+        </span>
         <span className={styles.radio} aria-hidden="true">
           {selected ? <IconCheck size={16} /> : null}
         </span>

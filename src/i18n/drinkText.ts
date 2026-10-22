@@ -8,8 +8,12 @@ export function drinkName(id: DrinkId, tr: Translator): string {
 
 /** Lower-cased name for mid-sentence use in English ("Your flat white is ready"). */
 export function drinkNameInline(id: DrinkId, tr: Translator): string {
-  const name = drinkName(id, tr);
-  return tr.lang === 'en' ? name.charAt(0).toLowerCase() + name.slice(1) : name;
+  return inlineLabel(drinkName(id, tr), tr);
+}
+
+/** A label used mid-sentence: lower-case first letter ("up to 3 a day", "až 3 denně"). */
+export function inlineLabel(text: string, tr: Translator): string {
+  return tr.lang === 'en' || tr.lang === 'cs' ? text.charAt(0).toLowerCase() + text.slice(1) : text;
 }
 
 /** "Oat · Premium" — only what differs from a plain order, so the line stays short. */

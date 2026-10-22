@@ -1,0 +1,53 @@
+.current {
+  font: var(--sq-body);
+  color: var(--sq-stone);
+  text-wrap: pretty;
+}
+
+.section {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.head {
+  display: grid;
+  gap: var(--sq-1);
+}
+
+.heading {
+  font: var(--sq-heading);
+}
+
+.note {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+  text-wrap: pretty;
+}
+
+.credits {
+  font: var(--sq-body-sm);
+  font-weight: 600;
+  color: var(--sq-espresso);
+}
+
+.cards {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.cancel {
+  justify-self: start;
+  /* Text flush with the gutter; the 44 px hit area stays. */
+  margin-inline-start: calc(-1 * var(--sq-2));
+}
+
+.rows {
+  display: grid;
+  border-top: 1px solid var(--sq-line);
+}
+
+.packs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sq-2);
+}

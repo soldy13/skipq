@@ -84,11 +84,12 @@ function OrderForm({ drinkId }: { drinkId: DrinkId }) {
     bean: isOptionLocked({ kind: 'bean', value: bean }, payment, world.addons) ? 'standard' : bean,
   };
 
-  // Slot: a chosen one that has passed falls back to Now; Now falls back to the first open slot when unusable.
+  // Slot: a chosen one that has passed falls back to Now. When the machine is closed, Now falls back to the
+  // first open slot; when it's full, Now stays and the CTA offers the next free slot instead (brief F7).
   const nowUsable = grid.now.available && grid.now.state !== 'full';
   const chosen = slot !== null && isValidSlotStart(RAJSKA, now, slot) ? slot : null;
   const firstOpen = grid.slots.find((s) => s.state !== 'full')?.start ?? null;
-  const pickup = chosen ?? (nowUsable ? null : firstOpen);
+  const pickup = chosen ?? (grid.now.available ? null : firstOpen);
   const pickupFull = pickup === null ? !nowUsable : grid.slots.find((s) => s.start === pickup)?.state === 'full';
   const nextFree = pickupFull ? nextFreeSlot(RAJSKA, now, bookings) : null;
 
@@ -121,7 +122,7 @@ function OrderForm({ drinkId }: { drinkId: DrinkId }) {
         </h3>
         <Segmented<PaymentChoice> label={tr.t('payment.title')} value={payment} onChange={setChosenPayment} options={paymentSegments(opts, tr)} />
         {planOption?.reason === 'notCovered' ? (
-          <Button variant="tertiary" className={o.upgrade} onClick={() => navigate('/plans')}>
+          <Button variant="tertiary" className={o.upgrade} onClick={() => navigate('/plans?type=milk')}>
             {tr.t('payment.upgrade')}
           </Button>
         ) : null}

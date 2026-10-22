@@ -23,10 +23,8 @@ export function Notifications() {
   // A time jump can carry a queued order past its hold; never announce a coffee that's no longer waiting.
   const stillReady = order !== undefined && orderStatus(order, now, RAJSKA.brewMinutes) === 'ready';
   const dismissNotice = useStore((s) => s.dismissNotice);
-  const undoOrder = useStore((s) => s.undoOrder);
   const toast = useUi((s) => s.toast);
   const clearToast = useUi((s) => s.clearToast);
-  const showToast = useUi((s) => s.showToast);
 
   const statusPath = order ? `/order/status/${order.id}` : null;
   const alreadyThere = statusPath !== null && location.pathname === statusPath;
@@ -61,16 +59,9 @@ export function Notifications() {
           key={toast.id}
           message={toast.message}
           box={toast.box}
-          actionLabel={toast.undoOrderId ? tr.t('common.undo') : undefined}
-          onAction={
-            toast.undoOrderId
-              ? () => {
-                  undoOrder(toast.undoOrderId as string);
-                  showToast({ message: tr.t('toast.undone') });
-                }
-              : undefined
-          }
-          duration={toast.undoOrderId ? 5000 : 3000}
+          actionLabel={toast.action?.label}
+          onAction={toast.action?.run}
+          duration={toast.action ? 5000 : 3000}
           onDone={() => clearToast(toast.id)}
         />
       ) : null}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T19:56:36.000Z",
+  "generatedAt": "2026-10-22T21:00:00.000Z",
   "title": "Design System: SkipQ",
   "extensions": {
     "colorMeta": {
@@ -335,7 +335,7 @@
       },
       "heading": {
         "displayName": "Heading",
-        "purpose": "Section titles, order-screen option headings, drink and plan names."
+        "purpose": "Section titles (including the Plans sections), order-screen option headings, drink and plan names."
       },
       "heading-sm": {
         "displayName": "Heading Small",
@@ -367,7 +367,7 @@
       },
       "numeric-md": {
         "displayName": "Numeric Medium",
-        "purpose": "Gift-code input and plan prices."
+        "purpose": "Gift-code input and plan prices (plan cards)."
       }
     },
     "shadows": [
@@ -511,6 +511,30 @@
       "description": "The committing action docked on the tab bar, with the Demo pill lane above it.",
       "html": "<div class=\"ds-dock\"><button class=\"ds-dock-btn\">Order flat white · Now</button></div>",
       "css": ".ds-dock{padding:calc(12px + 44px) 20px 16px;background:var(--sq-foam);box-shadow:0 -1px 0 var(--sq-line)}.ds-dock-btn{display:flex;width:100%;align-items:center;justify-content:center;min-height:52px;padding:8px 24px;border:0;border-radius:var(--sq-r-md);background:var(--sq-coffee);color:var(--sq-surface);font:var(--sq-button);cursor:pointer}.ds-dock-btn:hover{background:var(--sq-coffee-700)}.ds-dock-btn:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}"
+    },
+    {
+      "name": "Plan Card",
+      "kind": "card",
+      "refersTo": "plan-card",
+      "description": "A pressable weekly plan; the name wraps, the badge never breaks, the radio stays top-right; Vanilla when chosen.",
+      "html": "<div style=\"display:grid;gap:12px\"><button class=\"ds-plan ds-plan-selected\" aria-pressed=\"true\"><span class=\"ds-plan-head\"><span class=\"ds-plan-namerow\"><span class=\"ds-plan-name\">Milk plan</span><span class=\"ds-plan-badge\">Your plan</span></span><span class=\"ds-plan-radio\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7.5\"/></svg></span></span><span class=\"ds-plan-covers\">Up to 3 a day · All drinks</span><span class=\"ds-plan-price\"><b>229</b><small>Kč</small><span class=\"ds-plan-unit\">/ week</span></span></button><button class=\"ds-plan\" aria-pressed=\"false\"><span class=\"ds-plan-head\"><span class=\"ds-plan-namerow\"><span class=\"ds-plan-name\">Black plan</span></span><span class=\"ds-plan-radio\"></span></span><span class=\"ds-plan-covers\">Up to 3 a day · Black drinks only</span><span class=\"ds-plan-price\"><b>179</b><small>Kč</small><span class=\"ds-plan-unit\">/ week</span></span></button></div>",
+      "css": ".ds-plan{display:grid;gap:4px;width:100%;padding:16px;border-radius:var(--sq-r-lg);background:var(--sq-surface);border:1px solid var(--sq-line);color:var(--sq-espresso);text-align:left;cursor:pointer;transition:background-color var(--sq-quick),border-color var(--sq-quick)}.ds-plan:hover{border-color:var(--sq-coffee-400)}.ds-plan:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}.ds-plan-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:12px}.ds-plan-namerow{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}.ds-plan-name{font:var(--sq-heading)}.ds-plan-badge{white-space:nowrap;padding:2px 8px;border-radius:var(--sq-r-pill);background:var(--sq-coffee-100);color:var(--sq-coffee-700);font:var(--sq-caption)}.ds-plan-radio{display:grid;place-items:center;width:24px;height:24px;margin-top:1px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--sq-coffee-200);color:var(--sq-surface)}.ds-plan-covers{font:var(--sq-body-sm);color:var(--sq-stone)}.ds-plan-price{display:flex;align-items:baseline;gap:4px;margin-top:8px}.ds-plan-price b{font:500 26px/32px var(--sq-mono);font-variant-numeric:tabular-nums}.ds-plan-price small{font:500 16px var(--sq-sans)}.ds-plan-unit{font:var(--sq-body-sm);color:var(--sq-stone)}.ds-plan-selected{background:var(--sq-vanilla);border-color:var(--sq-coffee);box-shadow:inset 0 0 0 1px var(--sq-coffee)}.ds-plan-selected .ds-plan-covers,.ds-plan-selected .ds-plan-unit{color:var(--sq-coffee-900)}.ds-plan-selected .ds-plan-radio{background:var(--sq-coffee);box-shadow:none}.ds-plan-selected .ds-plan-badge{background:var(--sq-surface)}"
+    },
+    {
+      "name": "Add-on Row",
+      "kind": "custom",
+      "refersTo": "addon-row",
+      "description": "A monthly add-on with its Switch: on goes through checkout, off is instant.",
+      "html": "<div class=\"ds-addons\"><div class=\"ds-addon\"><span class=\"ds-addon-text\"><span class=\"ds-addon-name\">Premium beans</span><span class=\"ds-addon-desc\">Premium beans on any drink</span><span class=\"ds-addon-price\"><b>29 Kč</b> / month</span></span><button class=\"ds-switch ds-switch-on\" role=\"switch\" aria-checked=\"true\" aria-label=\"Premium beans\"><span class=\"ds-switch-thumb\"></span></button></div><div class=\"ds-addon\"><span class=\"ds-addon-text\"><span class=\"ds-addon-name\">Alternative milk</span><span class=\"ds-addon-desc\">Oat and soy on plan orders</span><span class=\"ds-addon-price\"><b>29 Kč</b> / month</span></span><button class=\"ds-switch\" role=\"switch\" aria-checked=\"false\" aria-label=\"Alternative milk\"><span class=\"ds-switch-thumb\"></span></button></div></div>",
+      "css": ".ds-addons{display:grid;border-top:1px solid var(--sq-line)}.ds-addon{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--sq-line);color:var(--sq-espresso)}.ds-addon-text{flex:1;display:grid;gap:2px;min-width:0}.ds-addon-name{font:var(--sq-body);font-weight:600}.ds-addon-desc{font:var(--sq-body-sm);color:var(--sq-stone)}.ds-addon-price{margin-top:2px;font:var(--sq-caption);font-weight:400;color:var(--sq-stone)}.ds-addon-price b{font:500 14px var(--sq-mono);color:var(--sq-espresso)}.ds-switch{position:relative;flex:none;width:52px;height:44px;padding:0;border:0;background:none;border-radius:var(--sq-r-pill);cursor:pointer}.ds-switch::before{content:'';position:absolute;inset:6px 0;border-radius:var(--sq-r-pill);background:var(--sq-gray);transition:background-color var(--sq-base)}.ds-switch-thumb{position:absolute;top:8px;left:2px;width:28px;height:28px;border-radius:50%;background:var(--sq-surface);box-shadow:0 1px 3px color-mix(in srgb,var(--sq-espresso) 25%,transparent);transition:transform var(--sq-base)}.ds-switch-on::before{background:var(--sq-coffee)}.ds-switch-on .ds-switch-thumb{transform:translateX(20px)}.ds-switch:focus-visible{outline:2px solid transparent}.ds-switch:focus-visible::before{box-shadow:var(--sq-focus)}"
+    },
+    {
+      "name": "Pack Tile",
+      "kind": "card",
+      "refersTo": "pack-tile",
+      "description": "Prepaid packs three across; the count in mono, the price never wraps; Vanilla when chosen.",
+      "html": "<div class=\"ds-packs\"><button class=\"ds-pack\" aria-pressed=\"false\"><span class=\"ds-pack-size\">10</span><span class=\"ds-pack-unit\">coffees</span><span class=\"ds-pack-price\">269 Kč</span><span class=\"ds-pack-per\">26.90 Kč per coffee</span></button><button class=\"ds-pack ds-pack-selected\" aria-pressed=\"true\"><span class=\"ds-pack-size\">30</span><span class=\"ds-pack-unit\">coffees</span><span class=\"ds-pack-price\">749 Kč</span><span class=\"ds-pack-per\">24.97 Kč per coffee</span></button><button class=\"ds-pack\" aria-pressed=\"false\"><span class=\"ds-pack-size\">50</span><span class=\"ds-pack-unit\">coffees</span><span class=\"ds-pack-price\">1⁠ ⁠199 Kč</span><span class=\"ds-pack-per\">23.98 Kč per coffee</span></button></div>",
+      "css": ".ds-packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:360px}.ds-pack{display:grid;justify-items:start;align-content:start;gap:2px;min-width:0;padding:16px 12px;border-radius:var(--sq-r-lg);background:var(--sq-surface);border:1px solid var(--sq-line);color:var(--sq-espresso);text-align:left;cursor:pointer;transition:background-color var(--sq-quick),border-color var(--sq-quick)}.ds-pack:hover{border-color:var(--sq-coffee-400)}.ds-pack:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}.ds-pack-size{font:500 32px/36px var(--sq-mono);font-variant-numeric:tabular-nums}.ds-pack-unit{font:var(--sq-body-sm);color:var(--sq-stone)}.ds-pack-price{margin-top:12px;font:500 16px/20px var(--sq-mono);white-space:nowrap}.ds-pack-per{font:var(--sq-caption);font-weight:400;color:var(--sq-stone)}.ds-pack-selected{background:var(--sq-vanilla);border-color:var(--sq-coffee);box-shadow:inset 0 0 0 1px var(--sq-coffee)}.ds-pack-selected .ds-pack-unit,.ds-pack-selected .ds-pack-per{color:var(--sq-coffee-900)}"
     }
   ],
   "narrative": {
@@ -561,6 +585,16 @@
         "section": "typography"
       },
       {
+        "name": "The Thin Space Rule",
+        "body": "Thousands are grouped with a thin space glued by word joiners (U+2060 U+2009 U+2060), so a number reads \"1 199 Kč\" or \"2 990 mg\" everywhere, in both languages, and never \"1199\". U+202F is not used, because DM Sans draws it almost invisibly. Haléře appear only in per-coffee comparisons (\"26.90 Kč\", \"26,90 Kč\"), ungrouped.",
+        "section": "typography"
+      },
+      {
+        "name": "The Bound Phrase Rule",
+        "body": "A no-break space keeps together what must never split at a line end: a price with its unit (\"229 Kč / week\"), a tier label (\"Up to 3 a day\", \"Až 3 denně\"), a count with its noun (\"7 credits left\"), and every em dash with the word before it.",
+        "section": "typography"
+      },
+      {
         "name": "The Flat-Card Rule",
         "body": "Cards are flat, with a Surface fill and a Line border. Only the one live order card on a screen gets Lift.",
         "section": "elevation"
@@ -585,7 +619,8 @@
       "Do use the motion tokens: 150 ms ease-out for state changes, 240 ms base for sheets and fills, and 420 ms reward (with overshoot) only for arrivals such as unlock, order placed, your box settling, and toasts. Reduced motion collapses all three to 150 ms.",
       "Do dock a screen's committing action (order, unlock) at the bottom on the tab bar, with the Demo pill lane above it, and float the toast above the dock.",
       "Do show the box as the Vanilla plate plus the mini locker map from Scheduled onwards.",
-      "Do keep touch targets at 44 px or more (52 for primary, 64 for unlock), and let labels wrap or step down instead of fixing widths."
+      "Do keep touch targets at 44 px or more (52 for primary, 64 for unlock), and let labels wrap or step down instead of fixing widths.",
+      "Do group thousands with the glued thin space (\"1 199 Kč\"), and bind prices to units, tier labels, counts to nouns, and em dashes to the word before them with no-break spaces."
     ],
     "donts": [
       "Don't use a hex value outside `tokens.css`.",
@@ -596,7 +631,8 @@
       "Don't strike through anything except a Full slot. Disabled options mute to Stone.",
       "Don't add shadows to ordinary cards. Lift is for the one live card and for controls that sit on top.",
       "Don't use product-photo menus, loyalty-card gamification, or urgency devices such as countdown badges and red dots.",
-      "Don't use glyph or emoji icons. Icons are the 24 px, 1.75-stroke line set."
+      "Don't use glyph or emoji icons. Icons are the 24 px, 1.75-stroke line set.",
+      "Don't write a four-digit number without its thin space (\"1199 Kč\"), and don't use U+202F for it."
     ]
   }
 }

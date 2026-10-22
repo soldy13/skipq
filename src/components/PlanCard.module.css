@@ -17,9 +17,18 @@
 }
 
 .head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--sq-3);
+}
+
+/* Long names (Czech) wrap; the badge never breaks and the radio stays top-right. */
+.nameRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--sq-2);
+  gap: var(--sq-1) var(--sq-2);
 }
 
 .name {
@@ -27,6 +36,7 @@
 }
 
 .badge {
+  white-space: nowrap;
   padding: 2px var(--sq-2);
   border-radius: var(--sq-r-pill);
   background: var(--sq-coffee-100);
@@ -39,7 +49,7 @@
   place-items: center;
   width: 24px;
   height: 24px;
-  margin-left: auto;
+  margin-top: 1px;
   border-radius: 50%;
   box-shadow: inset 0 0 0 1.5px var(--sq-coffee-200);
   color: var(--sq-on-coffee);

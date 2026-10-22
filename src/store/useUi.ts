@@ -5,8 +5,8 @@ export interface ToastState {
   message: string;
   /** Shows the box plate beside the message. */
   box?: number;
-  /** One-tap orders can be undone for 5 seconds. */
-  undoOrderId?: string;
+  /** An undo-style action, offered for 5 seconds (undo a one-tap order, restore a cancelled plan). */
+  action?: { label: string; run: () => void };
 }
 
 interface UiState {

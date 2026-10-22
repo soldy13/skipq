@@ -1,6 +1,10 @@
 import type { Lang } from './types';
 
-const NNBSP = ' '; // narrow no-break space: thousands separator
+/**
+ * Thousands separator: a thin space (brief §9) glued with word joiners so it never breaks. U+202F would be the
+ * textbook choice, but DM Sans draws it ~2 px wide and "1 199" reads as "1199".
+ */
+const NNBSP = '\u2060\u2009\u2060';
 const NBSP = ' '; // keeps the unit with its number
 
 const LOCALE: Record<Lang, string> = { en: 'en-GB', cs: 'cs-CZ' };

@@ -27,7 +27,8 @@ export function AddOnRow({ name, description, price, unit, checked, onChange, di
           {description}
         </span>
         <span className={styles.price}>
-          <Amount value={price} unit="Kč" /> {unit}
+          <Amount value={price} unit="Kč" />
+          {`\u00A0${unit}`}
         </span>
       </div>
       <Switch checked={checked} onChange={onChange} labelledBy={`${id}-name`} describedBy={`${id}-desc`} disabled={disabled} />

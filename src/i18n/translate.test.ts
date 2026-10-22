@@ -18,7 +18,8 @@ describe('dictionaries', () => {
   it('carries the starter strings from the brief', () => {
     expect(en['home.greeting.morning']).toBe('Morning, {name}.');
     expect(cs['home.usuals']).toBe('Tvoje klasika');
-    expect(cs['limit.reached']).toBe('Dnešní tři máš za sebou. Nové od půlnoci — nebo si kup jednu kávu.');
+    // Same words as the brief; the dash is glued to the word before it with a no-break space.
+    expect(cs['limit.reached'].replace(/\u00A0/g, ' ')).toBe('Dnešní tři máš za sebou. Nové od půlnoci — nebo si kup jednu kávu.');
     expect(cs['status.expired']).toBe('Propadlo');
   });
 });

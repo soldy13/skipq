@@ -10,7 +10,7 @@ import { MINUTE } from '../domain/time';
 import { makeId } from '../domain/random';
 import { readyToNotify, type Notice } from '../domain/notices';
 import { cancelOrder, extendOrder, pickUpOrder, placeOrder, type OrderRequest, type PlaceResult } from '../domain/ordering';
-import type { AddonId, Booking, LangPref, Order, PersonaId, World } from '../domain/types';
+import type { AddonId, Booking, LangPref, Order, PersonaId, Plan, World } from '../domain/types';
 import { activeOrders, selectBookings } from './selectors';
 
 export const STORAGE_KEY = 'skipq-v1';
@@ -50,6 +50,10 @@ export interface AppActions {
   dismissNotice: (id: string) => void;
   /** Add-ons switch instantly in the prototype (brief §4.1). */
   setAddon: (id: AddonId, on: boolean) => void;
+  /** Subscribe or switch plan — instant, no proration (brief §4.1). */
+  subscribePlan: (plan: Plan) => void;
+  cancelPlan: () => void;
+  buyPack: (size: number) => void;
 }
 
 export type Store = AppState & AppActions;
@@ -188,6 +192,9 @@ export const useStore = create<Store>()(
       dismissNotice: (id) => set((s) => ({ inbox: s.inbox.filter((n) => n.id !== id) })),
 
       setAddon: (id, on) => set((s) => ({ addons: { ...s.addons, [id]: on } })),
+      subscribePlan: (plan) => set({ plan: { ...plan } }),
+      cancelPlan: () => set({ plan: null }),
+      buyPack: (size) => set((s) => ({ wallet: { ...s.wallet, packCredits: s.wallet.packCredits + Math.max(0, Math.round(size)) } })),
     }),
     {
       name: STORAGE_KEY,
