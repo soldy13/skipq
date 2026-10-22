@@ -1,0 +1,7 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sq-3);
+  margin: calc(-1 * var(--sq-4)) 0 calc(-1 * var(--sq-2));
+}

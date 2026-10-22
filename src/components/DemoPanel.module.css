@@ -108,8 +108,9 @@
 .pill {
   position: absolute;
   left: var(--sq-3);
-  bottom: calc(var(--sq-tabbar-h) + var(--sq-safe-bottom) + var(--sq-3));
+  bottom: calc(var(--sq-tabbar-h) + var(--sq-safe-bottom) + var(--sq-3) + var(--sq-dock, 0px));
   z-index: var(--sq-z-demo-pill);
+  transition: bottom var(--sq-base);
   display: inline-flex;
   align-items: center;
   gap: var(--sq-2);

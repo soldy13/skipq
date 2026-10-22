@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import styles from './AppLayout.module.css';
 import { PhoneFrame } from './PhoneFrame';
@@ -7,6 +7,8 @@ import { OverlayHost } from '../components/Overlay';
 import { TabBar } from '../components/TabBar';
 import { DemoPanel, DemoPill } from '../components/DemoPanel';
 import { useStore } from '../store/useStore';
+import { useUi } from '../store/useUi';
+import { Notifications } from './Notifications';
 import { useT } from '../i18n/useT';
 
 /** A laptop lid or a throttled background tab must not fast-forward the demo by hours. */
@@ -31,6 +33,7 @@ export function AppLayout() {
   const location = useLocation();
   const onboarded = useStore((s) => s.profile.onboarded);
   const [demoOpen, setDemoOpen] = useState(false);
+  const dock = useUi((s) => s.dock);
   useSimulationLoop();
 
   useEffect(() => {
@@ -44,13 +47,14 @@ export function AppLayout() {
 
   return (
     <PhoneFrame tr={tr}>
-      <OverlayHost className={styles.app}>
+      <OverlayHost className={styles.app} style={{ '--sq-dock': `${dock}px` } as CSSProperties}>
         <main className={styles.screen} id="main">
           <Outlet />
         </main>
         {onWelcome ? null : <TabBar tr={tr} />}
         {DEMO_HIDDEN ? null : <DemoPill tr={tr} onOpen={() => setDemoOpen(true)} />}
         <DemoPanel open={demoOpen} onClose={() => setDemoOpen(false)} tr={tr} />
+        <Notifications />
       </OverlayHost>
     </PhoneFrame>
   );

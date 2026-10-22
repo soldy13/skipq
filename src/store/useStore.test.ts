@@ -145,3 +145,56 @@ describe('store: persistence', () => {
     expect(saved.state?.clock?.now).toBe(DEMO_START + MINUTE);
   });
 });
+
+describe('store: ordering', () => {
+  const fwCow = { drinkId: 'flatwhite', milk: 'cow', bean: 'standard' } as const;
+
+  it('places an order and returns it', () => {
+    const result = state().placeOrder({ config: fwCow, slotStart: null, payment: 'plan' });
+    expect(result.ok).toBe(true);
+    expect(state().orders.at(-1)?.config.drinkId).toBe('flatwhite');
+  });
+
+  it('announces a coffee once it is ready, and only once', () => {
+    state().advance(17 * MINUTE); // 10:15 — the seeded flat white is ready
+    expect(state().inbox.map((n) => n.orderId)).toEqual(['o_frederika_active']);
+    state().tick(1000);
+    expect(state().inbox).toHaveLength(1);
+    state().dismissNotice(state().inbox[0]!.id);
+    expect(state().inbox).toEqual([]);
+    state().tick(1000);
+    expect(state().inbox).toEqual([]);
+  });
+
+  it('announces a Now order two minutes later', () => {
+    const r = state().placeOrder({ config: fwCow, slotStart: null, payment: 'plan' });
+    if (!r.ok) throw new Error(r.reason);
+    state().advance(2 * MINUTE);
+    expect(state().inbox.map((n) => n.orderId)).toContain(r.order.id);
+  });
+
+  it('announces when the demo makes an order ready', () => {
+    state().makeNextOrderReady();
+    expect(state().inbox.map((n) => n.orderId)).toEqual(['o_frederika_active']);
+  });
+
+  it('undoes, unlocks and extends', () => {
+    const r = state().placeOrder({ config: fwCow, slotStart: null, payment: 'plan' });
+    if (!r.ok) throw new Error(r.reason);
+    state().undoOrder(r.order.id);
+    expect(state().orders.find((o) => o.id === r.order.id)?.cancelledAt).not.toBeNull();
+
+    state().advance(18 * MINUTE); // 10:16
+    state().extendOrder('o_frederika_active');
+    expect(state().orders.find((o) => o.id === 'o_frederika_active')?.extended).toBe(true);
+    state().unlockOrder('o_frederika_active');
+    expect(state().orders.find((o) => o.id === 'o_frederika_active')?.pickedUpAt).toBe(state().clock.now);
+  });
+
+  it('clears notifications when switching persona', () => {
+    state().makeNextOrderReady();
+    state().switchPersona('tomas');
+    expect(state().inbox).toEqual([]);
+    expect(state().notified).toEqual([]);
+  });
+});

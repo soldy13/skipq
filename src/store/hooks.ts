@@ -7,7 +7,24 @@ import { dailyLimit, type DailyLimit } from '../domain/limits';
 import { buildSlotGrid, type SlotGrid } from '../domain/slots';
 import { topUsuals, type Usual } from '../domain/usuals';
 import { orderBooking } from '../domain/orders';
-import type { Booking, Order } from '../domain/types';
+import type { Booking, Order, World } from '../domain/types';
+
+/** The simulated world as one object, stable while none of its parts change. */
+export function useWorld(): World {
+  const persona = useStore((s) => s.persona);
+  const profile = useStore((s) => s.profile);
+  const plan = useStore((s) => s.plan);
+  const addons = useStore((s) => s.addons);
+  const wallet = useStore((s) => s.wallet);
+  const orders = useStore((s) => s.orders);
+  const traffic = useStore((s) => s.traffic);
+  const gifts = useStore((s) => s.gifts);
+  const limitResetAt = useStore((s) => s.limitResetAt);
+  return useMemo(
+    () => ({ persona, profile, plan, addons, wallet, orders, traffic, gifts, limitResetAt }),
+    [persona, profile, plan, addons, wallet, orders, traffic, gifts, limitResetAt],
+  );
+}
 
 /** Simulated "now". Never use Date.now() in features. */
 export function useNow(): number {

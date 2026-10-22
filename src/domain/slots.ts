@@ -55,6 +55,11 @@ function dayStarts(machine: MachineConfig, day: number, now: number): number[] {
   return out;
 }
 
+/** A future slot start on the opening-hours grid of an opening day (not limited to the visible eight). */
+export function isValidSlotStart(machine: MachineConfig, now: number, start: number): boolean {
+  return dayStarts(machine, startOfDay(start), now).includes(start);
+}
+
 /**
  * The next `gridSlots` slots on one opening day: today if any slot is left, otherwise the next opening day.
  * The grid never mixes two days.

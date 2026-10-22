@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildSlotGrid, isOpenAt, nextFreeSlot, slotStartsFor } from './slots';
+import { buildSlotGrid, isOpenAt, isValidSlotStart, nextFreeSlot, slotStartsFor } from './slots';
 import { RAJSKA } from '../data/machines';
 import type { Booking } from './types';
 import { MINUTE, addDays } from './time';
@@ -54,6 +54,21 @@ describe('slot starts', () => {
     const starts = slotStartsFor(RAJSKA, at(19, 30, 23)); // Friday evening
     expect(starts[0]).toBe(new Date(2026, 9, 26, 7, 30).getTime()); // Monday
     expect(starts).toHaveLength(8);
+  });
+});
+
+describe('slot validity', () => {
+  it('accepts any future slot on the opening-hours grid, beyond the first eight too', () => {
+    expect(isValidSlotStart(RAJSKA, at(9, 58), at(10, 15))).toBe(true);
+    expect(isValidSlotStart(RAJSKA, at(9, 58), at(14, 30))).toBe(true);
+  });
+
+  it('rejects past, off-grid and after-hours starts', () => {
+    expect(isValidSlotStart(RAJSKA, at(9, 58), at(10, 0))).toBe(false);
+    expect(isValidSlotStart(RAJSKA, at(9, 58), at(10, 20))).toBe(false);
+    expect(isValidSlotStart(RAJSKA, at(9, 58), at(18, 45))).toBe(true);
+    expect(isValidSlotStart(RAJSKA, at(9, 58), at(19, 0))).toBe(false);
+    expect(isValidSlotStart(RAJSKA, at(9, 58), at(10, 0, 24))).toBe(false);
   });
 });
 

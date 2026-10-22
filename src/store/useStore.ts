@@ -7,15 +7,22 @@ import { boxesBusyDuring, boxesInUseAt } from '../domain/boxes';
 import { buildSlotGrid } from '../domain/slots';
 import { orderBooking, orderStatus } from '../domain/orders';
 import { MINUTE } from '../domain/time';
-import type { Booking, LangPref, Order, PersonaId, World } from '../domain/types';
+import { makeId } from '../domain/random';
+import { readyToNotify, type Notice } from '../domain/notices';
+import { cancelOrder, extendOrder, pickUpOrder, placeOrder, type OrderRequest, type PlaceResult } from '../domain/ordering';
+import type { AddonId, Booking, LangPref, Order, PersonaId, World } from '../domain/types';
 import { activeOrders, selectBookings } from './selectors';
 
 export const STORAGE_KEY = 'skipq-v1';
-/** Bump whenever the persisted World shape changes: older saves are then re-seeded instead of trusted. */
-const STORAGE_VERSION = 2;
+/** Bump whenever the persisted shape changes: older saves are then re-seeded instead of trusted. */
+const STORAGE_VERSION = 3;
 
 export interface AppState extends World {
   clock: SimClock;
+  /** Orders already announced as ready, so each is announced once. */
+  notified: string[];
+  /** Ready notifications waiting to be shown as a push banner. */
+  inbox: Notice[];
 }
 
 export interface AppActions {
@@ -36,12 +43,46 @@ export interface AppActions {
   expireActiveOrder: () => void;
   resetTodayLimit: () => void;
   giveCredits: (count: number) => void;
+  placeOrder: (req: OrderRequest) => PlaceResult;
+  undoOrder: (id: string) => void;
+  unlockOrder: (id: string) => void;
+  extendOrder: (id: string) => void;
+  dismissNotice: (id: string) => void;
+  /** Add-ons switch instantly in the prototype (brief §4.1). */
+  setAddon: (id: AddonId, on: boolean) => void;
 }
 
 export type Store = AppState & AppActions;
 
 export function initialState(): AppState {
-  return { ...buildSeed('frederika', DEMO_START), clock: { now: DEMO_START, speed: 1 } };
+  return { ...buildSeed('frederika', DEMO_START), clock: { now: DEMO_START, speed: 1 }, notified: [], inbox: [] };
+}
+
+/** After any change of time or orders: queue a ready banner for each coffee that just became ready. */
+function withNotices(s: AppState, patch: Partial<AppState>): Partial<AppState> {
+  const next = { ...s, ...patch };
+  const ids = readyToNotify(next.orders, next.notified, next.clock.now);
+  if (ids.length === 0) return patch;
+  return {
+    ...patch,
+    notified: [...next.notified, ...ids],
+    inbox: [...next.inbox, ...ids.map((orderId) => ({ id: `n_${orderId}`, kind: 'ready' as const, orderId, at: next.clock.now }))],
+  };
+}
+
+/** The World part of the state, for the pure ordering functions. */
+export function worldOf(s: AppState): World {
+  return {
+    persona: s.persona,
+    profile: s.profile,
+    plan: s.plan,
+    addons: s.addons,
+    wallet: s.wallet,
+    orders: s.orders,
+    traffic: s.traffic,
+    gifts: s.gifts,
+    limitResetAt: s.limitResetAt,
+  };
 }
 
 /** Boxes the user's own unfinished orders hold right now. Demo controls never take these. */
@@ -63,6 +104,11 @@ function fillSlotBookings(s: AppState): Booking[] {
   return out;
 }
 
+/** Only the parts an order action can change; unchanged references keep subscribers quiet. */
+function pick(world: World): Partial<AppState> {
+  return { orders: world.orders, wallet: world.wallet };
+}
+
 /** Replace one order by id, leaving the array untouched when nothing matches. */
 function withOrder(orders: Order[], id: string | undefined, update: (o: Order) => Order): Order[] {
   if (!id) return orders;
@@ -71,12 +117,12 @@ function withOrder(orders: Order[], id: string | undefined, update: (o: Order) =
 
 export const useStore = create<Store>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       ...initialState(),
 
-      tick: (realMs) => set((s) => ({ clock: advanceClock(s.clock, realMs) })),
-      advance: (ms) => set((s) => ({ clock: { ...s.clock, now: s.clock.now + Math.max(0, ms) } })),
-      setTime: (t) => set((s) => ({ clock: { ...s.clock, now: t } })),
+      tick: (realMs) => set((s) => withNotices(s, { clock: advanceClock(s.clock, realMs) })),
+      advance: (ms) => set((s) => withNotices(s, { clock: { ...s.clock, now: s.clock.now + Math.max(0, ms) } })),
+      setTime: (t) => set((s) => withNotices(s, { clock: { ...s.clock, now: t } })),
       setSpeed: (speed) => set((s) => ({ clock: { ...s.clock, speed } })),
 
       setLanguage: (language) => set((s) => ({ profile: { ...s.profile, language } })),
@@ -85,6 +131,8 @@ export const useStore = create<Store>()(
         set((s) => ({
           ...buildSeed(persona, DEMO_START, s.profile.language),
           clock: { now: DEMO_START, speed: s.clock.speed },
+          notified: [],
+          inbox: [],
         })),
 
       resetAll: () => set(initialState()),
@@ -104,13 +152,13 @@ export const useStore = create<Store>()(
         set((s) => {
           const now = s.clock.now;
           const next = activeOrders(s.orders, now).find((o) => orderStatus(o, now, RAJSKA.brewMinutes) !== 'ready');
-          return {
+          return withNotices(s, {
             orders: withOrder(s.orders, next?.id, (o) => ({
               ...o,
               readyAt: now,
               holdUntil: Math.max(o.holdUntil, now + RAJSKA.slotMinutes * MINUTE),
             })),
-          };
+          });
         }),
 
       expireActiveOrder: () =>
@@ -125,6 +173,21 @@ export const useStore = create<Store>()(
       resetTodayLimit: () => set((s) => ({ limitResetAt: s.clock.now })),
 
       giveCredits: (count) => set((s) => ({ wallet: { ...s.wallet, packCredits: s.wallet.packCredits + count } })),
+
+      placeOrder: (req) => {
+        const s = get();
+        const result = placeOrder(worldOf(s), req, s.clock.now, makeId('o'));
+        if (result.ok) set(withNotices(s, { orders: result.world.orders, wallet: result.world.wallet }));
+        return result;
+      },
+
+      undoOrder: (id) => set((s) => pick(cancelOrder(worldOf(s), id, s.clock.now))),
+      unlockOrder: (id) => set((s) => pick(pickUpOrder(worldOf(s), id, s.clock.now))),
+      extendOrder: (id) => set((s) => pick(extendOrder(worldOf(s), id, s.clock.now))),
+
+      dismissNotice: (id) => set((s) => ({ inbox: s.inbox.filter((n) => n.id !== id) })),
+
+      setAddon: (id, on) => set((s) => ({ addons: { ...s.addons, [id]: on } })),
     }),
     {
       name: STORAGE_KEY,
@@ -141,6 +204,8 @@ export const useStore = create<Store>()(
         gifts: s.gifts,
         limitResetAt: s.limitResetAt,
         clock: s.clock,
+        notified: s.notified,
+        inbox: s.inbox,
       }),
       // Any older or unknown shape: start the demo fresh rather than guess.
       migrate: () => initialState(),

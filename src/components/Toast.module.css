@@ -2,7 +2,7 @@
   position: absolute;
   left: var(--sq-3);
   right: var(--sq-3);
-  bottom: calc(var(--sq-tabbar-h) + var(--sq-safe-bottom) + var(--sq-3));
+  bottom: calc(var(--sq-tabbar-h) + var(--sq-safe-bottom) + var(--sq-3) + var(--sq-dock, 0px));
   z-index: var(--sq-z-toast);
   overflow: hidden;
   border-radius: var(--sq-r-md);

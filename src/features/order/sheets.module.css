@@ -1,0 +1,70 @@
+.footer {
+  display: grid;
+  gap: var(--sq-2);
+}
+
+.fine {
+  font: var(--sq-caption);
+  font-weight: 400;
+  color: var(--sq-stone);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.lines {
+  display: grid;
+  margin: 0;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sq-4);
+  padding: var(--sq-3) 0;
+  border-bottom: 1px solid var(--sq-line);
+  font: var(--sq-body);
+}
+
+.line dt {
+  color: var(--sq-stone);
+}
+
+.line dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 500;
+}
+
+.total {
+  border-bottom: 0;
+  padding-top: var(--sq-4);
+}
+
+.total dt {
+  color: var(--sq-espresso);
+  font-weight: 600;
+}
+
+.total dd {
+  font-size: 20px;
+}
+
+.facts {
+  margin-bottom: var(--sq-4);
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+.addonBody {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.addonPrice {
+  font: var(--sq-heading);
+}
+
+.addonPrice span:last-child {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}

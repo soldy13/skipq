@@ -1,10 +1,11 @@
 import { machineById, RAJSKA } from '../data/machines';
-import { orderBooking, orderStatus, isActiveStatus } from '../domain/orders';
+import { orderStatus, isActiveStatus } from '../domain/orders';
+import { worldBookings } from '../domain/ordering';
 import type { Booking, Order, World } from '../domain/types';
 
 /** Own orders as box bookings plus anonymous traffic — everything that competes for boxes. */
 export function allBookings(traffic: readonly Booking[], orders: readonly Order[]): Booking[] {
-  return [...traffic, ...orders.map(orderBooking)];
+  return worldBookings({ traffic, orders });
 }
 
 export function selectBookings(s: Pick<World, 'traffic' | 'orders'>): Booking[] {

@@ -1,0 +1,39 @@
+.screen {
+  padding-bottom: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sq-2) var(--sq-3);
+  font: var(--sq-body-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--sq-stone);
+}
+
+.section {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.label {
+  font: var(--sq-heading);
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.upgrade {
+  justify-self: start;
+}
+
+/* The order button stays in the bottom third, above the tab bar. */
+.dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin-inline: calc(-1 * var(--sq-gutter));
+  padding: var(--sq-3) var(--sq-gutter) var(--sq-4);
+  background: var(--sq-foam);
+  box-shadow: 0 -1px 0 var(--sq-line);
+}

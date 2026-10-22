@@ -3,11 +3,24 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--sq-4);
+  width: 100%;
   padding: var(--sq-4) var(--sq-4) var(--sq-4) var(--sq-5);
   border-radius: var(--sq-r-lg);
   background: var(--sq-surface);
   border: 1px solid var(--sq-line);
   box-shadow: var(--sq-e1);
+  text-align: left;
+  transition:
+    border-color var(--sq-quick),
+    transform var(--sq-quick);
+}
+
+.order:hover {
+  border-color: var(--sq-coffee-400);
+}
+
+.order:active {
+  transform: scale(0.99);
 }
 
 .orderText {
@@ -43,6 +56,29 @@
 .meta {
   font: var(--sq-body-sm);
   color: var(--sq-stone);
+}
+
+.usualsHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sq-2) var(--sq-3);
+}
+
+.browse {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: var(--sq-1);
+  min-height: var(--sq-tap);
+  font: var(--sq-button);
+  text-decoration: none;
+}
+
+.browse:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
 }
 
 @keyframes arrive {

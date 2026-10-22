@@ -228,4 +228,49 @@ export const en = {
   'demo.addDay.other': '+{n} days',
   'demo.resetConfirm': 'Tap again to reset everything',
   'demo.giftsLater': 'Arrives with gifts',
+
+  'nav.back': 'Back',
+  'nav.home': 'Back to Home',
+
+  'menu.title': 'All drinks',
+  'menu.note': 'One size each. Tap a drink to choose milk, beans and pickup.',
+
+  'order.lockedNote': 'Needs the {addon} add-on',
+  'order.limitNote': 'Pay for this one as a single or from a pack.',
+  'order.closedNote': 'The machine is closed now. Pick a slot.',
+  'order.notFound': 'We can’t find that drink.',
+
+  'checkout.title': 'Checkout',
+  'checkout.single': 'Single coffee',
+  'checkout.pickup': 'Pickup',
+  'checkout.total': 'Total',
+  'checkout.pay': 'Pay {price} · simulated',
+  'checkout.paying': 'Paying…',
+  'checkout.note': 'Prototype: no real payment, and we never ask for card details.',
+
+  'addon.sheetNote': 'Monthly add-on. You can turn it off again in Plans.',
+  'addon.add': 'Add for {price} / month',
+  'addon.added': '{addon} is on.',
+
+  'status.title.scheduled': 'Scheduled for {time}.',
+  'status.title.brewing': 'Brewing now.',
+  'status.title.pickedUp': 'Enjoy.',
+  'status.title.expired': 'This one expired.',
+  'status.title.cancelled': 'Cancelled and refunded.',
+  'status.step.brew': 'Brewing starts',
+  'status.step.ready': 'Ready in box {n}',
+  'status.step.hold': 'Held until',
+  'status.left': '{time} left',
+  'status.expiredBody': 'Box {n} waited until {time}. Nobody unlocked it, so the box went back to the machine. An expired coffee still counts as used.',
+  'status.pickedUpBody': 'Picked up at {time} from box {n}.',
+  'status.orderAgain': 'Order again',
+  'status.notFound': 'We can’t find that order.',
+  'pickup.extended': 'Extended once — that’s the maximum.',
+
+  'toast.full': 'That slot just filled up. Pick another one.',
+  'toast.closed': 'The machine is closed right now — pick a slot.',
+  'toast.failed': 'That didn’t go through. Try again?',
+
+  'order.pickTime': 'Pick a pickup time',
+  'status.brewingEta': 'Ready in about {n} min.',
 } as const;

@@ -230,4 +230,49 @@ export const cs: Dict = {
   'demo.addDay.other': '+{n} dní',
   'demo.resetConfirm': 'Klepni znovu a vše se resetuje',
   'demo.giftsLater': 'Přijde s dárky',
+
+  'nav.back': 'Zpět',
+  'nav.home': 'Zpět domů',
+
+  'menu.title': 'Všechny nápoje',
+  'menu.note': 'Každý v jedné velikosti. Klepni na nápoj a vyber mléko, zrna a čas.',
+
+  'order.lockedNote': 'Potřebuje doplněk {addon}',
+  'order.limitNote': 'Tuhle zaplať jako jednotlivou nebo z balíčku.',
+  'order.closedNote': 'Automat je teď zavřený. Vyber si slot.',
+  'order.notFound': 'Tenhle nápoj neznáme.',
+
+  'checkout.title': 'Platba',
+  'checkout.single': 'Jedna káva',
+  'checkout.pickup': 'Vyzvednutí',
+  'checkout.total': 'Celkem',
+  'checkout.pay': 'Zaplatit {price} · simulace',
+  'checkout.paying': 'Platím…',
+  'checkout.note': 'Prototyp: žádná skutečná platba a údaje o kartě nikdy nechceme.',
+
+  'addon.sheetNote': 'Měsíční doplněk. Vypnout ho můžeš zase v Předplatném.',
+  'addon.add': 'Přidat za {price} / měsíc',
+  'addon.added': '{addon} je zapnutý.',
+
+  'status.title.scheduled': 'Naplánováno na {time}.',
+  'status.title.brewing': 'Už se připravuje.',
+  'status.title.pickedUp': 'Dobrou chuť.',
+  'status.title.expired': 'Tahle propadla.',
+  'status.title.cancelled': 'Zrušeno, peníze ti vracíme.',
+  'status.step.brew': 'Začneme připravovat',
+  'status.step.ready': 'Hotovo v boxu {n}',
+  'status.step.hold': 'Počká do',
+  'status.left': 'zbývá {time}',
+  'status.expiredBody': 'Box {n} čekal do {time}. Nikdo ho neodemkl, tak se vrátil automatu. Propadlá káva se počítá jako vypitá.',
+  'status.pickedUpBody': 'Vyzvednuto v {time} z boxu {n}.',
+  'status.orderAgain': 'Objednat znovu',
+  'status.notFound': 'Tuhle objednávku nenacházíme.',
+  'pickup.extended': 'Prodlouženo jednou — víc to nejde.',
+
+  'toast.full': 'Slot se právě zaplnil. Vyber jiný.',
+  'toast.closed': 'Automat je teď zavřený — vyber si slot.',
+  'toast.failed': 'Tohle neprošlo. Zkusíme znovu?',
+
+  'order.pickTime': 'Vyber čas vyzvednutí',
+  'status.brewingEta': 'Hotovo zhruba za {n} min.',
 };

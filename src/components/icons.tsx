@@ -93,6 +93,7 @@ export const IconCheck = makeIcon('Check', <path d="m5 12.5 4.5 4.5L19 7.5" />);
 export const IconClose = makeIcon('Close', <path d="M6 6l12 12M18 6 6 18" />);
 
 export const IconChevronRight = makeIcon('ChevronRight', <path d="m9.5 6 6 6-6 6" />);
+export const IconChevronLeft = makeIcon('ChevronLeft', <path d="m14.5 6-6 6 6 6" />);
 
 export const IconClock = makeIcon(
   'Clock',

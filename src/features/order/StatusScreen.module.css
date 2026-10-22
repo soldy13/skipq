@@ -1,0 +1,147 @@
+.screen {
+  padding-bottom: 0;
+}
+
+.moment {
+  animation: arrive var(--sq-reward) both;
+}
+
+.drink {
+  font: var(--sq-body);
+  color: var(--sq-stone);
+}
+
+.body {
+  font: var(--sq-body);
+  text-wrap: pretty;
+  max-width: 36ch;
+}
+
+.note {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+/* Brewing starts → ready → held until. */
+.timeline {
+  display: grid;
+  padding: var(--sq-2) var(--sq-5);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-surface);
+  border: 1px solid var(--sq-line);
+}
+
+.timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  align-items: center;
+  gap: var(--sq-3);
+  min-height: 52px;
+}
+
+.timeline li + li {
+  border-top: 1px solid var(--sq-line);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px var(--sq-coffee-200);
+}
+
+.done .dot {
+  background: var(--sq-coffee);
+  box-shadow: none;
+}
+
+.stepLabel {
+  font: var(--sq-body);
+}
+
+.stepTime {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Ready: the plate, the countdown and the machine. */
+.readyCard {
+  display: grid;
+  gap: var(--sq-4);
+  padding: var(--sq-5);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-surface);
+  border: 1px solid color-mix(in srgb, var(--sq-ready) 30%, var(--sq-line));
+  box-shadow: var(--sq-e1);
+}
+
+.readyTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sq-4);
+}
+
+.map {
+  width: min(100%, 220px);
+  justify-self: center;
+}
+
+.hold {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+  text-align: right;
+}
+
+.left {
+  font: var(--sq-numeric);
+  color: var(--sq-espresso);
+}
+
+.opened {
+  display: flex;
+  align-items: center;
+  gap: var(--sq-4);
+  animation: arrive var(--sq-reward) both;
+}
+
+.openedMark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--sq-ready-bg);
+  color: var(--sq-ready);
+}
+
+.actions {
+  display: grid;
+  gap: var(--sq-2);
+}
+
+.actions:empty {
+  display: none;
+}
+
+/* Unlock: Espresso, 64 px, in the bottom third. */
+.dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin-inline: calc(-1 * var(--sq-gutter));
+  padding: var(--sq-3) var(--sq-gutter) var(--sq-5);
+  background: var(--sq-foam);
+  box-shadow: 0 -1px 0 var(--sq-line);
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

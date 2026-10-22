@@ -3,6 +3,9 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppLayout } from './AppLayout';
 import { HomeScreen } from '../features/home/HomeScreen';
 import { MeScreen } from '../features/me/MeScreen';
+import { MenuScreen } from '../features/menu/MenuScreen';
+import { OrderScreen } from '../features/order/OrderScreen';
+import { StatusScreen } from '../features/order/StatusScreen';
 import { WipScreen } from '../features/WipScreen';
 
 const Styleguide = lazy(() => import('../features/styleguide/Styleguide'));
@@ -23,9 +26,9 @@ export function App() {
         <Route element={<AppLayout />}>
           <Route index element={<HomeScreen />} />
           <Route path="welcome" element={<WipScreen title="screen.welcome" milestone={5} />} />
-          <Route path="menu" element={<WipScreen title="screen.menu" milestone={2} />} />
-          <Route path="order/status/:orderId" element={<WipScreen title="screen.status" milestone={2} />} />
-          <Route path="order/:drinkId" element={<WipScreen title="screen.order" milestone={2} />} />
+          <Route path="menu" element={<MenuScreen />} />
+          <Route path="order/status/:orderId" element={<StatusScreen />} />
+          <Route path="order/:drinkId" element={<OrderScreen />} />
           <Route path="plans" element={<WipScreen title="screen.plans" milestone={3} />} />
           <Route path="gift" element={<WipScreen title="screen.gift" milestone={4} />} />
           <Route path="board" element={<WipScreen title="screen.board" milestone={4} />} />
