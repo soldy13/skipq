@@ -58,9 +58,12 @@ describe('personal stats', () => {
     expect(favouriteDrink([], now)).toBeNull();
   });
 
-  it('buckets the last four weeks, oldest first', () => {
+  it('buckets the last four calendar weeks (Monday first), oldest first', () => {
+    // Thu 22 Oct: weeks start Mon 28 Sep, 5 Oct, 12 Oct and 19 Oct (this one, so far).
     const orders = [picked(22), picked(21), picked(14), picked(2)];
     const weeks = weeklyCounts(orders, now, 4);
-    expect(weeks.map((w) => w.count)).toEqual([0, 1, 1, 2]);
+    expect(weeks.map((w) => w.count)).toEqual([1, 0, 1, 2]);
+    expect(new Date(weeks[0]!.from).getDate()).toBe(28);
+    expect(new Date(weeks[3]!.from).getDate()).toBe(19);
   });
 });

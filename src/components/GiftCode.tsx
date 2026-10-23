@@ -9,7 +9,8 @@ export interface GiftCodeLabels {
   copy: string;
   copied: string;
   share: string;
-  valid: string;
+  /** "For Ondra · Expires Tue 27 Oct. …" — left out once the gift is settled. */
+  valid?: string;
   status: string;
 }
 
@@ -93,7 +94,7 @@ export function GiftCode({ code, drink, status, labels, shareText, variant = 'ti
         <GiftStatusPill status={status} label={labels.status} />
       </header>
       <p className={`${styles.code} sq-mono`}>{code}</p>
-      <p className={styles.valid}>{labels.valid}</p>
+      {labels.valid ? <p className={styles.valid}>{labels.valid}</p> : null}
       <div className={styles.actions}>
         <Button variant="secondary" compact icon={<IconCopy size={20} />} onClick={onCopy} aria-live="polite">
           {copied ? labels.copied : labels.copy}

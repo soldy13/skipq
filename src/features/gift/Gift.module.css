@@ -1,0 +1,80 @@
+.intro {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.lead {
+  font: var(--sq-body);
+  text-wrap: pretty;
+}
+
+.note {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+  text-wrap: pretty;
+}
+
+.list {
+  display: grid;
+  gap: var(--sq-2);
+}
+
+.list ul {
+  border-top: 1px solid var(--sq-line);
+}
+
+.rowLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--sq-r-sm);
+}
+
+.rowLink:hover {
+  background: color-mix(in srgb, var(--sq-coffee-100) 50%, transparent);
+}
+
+.field {
+  display: grid;
+  gap: var(--sq-2);
+}
+
+.fieldLabel {
+  font: var(--sq-heading);
+}
+
+.input {
+  min-height: var(--sq-btn-l);
+  padding: 0 var(--sq-4);
+  border-radius: var(--sq-r-md);
+  border: 1.5px solid var(--sq-line);
+  background: var(--sq-surface);
+  font: var(--sq-body);
+  color: var(--sq-espresso);
+  transition:
+    border-color var(--sq-quick),
+    box-shadow var(--sq-quick);
+}
+
+.input:focus {
+  border-color: var(--sq-coffee);
+  box-shadow: 0 0 0 4px var(--sq-coffee-100);
+}
+
+.input::placeholder {
+  color: var(--sq-stone);
+}
+
+.section {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.sectionHeading {
+  font: var(--sq-heading);
+}
+
+.ticketWrap {
+  display: grid;
+  gap: var(--sq-4);
+}

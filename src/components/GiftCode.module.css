@@ -9,16 +9,6 @@
   color: var(--sq-coffee-900);
 }
 
-/* Perforation between the stub and the code. */
-.ticket::before {
-  content: '';
-  position: absolute;
-  left: var(--sq-5);
-  right: var(--sq-5);
-  top: 64px;
-  border-top: 1.5px dashed color-mix(in srgb, var(--sq-coffee) 35%, transparent);
-}
-
 .head {
   display: flex;
   flex-wrap: wrap;
@@ -26,6 +16,8 @@
   gap: var(--sq-2);
   min-height: 28px;
   padding-bottom: var(--sq-3);
+  /* Perforation between the stub and the code; it follows the stub when the drink line wraps. */
+  border-bottom: 1.5px dashed color-mix(in srgb, var(--sq-coffee) 35%, transparent);
 }
 
 .drink {

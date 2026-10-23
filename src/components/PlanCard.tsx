@@ -1,6 +1,7 @@
 import styles from './PlanCard.module.css';
 import { IconCheck } from './icons';
 import { Amount } from './Amount';
+import { DOT_SEP } from '../domain/format';
 
 export interface PlanCardProps {
   name: string;
@@ -31,7 +32,9 @@ export function PlanCard({ name, allowance, covers, price, unit, selected = fals
         </span>
       </span>
       <span className={styles.covers}>
-        {allowance} · {covers}
+        {allowance}
+        {DOT_SEP}
+        {covers}
       </span>
       <span className={styles.price}>
         <Amount value={price} unit="Kč" />

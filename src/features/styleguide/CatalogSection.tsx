@@ -193,7 +193,7 @@ export function CatalogSection({ tr }: { tr: Translator }) {
         <State label="This month">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             <StatTile icon={<IconCup />} label={tr.t('stat.coffees')} value={coffeesThisMonth(orders, now)} />
-            <StatTile icon={<IconBolt />} label={tr.t('stat.caffeine')} value={mg} unit="mg" sub={tr.t('stat.equivalent', { n: Math.round(mg / CAFFEINE_EQUIVALENTS.redBullCan) })} />
+            <StatTile icon={<IconBolt />} label={tr.t('stat.caffeine')} value={mg} unit="mg" sub={tr.tp('stat.eqRedBull', Math.round(mg / CAFFEINE_EQUIVALENTS.redBullCan))} />
             <StatTile icon={<IconHeart />} label={tr.t('stat.favourite')} value={fav ? drinkName(fav, tr) : '—'} textValue />
             <StatTile icon={<IconFlame />} label={tr.t('stat.streak')} value={days} sub={tr.tp('stat.streakUnit', days)} />
           </div>

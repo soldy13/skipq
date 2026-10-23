@@ -140,8 +140,7 @@ export function DemoControls({ tr, onDone }: { tr: Translator; onDone?: () => vo
       </Group>
 
       <Group title={tr.t('demo.gifts')}>
-        <DemoButton disabled>{tr.t('demo.expireGifts')}</DemoButton>
-        <p className={styles.note}>{tr.t('demo.giftsLater')}</p>
+        <DemoButton onClick={actions.expireAllGifts}>{tr.t('demo.expireGifts')}</DemoButton>
       </Group>
 
       <Group title={tr.t('demo.language')}>

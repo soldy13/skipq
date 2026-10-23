@@ -32,6 +32,7 @@ function gift(createdAt: number, over: Partial<GiftCode> = {}): GiftCode {
     createdAt,
     expiresAt: createdAt + 5 * 86_400_000,
     payment: 'plan',
+    toName: null,
     redeemedBy: null,
     redeemedAt: null,
     returnedAt: null,

@@ -6,7 +6,7 @@
   padding: var(--sq-4);
   border-radius: var(--sq-r-lg);
   background: var(--sq-surface);
-  border: 1px dashed var(--sq-coffee-200);
+  border: 1px solid var(--sq-line);
   text-align: left;
   transition: border-color var(--sq-quick);
 }
@@ -48,8 +48,8 @@
 .badge {
   padding: 1px 8px;
   border-radius: var(--sq-r-pill);
-  background: var(--sq-vanilla);
-  color: var(--sq-coffee-900);
+  background: var(--sq-coffee-100);
+  color: var(--sq-coffee-700);
   font: var(--sq-caption);
 }
 

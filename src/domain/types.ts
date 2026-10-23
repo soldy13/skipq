@@ -75,6 +75,8 @@ export interface GiftCode {
   code: string;
   config: DrinkConfig;
   fromNickname: string;
+  /** Optional first name the giver typed ("for Ondra"); used in the return notice. */
+  toName: string | null;
   createdAt: number;
   expiresAt: number;
   payment: PaymentMethod;

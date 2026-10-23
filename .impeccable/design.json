@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T21:00:00.000Z",
+  "generatedAt": "2026-10-23T12:00:00.000Z",
   "title": "Design System: SkipQ",
   "extensions": {
     "colorMeta": {
@@ -331,11 +331,11 @@
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Screen and sheet titles, the ready line, text stat values."
+        "purpose": "Screen and sheet titles (the name on Me), the ready line, text stat values."
       },
       "heading": {
         "displayName": "Heading",
-        "purpose": "Section titles (including the Plans sections), order-screen option headings, drink and plan names."
+        "purpose": "Section titles (including the Plans and Me sections), order-screen option headings, drink and plan names, field labels."
       },
       "heading-sm": {
         "displayName": "Heading Small",
@@ -355,7 +355,7 @@
       },
       "caption": {
         "displayName": "Caption",
-        "purpose": "Tab labels, pills, badges, legends."
+        "purpose": "Tab labels, pills, badges, legends, stat-tile labels, week-chart title and axis labels."
       },
       "overline": {
         "displayName": "Overline",
@@ -363,7 +363,7 @@
       },
       "numeric": {
         "displayName": "Numeric",
-        "purpose": "Big mono counters, stat values, the Demo clock, the pickup countdown."
+        "purpose": "Big mono counters, stat-tile values, the Demo clock, the pickup countdown."
       },
       "numeric-md": {
         "displayName": "Numeric Medium",
@@ -535,6 +535,38 @@
       "description": "Prepaid packs three across; the count in mono, the price never wraps; Vanilla when chosen.",
       "html": "<div class=\"ds-packs\"><button class=\"ds-pack\" aria-pressed=\"false\"><span class=\"ds-pack-size\">10</span><span class=\"ds-pack-unit\">coffees</span><span class=\"ds-pack-price\">269 Kč</span><span class=\"ds-pack-per\">26.90 Kč per coffee</span></button><button class=\"ds-pack ds-pack-selected\" aria-pressed=\"true\"><span class=\"ds-pack-size\">30</span><span class=\"ds-pack-unit\">coffees</span><span class=\"ds-pack-price\">749 Kč</span><span class=\"ds-pack-per\">24.97 Kč per coffee</span></button><button class=\"ds-pack\" aria-pressed=\"false\"><span class=\"ds-pack-size\">50</span><span class=\"ds-pack-unit\">coffees</span><span class=\"ds-pack-price\">1⁠ ⁠199 Kč</span><span class=\"ds-pack-per\">23.98 Kč per coffee</span></button></div>",
       "css": ".ds-packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:360px}.ds-pack{display:grid;justify-items:start;align-content:start;gap:2px;min-width:0;padding:16px 12px;border-radius:var(--sq-r-lg);background:var(--sq-surface);border:1px solid var(--sq-line);color:var(--sq-espresso);text-align:left;cursor:pointer;transition:background-color var(--sq-quick),border-color var(--sq-quick)}.ds-pack:hover{border-color:var(--sq-coffee-400)}.ds-pack:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}.ds-pack-size{font:500 32px/36px var(--sq-mono);font-variant-numeric:tabular-nums}.ds-pack-unit{font:var(--sq-body-sm);color:var(--sq-stone)}.ds-pack-price{margin-top:12px;font:500 16px/20px var(--sq-mono);white-space:nowrap}.ds-pack-per{font:var(--sq-caption);font-weight:400;color:var(--sq-stone)}.ds-pack-selected{background:var(--sq-vanilla);border-color:var(--sq-coffee);box-shadow:inset 0 0 0 1px var(--sq-coffee)}.ds-pack-selected .ds-pack-unit,.ds-pack-selected .ds-pack-per{color:var(--sq-coffee-900)}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "nav",
+      "refersTo": "text-link",
+      "description": "The one navigation idiom: Coffee, DM Sans 600, underline on hover, trailing chevron.",
+      "html": "<a class=\"ds-link\" href=\"#\">Your stats<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;gap:4px;min-height:44px;color:var(--sq-coffee);font:var(--sq-button);text-decoration:none}.ds-link:hover{text-decoration:underline;text-underline-offset:.22em}.ds-link:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus);border-radius:var(--sq-r-sm)}"
+    },
+    {
+      "name": "Week Bars",
+      "kind": "custom",
+      "refersTo": "week-bars",
+      "description": "Coffees per week, last four; one series, values on the bars, the current week named in words.",
+      "html": "<figure class=\"ds-weeks\"><figcaption class=\"ds-weeks-title\">Last 4 weeks</figcaption><ol class=\"ds-weeks-plot\"><li><span class=\"ds-weeks-v\">9</span><span class=\"ds-weeks-track\"><span class=\"ds-weeks-bar\" style=\"height:82%\"></span></span><span class=\"ds-weeks-l\">28 Sept</span></li><li><span class=\"ds-weeks-v\">11</span><span class=\"ds-weeks-track\"><span class=\"ds-weeks-bar\" style=\"height:100%\"></span></span><span class=\"ds-weeks-l\">5 Oct</span></li><li><span class=\"ds-weeks-v\">8</span><span class=\"ds-weeks-track\"><span class=\"ds-weeks-bar\" style=\"height:73%\"></span></span><span class=\"ds-weeks-l\">12 Oct</span></li><li><span class=\"ds-weeks-v\">8</span><span class=\"ds-weeks-track\"><span class=\"ds-weeks-bar ds-weeks-now\" style=\"height:73%\"></span></span><span class=\"ds-weeks-l ds-weeks-lnow\">This week</span></li></ol></figure>",
+      "css": ".ds-weeks{display:grid;gap:12px;margin:0;padding:16px;max-width:360px;border-radius:var(--sq-r-lg);background:var(--sq-surface);border:1px solid var(--sq-line)}.ds-weeks-title{font:var(--sq-caption);color:var(--sq-stone)}.ds-weeks-plot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:end;margin:0;padding:0;list-style:none}.ds-weeks-plot li{display:grid;grid-template-rows:auto 96px auto;justify-items:center;gap:4px}.ds-weeks-v{font:500 14px var(--sq-mono);font-variant-numeric:tabular-nums;color:var(--sq-espresso)}.ds-weeks-track{display:flex;align-items:flex-end;width:100%;max-width:40px;border-bottom:1px solid var(--sq-line)}.ds-weeks-bar{width:100%;min-height:2px;border-radius:4px 4px 9px 9px;background:var(--sq-coffee-400)}.ds-weeks-now{background:var(--sq-coffee)}.ds-weeks-l{font:var(--sq-caption);font-weight:400;color:var(--sq-stone);white-space:nowrap}.ds-weeks-lnow{font-weight:600;color:var(--sq-espresso)}"
+    },
+    {
+      "name": "Board Row",
+      "kind": "custom",
+      "refersTo": "board-row-mine",
+      "description": "Monthly board by nickname; your row is Vanilla with a Coffee 'you' badge.",
+      "html": "<div class=\"ds-board\"><div class=\"ds-brow ds-podium\"><span class=\"ds-brank\">1</span><span class=\"ds-bname\">espresso_eva</span><span class=\"ds-bval\">61</span></div><div class=\"ds-brow\"><span class=\"ds-brank\">10</span><span class=\"ds-bname\">latte_lukas</span><span class=\"ds-bval\">34</span></div><span class=\"ds-bgap\" aria-hidden=\"true\">···</span><button class=\"ds-brow ds-bmine\" aria-current=\"true\"><span class=\"ds-brank\">12</span><span class=\"ds-bname\">frederika_k<span class=\"ds-byou\">you</span></span><span class=\"ds-bval\">31</span><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6l6 6-6 6\"/></svg></button></div>",
+      "css": ".ds-board{display:grid;gap:2px;max-width:360px;padding:8px;background:var(--sq-foam)}.ds-brow{display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:12px;width:100%;min-height:48px;padding:8px 12px;border:0;border-radius:var(--sq-r-md);background:transparent;color:var(--sq-espresso);text-align:left}.ds-brank{font:14px var(--sq-mono);font-variant-numeric:tabular-nums;color:var(--sq-stone);text-align:right}.ds-podium .ds-brank{color:var(--sq-coffee);font-weight:500}.ds-bname{display:flex;align-items:center;gap:8px;min-width:0;font:var(--sq-body);font-weight:500}.ds-bval{font:500 15px var(--sq-mono);font-variant-numeric:tabular-nums;white-space:nowrap}.ds-byou{padding:1px 7px;border-radius:var(--sq-r-pill);background:var(--sq-coffee);color:var(--sq-surface);font:var(--sq-caption)}.ds-bgap{padding-left:24px;font:var(--sq-body);letter-spacing:.2em;color:var(--sq-stone)}.ds-bmine{grid-template-columns:32px 1fr auto 18px;background:var(--sq-vanilla);color:var(--sq-coffee-900);cursor:pointer;transition:background-color var(--sq-quick)}.ds-bmine .ds-brank{color:var(--sq-coffee-900)}.ds-bmine:hover{background:color-mix(in srgb,var(--sq-vanilla) 80%,var(--sq-coffee-200))}.ds-bmine:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}"
+    },
+    {
+      "name": "Gift Ticket",
+      "kind": "card",
+      "refersTo": "gift-ticket",
+      "description": "The gift as a Vanilla ticket: stub, the only dashed perforation, the code large in mono, Surface actions.",
+      "html": "<article class=\"ds-ticket\"><header class=\"ds-ticket-head\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4\" y=\"9\" width=\"16\" height=\"11\" rx=\"1.5\"/><path d=\"M3 9h18M12 9v11M12 9c-1.5-3-5-4-5-1.5S10 9 12 9zM12 9c1.5-3 5-4 5-1.5S14 9 12 9z\"/></svg><span class=\"ds-ticket-drink\">Cappuccino ·&nbsp;Cow’s milk</span><span class=\"ds-ticket-pill\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 4h10M7 20h10M8 4c0 4 8 5 8 8s-8 4-8 8M16 4c0 4-8 5-8 8s8 4 8 8\"/></svg>Pending ·&nbsp;expires in 1&nbsp;day</span></header><p class=\"ds-ticket-code\">SKQ-4H7P</p><p class=\"ds-ticket-valid\">For Ondra ·&nbsp;Expires Fri 23&nbsp;Oct. Not redeemed? It comes back to you.</p><div class=\"ds-ticket-actions\"><button class=\"ds-ticket-btn\">Copy</button><button class=\"ds-ticket-btn\">Share</button></div></article>",
+      "css": ".ds-ticket{display:grid;gap:12px;max-width:350px;padding:20px;border-radius:var(--sq-r-lg);background:var(--sq-vanilla);color:var(--sq-coffee-900)}.ds-ticket-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-height:28px;padding-bottom:12px;border-bottom:1.5px dashed color-mix(in srgb,var(--sq-coffee) 35%,transparent)}.ds-ticket-drink{flex:1;font:var(--sq-body);font-weight:600}.ds-ticket-pill{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:4px 10px 4px 8px;border-radius:var(--sq-r-pill);background:var(--sq-coffee-100);color:var(--sq-coffee);font:var(--sq-caption);font-weight:600}.ds-ticket-code{margin:8px 0 0;font:500 40px/48px var(--sq-mono);letter-spacing:.06em;color:var(--sq-espresso)}.ds-ticket-valid{margin:0;font:var(--sq-body-sm)}.ds-ticket-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}.ds-ticket-btn{min-height:44px;padding:8px 16px;border:0;border-radius:var(--sq-r-md);background:var(--sq-surface);color:var(--sq-coffee-700);font:var(--sq-button);cursor:pointer;transition:background-color var(--sq-quick),transform var(--sq-quick)}.ds-ticket-btn:hover{background:var(--sq-foam)}.ds-ticket-btn:active{transform:scale(.98)}.ds-ticket-btn:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus)}"
     }
   ],
   "narrative": {
@@ -591,12 +623,12 @@
       },
       {
         "name": "The Bound Phrase Rule",
-        "body": "A no-break space keeps together what must never split at a line end: a price with its unit (\"229 Kč / week\"), a tier label (\"Up to 3 a day\", \"Až 3 denně\"), a count with its noun (\"7 credits left\"), and every em dash with the word before it.",
+        "body": "A no-break space keeps together what must never split at a line end: a price with its unit (\"229 Kč / week\"), a tier label (\"Up to 3 a day\", \"Až 3 denně\"), a count with its noun (\"7 credits left\"), a brand name (\"Red Bull\"), and every em dash with the word before it. The middle dot binds to what follows: every \" · \" in both dictionaries and every dot that code puts between parts is `DOT_SEP` (a space, the dot, then a no-break space), so a wrapped pair starts its new line with \"·\" and a line never ends on a dangling dot.",
         "section": "typography"
       },
       {
         "name": "The Flat-Card Rule",
-        "body": "Cards are flat, with a Surface fill and a Line border. Only the one live order card on a screen gets Lift.",
+        "body": "Cards are flat, with a Surface fill and a Line border. Only the one live order card on a screen gets Lift. Stat tiles, the week chart, the Apple Health tile, board rows and the gift ticket carry no shadow.",
         "section": "elevation"
       },
       {
@@ -607,6 +639,16 @@
       {
         "name": "The Reserved at Payment Rule",
         "body": "The box is reserved at payment, so from Scheduled onwards the status screen shows it as the Vanilla plate plus the mini locker map. A box number never waits for Ready to appear.",
+        "section": "components"
+      },
+      {
+        "name": "The One Perforation Rule",
+        "body": "Dashed means \"tear here\". The gift ticket's perforation is the only dashed line; dividers, empty states and drop zones stay solid 1 px Line.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Chevron Link Rule",
+        "body": "Going somewhere is a text link with a trailing chevron; changing something is a button. The Tertiary button never navigates, and a text link never commits.",
         "section": "components"
       }
     ],
@@ -620,7 +662,10 @@
       "Do dock a screen's committing action (order, unlock) at the bottom on the tab bar, with the Demo pill lane above it, and float the toast above the dock.",
       "Do show the box as the Vanilla plate plus the mini locker map from Scheduled onwards.",
       "Do keep touch targets at 44 px or more (52 for primary, 64 for unlock), and let labels wrap or step down instead of fixing widths.",
-      "Do group thousands with the glued thin space (\"1 199 Kč\"), and bind prices to units, tier labels, counts to nouns, and em dashes to the word before them with no-break spaces."
+      "Do group thousands with the glued thin space (\"1 199 Kč\"), and bind prices to units, tier labels, counts to nouns, brand names, and em dashes to the word before them with no-break spaces.",
+      "Do join parts with `DOT_SEP` (\" ·\" plus a no-break space), so a wrapped line starts with the dot.",
+      "Do navigate with the Coffee text link and its chevron (› for another screen, ⌄ for more in place), and keep the Tertiary button for actions that change something.",
+      "Do mark the current item in a chart with a word as well as a colour (\"This week\" in Espresso 600 under the full Coffee bar)."
     ],
     "donts": [
       "Don't use a hex value outside `tokens.css`.",
@@ -632,7 +677,9 @@
       "Don't add shadows to ordinary cards. Lift is for the one live card and for controls that sit on top.",
       "Don't use product-photo menus, loyalty-card gamification, or urgency devices such as countdown badges and red dots.",
       "Don't use glyph or emoji icons. Icons are the 24 px, 1.75-stroke line set.",
-      "Don't write a four-digit number without its thin space (\"1199 Kč\"), and don't use U+202F for it."
+      "Don't write a four-digit number without its thin space (\"1199 Kč\"), and don't use U+202F for it.",
+      "Don't draw a dashed line anywhere except the gift ticket's perforation.",
+      "Don't set names or nicknames in DM Mono. Mono is for figures, not decoration."
     ]
   }
 }

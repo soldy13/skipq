@@ -11,6 +11,7 @@ import { Chip } from '../../components/Chip';
 import { UsualCard } from '../../components/UsualCard';
 import { IconChevronRight, IconClock } from '../../components/icons';
 import { useOrderFlow } from '../order/useOrderFlow';
+import { DOT_SEP } from '../../domain/format';
 import { orderPath, slotLabel } from '../order/orderText';
 import { useT, type Translator } from '../../i18n/useT';
 import { configSummary, drinkName } from '../../i18n/drinkText';
@@ -37,7 +38,9 @@ function ActiveOrderCard({ order, now, tr, onOpen }: { order: Order; now: number
         {ready ? <span className={home.readyLine}>{tr.t('pickup.title', { n: order.boxId })}</span> : null}
         <span className={home.drink}>{drinkName(order.config.drinkId, tr)}</span>
         <span className={home.meta}>
-          {configSummary(order.config, tr)} · {when}
+          {configSummary(order.config, tr)}
+          {DOT_SEP}
+          {when}
         </span>
       </span>
       <BoxTag n={order.boxId} size="lg" />

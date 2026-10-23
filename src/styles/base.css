@@ -106,6 +106,26 @@ a {
   outline: 2px solid transparent; /* stays visible in forced-colours mode */
 }
 
+/*
+ * Text link: Coffee, DM Sans 600, underlined only on hover, with a trailing chevron that says what happens —
+ * › opens another screen, ⌄ shows more in place. Actions that change something use the Tertiary button.
+ */
+.sq-link {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: var(--sq-1);
+  min-height: var(--sq-tap);
+  color: var(--sq-coffee);
+  font: var(--sq-button);
+  text-decoration: none;
+}
+
+.sq-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
 /* Numbers that line up: counters, times, prices in tables. */
 .sq-mono {
   font-family: var(--sq-mono);

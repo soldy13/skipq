@@ -1,0 +1,40 @@
+.month {
+  font: var(--sq-body);
+  color: var(--sq-stone);
+  text-transform: capitalize;
+}
+
+.list {
+  display: grid;
+  gap: 2px;
+}
+
+.pinned {
+  display: grid;
+  gap: 2px;
+}
+
+.gap {
+  padding-left: var(--sq-6);
+  font: var(--sq-body);
+  letter-spacing: 0.2em;
+  color: var(--sq-stone);
+}
+
+.equivalent {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+  text-wrap: pretty;
+}
+
+.fun {
+  color: var(--sq-espresso);
+  font-weight: 500;
+  animation: fade var(--sq-base) both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

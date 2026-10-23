@@ -10,12 +10,14 @@ import { MINUTE } from '../domain/time';
 import { makeId } from '../domain/random';
 import { readyToNotify, type Notice } from '../domain/notices';
 import { cancelOrder, extendOrder, pickUpOrder, placeOrder, type OrderRequest, type PlaceResult } from '../domain/ordering';
-import type { AddonId, Booking, LangPref, Order, PersonaId, Plan, World } from '../domain/types';
+import { redeemGift, returnExpiredGifts, sendGift, type GiftRequest, type RedeemResult, type SendResult } from '../domain/giving';
+import { generateGiftCode } from '../domain/gifts';
+import type { AddonId, Booking, LangPref, Milk, Order, PersonaId, Plan, World } from '../domain/types';
 import { activeOrders, selectBookings } from './selectors';
 
 export const STORAGE_KEY = 'skipq-v1';
 /** Bump whenever the persisted shape changes: older saves are then re-seeded instead of trusted. */
-const STORAGE_VERSION = 3;
+const STORAGE_VERSION = 4;
 
 export interface AppState extends World {
   clock: SimClock;
@@ -54,6 +56,10 @@ export interface AppActions {
   subscribePlan: (plan: Plan) => void;
   cancelPlan: () => void;
   buyPack: (size: number) => void;
+  sendGift: (req: GiftRequest) => SendResult;
+  redeemGift: (code: string, choice: { milk: Milk | null; slotStart: number | null }) => RedeemResult;
+  /** Demo: every pending gift expires now; the user's own come back as credits. */
+  expireAllGifts: () => void;
 }
 
 export type Store = AppState & AppActions;
@@ -62,15 +68,26 @@ export function initialState(): AppState {
   return { ...buildSeed('frederika', DEMO_START), clock: { now: DEMO_START, speed: 1 }, notified: [], inbox: [] };
 }
 
-/** After any change of time or orders: queue a ready banner for each coffee that just became ready. */
+/**
+ * After any change of time, orders or gifts: give back the user's expired gifts as credits, and queue a banner
+ * for each coffee that just became ready and each gift that just came back.
+ */
 function withNotices(s: AppState, patch: Partial<AppState>): Partial<AppState> {
-  const next = { ...s, ...patch };
+  const merged = { ...s, ...patch };
+  const back = returnExpiredGifts(worldOf(merged), merged.clock.now);
+  const next = back.returned.length > 0 ? { ...merged, gifts: back.world.gifts, wallet: back.world.wallet } : merged;
   const ids = readyToNotify(next.orders, next.notified, next.clock.now);
-  if (ids.length === 0) return patch;
+  if (ids.length === 0 && back.returned.length === 0) return patch;
+  const returnedPatch = back.returned.length > 0 ? { gifts: next.gifts, wallet: next.wallet } : {};
   return {
     ...patch,
+    ...returnedPatch,
     notified: [...next.notified, ...ids],
-    inbox: [...next.inbox, ...ids.map((orderId) => ({ id: `n_${orderId}`, kind: 'ready' as const, orderId, at: next.clock.now }))],
+    inbox: [
+      ...next.inbox,
+      ...ids.map((orderId) => ({ id: `n_${orderId}`, kind: 'ready' as const, orderId, at: next.clock.now })),
+      ...back.returned.map((g) => ({ id: `g_${g.code}`, kind: 'giftReturned' as const, code: g.code, toName: g.toName, at: next.clock.now })),
+    ],
   };
 }
 
@@ -195,6 +212,28 @@ export const useStore = create<Store>()(
       subscribePlan: (plan) => set({ plan: { ...plan } }),
       cancelPlan: () => set({ plan: null }),
       buyPack: (size) => set((s) => ({ wallet: { ...s.wallet, packCredits: s.wallet.packCredits + Math.max(0, Math.round(size)) } })),
+
+      sendGift: (req) => {
+        const s = get();
+        const code = generateGiftCode(Math.random, new Set(s.gifts.map((g) => g.code)));
+        const result = sendGift(worldOf(s), req, s.clock.now, code);
+        if (result.ok) set({ gifts: result.world.gifts, wallet: result.world.wallet });
+        return result;
+      },
+
+      redeemGift: (code, choice) => {
+        const s = get();
+        const result = redeemGift(worldOf(s), code, choice, s.clock.now, makeId('o'));
+        if (result.ok) set(withNotices(s, { orders: result.world.orders, gifts: result.world.gifts }));
+        return result;
+      },
+
+      expireAllGifts: () =>
+        set((s) => {
+          const now = s.clock.now;
+          const gifts = s.gifts.map((g) => (g.redeemedBy === null && g.returnedAt === null && g.expiresAt > now ? { ...g, expiresAt: now } : g));
+          return withNotices(s, { gifts });
+        }),
     }),
     {
       name: STORAGE_KEY,

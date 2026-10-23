@@ -1,0 +1,95 @@
+.nick {
+  font-size: 14px;
+  color: var(--sq-stone);
+}
+
+.section {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.heading {
+  font: var(--sq-heading);
+}
+
+.subheading {
+  font: var(--sq-body);
+  font-weight: 600;
+}
+
+.body {
+  font: var(--sq-body);
+  text-wrap: pretty;
+}
+
+.note {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+  text-wrap: pretty;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sq-3);
+}
+
+.history {
+  display: grid;
+  border-top: 1px solid var(--sq-line);
+}
+
+.historyRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sq-3);
+  min-height: 64px;
+  padding: var(--sq-3) 0;
+  border-bottom: 1px solid var(--sq-line);
+  color: inherit;
+  text-decoration: none;
+}
+
+.historyRow:hover .historyDrink {
+  color: var(--sq-coffee);
+}
+
+.historyText {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.historyDrink {
+  font: var(--sq-body);
+  font-weight: 600;
+  transition: color var(--sq-quick);
+}
+
+.historySummary {
+  font-weight: 400;
+  color: var(--sq-stone);
+}
+
+.historyWhen {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+}
+
+.healthBody {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.bullets {
+  display: grid;
+  gap: var(--sq-1);
+  padding-left: var(--sq-5);
+  list-style: disc;
+  font: var(--sq-body);
+}
+
+.bullets li::marker {
+  color: var(--sq-coffee);
+}

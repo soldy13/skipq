@@ -6,7 +6,7 @@ import { dailyLimit } from './limits';
 import { orderBooking, orderStatus } from './orders';
 import { buildSlotGrid, isValidSlotStart } from './slots';
 import { MINUTE } from './time';
-import type { Addons, Bean, Booking, DrinkConfig, Milk, Order, World } from './types';
+import type { Addons, Bean, Booking, DrinkConfig, Milk, Order, PaymentMethod, World } from './types';
 
 /** What the order screen's segmented control offers (brief §4.2). Gift credits ride inside "pack". */
 export type PaymentChoice = 'plan' | 'pack' | 'single';
@@ -87,7 +87,7 @@ export function paymentOptions(world: World, config: DrinkConfig, now: number): 
   return { options, default: first?.method ?? 'single' };
 }
 
-function paymentFailure(world: World, req: OrderRequest, now: number): PlaceFailure | null {
+export function paymentFailure(world: World, req: Pick<OrderRequest, 'config' | 'payment'>, now: number): PlaceFailure | null {
   if (configLocked(req.config, req.payment, world.addons)) return 'locked';
   if (req.payment === 'plan') {
     if (!world.plan) return 'noPlan';
@@ -106,42 +106,60 @@ function readyTime(machine: MachineConfig, world: World, slotStart: number | nul
   return isValidSlotStart(machine, now, slotStart) ? slotStart : 'slot';
 }
 
+/** What a payment choice actually spends: pack payments use returned gift credits first. */
+export function settle(world: World, payment: PaymentChoice): { wallet: World['wallet']; method: PaymentMethod; pricePaid: number } {
+  if (payment === 'pack') {
+    const useGift = world.wallet.giftCredits > 0;
+    return {
+      wallet: useGift ? { ...world.wallet, giftCredits: world.wallet.giftCredits - 1 } : { ...world.wallet, packCredits: world.wallet.packCredits - 1 },
+      method: useGift ? 'giftCredit' : 'pack',
+      pricePaid: 0,
+    };
+  }
+  return { wallet: world.wallet, method: payment, pricePaid: payment === 'single' ? SINGLE_PRICE : 0 };
+}
+
 /**
- * Pay and reserve (brief §4.4–4.5): the box is reserved at payment, the coffee is ready at slot start
- * (or in ≈ 2 min for Now) and held until the slot ends. Pure: returns the next world.
+ * Reserve a box and create the order (brief §4.4–4.5): ready at slot start (or in ≈ 2 min for Now), held until
+ * the slot ends. Shared by paid orders and redeemed gifts.
  */
-export function placeOrder(world: World, req: OrderRequest, now: number, id: string, machine: MachineConfig = RAJSKA): PlaceResult {
-  const payFail = paymentFailure(world, req, now);
-  if (payFail) return { ok: false, reason: payFail };
-  const readyAt = readyTime(machine, world, req.slotStart, now);
+export function reserveOrder(
+  world: World,
+  config: DrinkConfig,
+  slotStart: number | null,
+  now: number,
+  id: string,
+  paid: { method: PaymentMethod; pricePaid: number; wallet: World['wallet'] },
+  machine: MachineConfig = RAJSKA,
+): PlaceResult {
+  const readyAt = readyTime(machine, world, slotStart, now);
   if (typeof readyAt !== 'number') return { ok: false, reason: readyAt };
   const holdUntil = readyAt + machine.slotMinutes * MINUTE;
   const boxId = pickBox(machine.boxes, worldBookings(world), readyAt, holdUntil, now);
   if (boxId === null) return { ok: false, reason: 'full' };
-
-  const useGift = req.payment === 'pack' && world.wallet.giftCredits > 0;
-  const wallet =
-    req.payment !== 'pack'
-      ? world.wallet
-      : useGift
-        ? { ...world.wallet, giftCredits: world.wallet.giftCredits - 1 }
-        : { ...world.wallet, packCredits: world.wallet.packCredits - 1 };
   const order: Order = {
     id,
-    config: req.config,
+    config,
     machineId: machine.id,
     boxId,
     paidAt: now,
-    slotStart: req.slotStart,
+    slotStart,
     readyAt,
     holdUntil,
     extended: false,
-    payment: req.payment === 'pack' ? (useGift ? 'giftCredit' : 'pack') : req.payment,
-    pricePaid: req.payment === 'single' ? SINGLE_PRICE : 0,
+    payment: paid.method,
+    pricePaid: paid.pricePaid,
     pickedUpAt: null,
     cancelledAt: null,
   };
-  return { ok: true, order, world: { ...world, wallet, orders: [...world.orders, order] } };
+  return { ok: true, order, world: { ...world, wallet: paid.wallet, orders: [...world.orders, order] } };
+}
+
+/** Pay and reserve. Pure: returns the next world. */
+export function placeOrder(world: World, req: OrderRequest, now: number, id: string, machine: MachineConfig = RAJSKA): PlaceResult {
+  const payFail = paymentFailure(world, req, now);
+  if (payFail) return { ok: false, reason: payFail };
+  return reserveOrder(world, req.config, req.slotStart, now, id, settle(world, req.payment), machine);
 }
 
 function updateOrder(world: World, id: string, update: (o: Order) => Order): World {

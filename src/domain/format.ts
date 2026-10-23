@@ -7,6 +7,9 @@ import type { Lang } from './types';
 const NNBSP = '\u2060\u2009\u2060';
 const NBSP = ' '; // keeps the unit with its number
 
+/** "Cappuccino · Oat": the dot is bound to what follows, so a wrapped pair starts its new line with the dot. */
+export const DOT_SEP = ' ·\u00A0';
+
 const LOCALE: Record<Lang, string> = { en: 'en-GB', cs: 'cs-CZ' };
 
 export function groupThousands(n: number): string {
@@ -45,6 +48,24 @@ export function formatTime(t: number, lang: Lang): string {
 /** Short weekday, e.g. "Mon" / "po". */
 export function formatDayLabel(t: number, lang: Lang): string {
   return new Intl.DateTimeFormat(LOCALE[lang], { weekday: 'short' }).format(t).replace('.', '');
+}
+
+/** "October 2026" / "říjen 2026". */
+export function formatMonth(t: number, lang: Lang): string {
+  return new Intl.DateTimeFormat(LOCALE[lang], { month: 'long', year: 'numeric' }).format(t);
+}
+
+/** "5 Oct" / "5. 10." — compact day for chart axes. */
+export function formatShortDay(t: number, lang: Lang): string {
+  return new Intl.DateTimeFormat(LOCALE[lang], { day: 'numeric', month: lang === 'cs' ? 'numeric' : 'short' }).format(t);
+}
+
+/** Board ranks: "12th" in English, "12." in Czech. */
+export function formatOrdinal(n: number, lang: Lang): string {
+  if (lang === 'cs') return `${n}.`;
+  const tens = n % 100;
+  const suffix = tens >= 11 && tens <= 13 ? 'th' : (['th', 'st', 'nd', 'rd'][n % 10] ?? 'th');
+  return `${n}${suffix}`;
 }
 
 export function formatDate(t: number, lang: Lang): string {

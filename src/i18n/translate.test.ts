@@ -27,7 +27,7 @@ describe('dictionaries', () => {
 describe('translate', () => {
   it('interpolates variables', () => {
     expect(translate('en', 'pickup.title', { n: 14 })).toBe('Box 14 is yours.');
-    expect(translate('cs', 'order.cta', { drink: 'Flat white', time: '10:30' })).toBe('Objednat Flat white · 10:30');
+    expect(translate('cs', 'order.cta', { drink: 'Flat white', time: '10:30' })).toBe('Objednat Flat white ·\u00A010:30');
   });
 
   it('leaves unknown placeholders visible rather than blank', () => {

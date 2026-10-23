@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { CheckoutSheet } from './CheckoutSheet';
 import { failureMessage, slotLabel } from './orderText';
 import { SINGLE_PRICE } from '../../data/pricing';
+import { DOT_SEP } from '../../domain/format';
 import type { OrderRequest, PlaceFailure } from '../../domain/ordering';
 import type { Order } from '../../domain/types';
 import { useStore } from '../../store/useStore';
@@ -44,7 +45,7 @@ export function useOrderFlow(): OrderFlow {
       lines={
         req
           ? [
-              { label: tr.t('checkout.single'), value: `${drinkName(req.config.drinkId, tr)} · ${configSummary(req.config, tr)}` },
+              { label: tr.t('checkout.single'), value: `${drinkName(req.config.drinkId, tr)}${DOT_SEP}${configSummary(req.config, tr)}` },
               { label: tr.t('checkout.pickup'), value: slotLabel(req.slotStart, tr) },
             ]
           : []

@@ -94,6 +94,7 @@ export const IconClose = makeIcon('Close', <path d="M6 6l12 12M18 6 6 18" />);
 
 export const IconChevronRight = makeIcon('ChevronRight', <path d="m9.5 6 6 6-6 6" />);
 export const IconChevronLeft = makeIcon('ChevronLeft', <path d="m14.5 6-6 6 6 6" />);
+export const IconChevronDown = makeIcon('ChevronDown', <path d="m6 9.5 6 6 6-6" />);
 
 export const IconClock = makeIcon(
   'Clock',
@@ -210,6 +211,11 @@ export const IconHourglass = makeIcon(
 export const IconHeart = makeIcon(
   'Heart',
   <path d="M12 19.5s-7.5-4.4-7.5-9.75A4.25 4.25 0 0 1 12 7.1a4.25 4.25 0 0 1 7.5 2.65C19.5 15.1 12 19.5 12 19.5Z" />,
+);
+
+export const IconStar = makeIcon(
+  'Star',
+  <path d="m12 3.75 2.55 5.17 5.7.83-4.13 4.02.98 5.68L12 16.77l-5.1 2.68.98-5.68-4.13-4.02 5.7-.83L12 3.75Z" />,
 );
 
 export const IconBolt = makeIcon('Bolt', <path d="M13 3.5 5.5 13.5H12l-1 7 7.5-10H12l1-7Z" />);

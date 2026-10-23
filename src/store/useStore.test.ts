@@ -157,7 +157,7 @@ describe('store: ordering', () => {
 
   it('announces a coffee once it is ready, and only once', () => {
     state().advance(17 * MINUTE); // 10:15 — the seeded flat white is ready
-    expect(state().inbox.map((n) => n.orderId)).toEqual(['o_frederika_active']);
+    expect(state().inbox.map((n) => (n.kind === 'ready' ? n.orderId : n.code))).toEqual(['o_frederika_active']);
     state().tick(1000);
     expect(state().inbox).toHaveLength(1);
     state().dismissNotice(state().inbox[0]!.id);
@@ -170,12 +170,12 @@ describe('store: ordering', () => {
     const r = state().placeOrder({ config: fwCow, slotStart: null, payment: 'plan' });
     if (!r.ok) throw new Error(r.reason);
     state().advance(2 * MINUTE);
-    expect(state().inbox.map((n) => n.orderId)).toContain(r.order.id);
+    expect(state().inbox.map((n) => (n.kind === 'ready' ? n.orderId : n.code))).toContain(r.order.id);
   });
 
   it('announces when the demo makes an order ready', () => {
     state().makeNextOrderReady();
-    expect(state().inbox.map((n) => n.orderId)).toEqual(['o_frederika_active']);
+    expect(state().inbox.map((n) => (n.kind === 'ready' ? n.orderId : n.code))).toEqual(['o_frederika_active']);
   });
 
   it('undoes, unlocks and extends', () => {
@@ -226,5 +226,34 @@ describe('store: plans, add-ons and packs', () => {
   it('adds pack credits on purchase', () => {
     state().buyPack(30);
     expect(state().wallet.packCredits).toBe(30);
+  });
+});
+
+describe('store: gifts', () => {
+  const cap = { drinkId: 'cappuccino', milk: 'cow', bean: 'standard' } as const;
+
+  it('sends a gift with a fresh unambiguous code', () => {
+    const r = state().sendGift({ config: cap, payment: 'single', toName: 'Ondra' });
+    if (!r.ok) throw new Error(r.reason);
+    expect(r.gift.code).toMatch(/^SKQ-[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{4}$/);
+    expect(state().gifts.map((g) => g.code)).toContain(r.gift.code);
+  });
+
+  it('redeems a code into an order', () => {
+    const r = state().redeemGift('SKQ-7M4T', { milk: 'oat', slotStart: null });
+    if (!r.ok) throw new Error(String(r.reason));
+    expect(state().orders.at(-1)?.payment).toBe('gift');
+  });
+
+  it('gives an unredeemed gift back when the clock passes its expiry, with a banner', () => {
+    state().setTime(state().clock.now + 2 * 86_400_000);
+    expect(state().wallet.giftCredits).toBe(1);
+    expect(state().inbox.map((n) => n.kind)).toContain('giftReturned');
+  });
+
+  it('expires every pending gift from the demo panel', () => {
+    state().expireAllGifts();
+    expect(state().wallet.giftCredits).toBe(1); // only Frederika's own gift comes back to her
+    expect(state().gifts.find((g) => g.code === 'SKQ-7M4T')?.expiresAt).toBe(state().clock.now);
   });
 });

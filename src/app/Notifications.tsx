@@ -9,48 +9,57 @@ import { drinkNameInline } from '../i18n/drinkText';
 import { orderStatus } from '../domain/orders';
 import { RAJSKA } from '../data/machines';
 
-/** Real seconds a ready banner stays up before it tucks itself away. */
+/** Real seconds a banner stays up before it tucks itself away. */
 const BANNER_MS = 8000;
 
-/** The ready banner (brief §4.5) and the one toast slot, rendered inside the phone frame. */
+/** The banner (a coffee is ready, a gift came back) and the one toast slot, rendered inside the phone frame. */
 export function Notifications() {
   const tr = useT();
   const navigate = useNavigate();
   const location = useLocation();
   const notice = useStore((s) => s.inbox[0]);
-  const order = useStore((s) => (notice ? s.orders.find((o) => o.id === notice.orderId) : undefined));
+  const order = useStore((s) => (notice?.kind === 'ready' ? s.orders.find((o) => o.id === notice.orderId) : undefined));
   const now = useStore((s) => s.clock.now);
-  // A time jump can carry a queued order past its hold; never announce a coffee that's no longer waiting.
-  const stillReady = order !== undefined && orderStatus(order, now, RAJSKA.brewMinutes) === 'ready';
   const dismissNotice = useStore((s) => s.dismissNotice);
   const toast = useUi((s) => s.toast);
   const clearToast = useUi((s) => s.clearToast);
 
-  const statusPath = order ? `/order/status/${order.id}` : null;
-  const alreadyThere = statusPath !== null && location.pathname === statusPath;
+  // A time jump can carry a queued order past its hold; never announce a coffee that's no longer waiting.
+  const stillReady = order !== undefined && orderStatus(order, now, RAJSKA.brewMinutes) === 'ready';
+  const target = notice?.kind === 'giftReturned' ? '/gift' : order ? `/order/status/${order.id}` : null;
+  const alreadyThere = notice?.kind === 'ready' && target !== null && location.pathname === target;
+  const show = notice !== undefined && (notice.kind === 'giftReturned' || (stillReady && !alreadyThere));
 
   useEffect(() => {
     if (!notice) return;
-    if (alreadyThere || !stillReady) {
+    if (!show) {
       dismissNotice(notice.id);
       return;
     }
     const timer = window.setTimeout(() => dismissNotice(notice.id), BANNER_MS);
     return () => window.clearTimeout(timer);
-  }, [notice, stillReady, alreadyThere, dismissNotice]);
+  }, [notice, show, dismissNotice]);
+
+  function message(): string {
+    if (notice?.kind === 'giftReturned') {
+      return notice.toName ? tr.t('push.giftBack', { name: notice.toName }) : tr.t('push.giftBackCode', { code: notice.code });
+    }
+    if (order) return tr.t('push.ready', { drink: drinkNameInline(order.config.drinkId, tr), n: order.boxId, time: tr.time(order.holdUntil) });
+    return '';
+  }
 
   return (
     <>
-      {notice && order && stillReady && !alreadyThere ? (
+      {notice && show ? (
         <PushBanner
           key={notice.id}
           from={tr.t('push.from')}
-          message={tr.t('push.ready', { drink: drinkNameInline(order.config.drinkId, tr), n: order.boxId, time: tr.time(order.holdUntil) })}
+          message={message()}
           dismissLabel={tr.t('common.close')}
           onDismiss={() => dismissNotice(notice.id)}
           onOpen={() => {
             dismissNotice(notice.id);
-            navigate(`/order/status/${order.id}`);
+            if (target) navigate(target);
           }}
         />
       ) : null}

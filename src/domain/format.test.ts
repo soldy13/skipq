@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatDayLabel, formatMg, formatPrice, formatPriceExact, formatTime } from './format';
+import { formatDayLabel, formatMg, formatMonth, formatOrdinal, formatPrice, formatPriceExact, formatShortDay, formatTime } from './format';
 
 /** Thin space (brief §9) glued with word joiners so it never breaks; DM Sans draws U+202F almost invisibly. */
 const NNBSP = '\u2060\u2009\u2060';
@@ -29,9 +29,24 @@ describe('formatting', () => {
     expect(formatTime(t2, 'cs')).toBe('18:05');
   });
 
+  it('names the month and short days for the board and chart', () => {
+    const t = new Date(2026, 9, 22, 9, 58).getTime();
+    expect(formatMonth(t, 'en')).toBe('October 2026');
+    expect(formatMonth(t, 'cs')).toBe('říjen 2026');
+    expect(formatShortDay(t, 'en')).toBe('22 Oct');
+    expect(formatShortDay(t, 'cs')).toBe('22. 10.');
+  });
+
   it('names weekdays in the UI language', () => {
     const mon = new Date(2026, 9, 26, 7, 30).getTime();
     expect(formatDayLabel(mon, 'en')).toBe('Mon');
     expect(formatDayLabel(mon, 'cs')).toBe('po');
+  });
+
+  it('writes ranks as ordinals: 12th in English, 12. in Czech', () => {
+    expect([1, 2, 3, 4, 11, 12, 13, 21, 22, 23, 101, 111].map((n) => formatOrdinal(n, 'en'))).toEqual([
+      '1st', '2nd', '3rd', '4th', '11th', '12th', '13th', '21st', '22nd', '23rd', '101st', '111th',
+    ]);
+    expect(formatOrdinal(12, 'cs')).toBe('12.');
   });
 });

@@ -13,6 +13,7 @@ import { StatusPill } from '../../components/StatusPill';
 import { IconCheck, IconUnlock } from '../../components/icons';
 import { RAJSKA } from '../../data/machines';
 import { canExtend } from '../../domain/ordering';
+import { DOT_SEP } from '../../domain/format';
 import { orderStatus } from '../../domain/orders';
 import { MINUTE } from '../../domain/time';
 import type { Order, OrderStatus } from '../../domain/types';
@@ -110,7 +111,9 @@ function OrderStatusView({ order, tr }: { order: Order; tr: Translator }) {
           {title}
         </h1>
         <p className={s.drink}>
-          {drinkName(order.config.drinkId, tr)} · {configSummary(order.config, tr)}
+          {drinkName(order.config.drinkId, tr)}
+          {DOT_SEP}
+          {configSummary(order.config, tr)}
         </p>
       </header>
 

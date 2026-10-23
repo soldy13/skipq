@@ -6,6 +6,7 @@ import { Button } from '../../components/Button';
 import { PlanCard } from '../../components/PlanCard';
 import { Segmented } from '../../components/Segmented';
 import { PLAN_PRICES } from '../../data/pricing';
+import { DOT_SEP } from '../../domain/format';
 import type { PlanTier, PlanType } from '../../domain/types';
 import { useStore } from '../../store/useStore';
 import { useUi } from '../../store/useUi';
@@ -90,7 +91,7 @@ export function PlanPicker() {
       <CheckoutSheet
         open={paying}
         onClose={() => setPaying(false)}
-        lines={[{ label: tr.t('checkout.plan'), value: `${tr.t(`plan.${type}`)} · ${tierLabel(tier)}` }]}
+        lines={[{ label: tr.t('checkout.plan'), value: `${tr.t(`plan.${type}`)}${DOT_SEP}${tierLabel(tier)}` }]}
         amount={price}
         unit={tr.t('common.perWeek')}
         onPaid={() => {

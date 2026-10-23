@@ -146,6 +146,7 @@ function gift(code: string, config: DrinkConfig, fromNickname: string, createdAt
     createdAt,
     expiresAt: addDays(createdAt, GIFT_VALID_DAYS),
     payment: 'single',
+    toName: null,
     redeemedBy: null,
     redeemedAt: null,
     returnedAt: null,
@@ -160,7 +161,7 @@ function buildGifts(now: number): GiftCode[] {
   return [
     gift('SKQ-7M4T', cappuccino, 'rajska_raccoon', addDays(now, -2)),
     gift('SKQ-2KQX', latte, 'deadline_dana', addDays(now, -3), { redeemedBy: 'oat_of_office', redeemedAt: addDays(now, -1) }),
-    gift('SKQ-4H7P', cappuccino, 'frederika_k', addDays(now, -4), { payment: 'plan' }),
+    gift('SKQ-4H7P', cappuccino, 'frederika_k', addDays(now, -4), { payment: 'plan', toName: 'Ondra' }),
   ];
 }
 

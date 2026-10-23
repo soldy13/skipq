@@ -2,13 +2,10 @@ import { RAJSKA } from '../data/machines';
 import { orderStatus } from './orders';
 import type { Order } from './types';
 
-/** An in-app, push-style notification (brief §4.5). */
-export interface Notice {
-  id: string;
-  kind: 'ready';
-  orderId: string;
-  at: number;
-}
+/** In-app, push-style notifications: a coffee is ready (brief §4.5), or a gift came back (§4.7). */
+export type Notice =
+  | { id: string; kind: 'ready'; orderId: string; at: number }
+  | { id: string; kind: 'giftReturned'; code: string; toName: string | null; at: number };
 
 /**
  * Orders that are ready right now and haven't been announced yet. An order the clock jumped straight past

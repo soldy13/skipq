@@ -1,5 +1,5 @@
 import { drinkById } from '../data/drinks';
-import { addDays, dayKey, isWeekday, startOfDay, startOfMonth } from './time';
+import { addDays, dayKey, isoWeekday, isWeekday, startOfDay, startOfMonth } from './time';
 import type { DrinkId, Order } from './types';
 
 function pickedUpThisMonth(orders: readonly Order[], now: number): Order[] {
@@ -51,18 +51,18 @@ export function streak(orders: readonly Order[], now: number): number {
 }
 
 export interface WeekCount {
-  /** Start of the 7-day bucket. */
+  /** Monday the week starts on. */
   from: number;
   count: number;
 }
 
-/** Picked-up coffees in rolling 7-day buckets ending today, oldest first. */
+/** Picked-up coffees per calendar week (Monday first), the current week so far last. */
 export function weeklyCounts(orders: readonly Order[], now: number, weeks = 4): WeekCount[] {
-  const end = addDays(startOfDay(now), 1);
+  const monday = addDays(startOfDay(now), 1 - isoWeekday(now));
   return Array.from({ length: weeks }, (_, i) => {
-    const to = addDays(end, -7 * (weeks - 1 - i));
-    const from = addDays(to, -7);
-    const count = orders.filter((o) => o.pickedUpAt !== null && o.pickedUpAt >= from && o.pickedUpAt < to).length;
+    const from = addDays(monday, -7 * (weeks - 1 - i));
+    const to = addDays(from, 7);
+    const count = orders.filter((o) => o.pickedUpAt !== null && o.pickedUpAt >= from && o.pickedUpAt < to && o.pickedUpAt <= now).length;
     return { from, count };
   });
 }

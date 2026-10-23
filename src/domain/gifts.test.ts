@@ -63,6 +63,7 @@ describe('gift status', () => {
     createdAt: 0,
     expiresAt: 5 * DAY,
     payment: 'plan',
+    toName: null,
     redeemedBy: null,
     redeemedAt: null,
     returnedAt: null,
