@@ -13,7 +13,7 @@ import { GiftSendScreen } from '../features/gift/GiftSendScreen';
 import { GiftCodeScreen } from '../features/gift/GiftCodeScreen';
 import { RedeemScreen } from '../features/gift/RedeemScreen';
 import { BoardScreen } from '../features/board/BoardScreen';
-import { WipScreen } from '../features/WipScreen';
+import { WelcomeScreen } from '../features/onboarding/WelcomeScreen';
 
 const Styleguide = lazy(() => import('../features/styleguide/Styleguide'));
 
@@ -32,7 +32,7 @@ export function App() {
         />
         <Route element={<AppLayout />}>
           <Route index element={<HomeScreen />} />
-          <Route path="welcome" element={<WipScreen title="screen.welcome" milestone={5} />} />
+          <Route path="welcome" element={<WelcomeScreen />} />
           <Route path="menu" element={<MenuScreen />} />
           <Route path="order/status/:orderId" element={<StatusScreen />} />
           <Route path="order/:drinkId" element={<OrderScreen />} />

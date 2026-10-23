@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { buildOccupancy, buildSeed, buildTraffic } from '../data/seed';
 import { RAJSKA } from '../data/machines';
+import { TAKEN_NICKNAMES } from '../data/leaderboard';
 import { advanceClock, DEMO_START, type SimClock, type Speed } from '../domain/clock';
 import { boxesBusyDuring, boxesInUseAt } from '../domain/boxes';
 import { buildSlotGrid } from '../domain/slots';
@@ -12,6 +13,7 @@ import { readyToNotify, type Notice } from '../domain/notices';
 import { cancelOrder, extendOrder, pickUpOrder, placeOrder, type OrderRequest, type PlaceResult } from '../domain/ordering';
 import { redeemGift, returnExpiredGifts, sendGift, type GiftRequest, type RedeemResult, type SendResult } from '../domain/giving';
 import { generateGiftCode } from '../domain/gifts';
+import { validateNickname } from '../domain/nickname';
 import type { AddonId, Booking, LangPref, Milk, Order, PersonaId, Plan, World } from '../domain/types';
 import { activeOrders, selectBookings } from './selectors';
 
@@ -35,6 +37,8 @@ export interface AppActions {
   setSpeed: (speed: Speed) => void;
   setLanguage: (language: LangPref) => void;
   switchPersona: (persona: PersonaId) => void;
+  /** Brief F16: saves the nickname and leaves onboarding; false (and no change) when the nickname isn't valid. */
+  completeOnboarding: (nickname: string) => boolean;
   resetAll: () => void;
   setOccupiedBoxes: (count: number) => void;
   fillNextSlot: () => void;
@@ -155,6 +159,13 @@ export const useStore = create<Store>()(
           notified: [],
           inbox: [],
         })),
+
+      completeOnboarding: (nickname) => {
+        const check = validateNickname(nickname, TAKEN_NICKNAMES);
+        if (!check.ok) return false;
+        set((s) => ({ profile: { ...s.profile, nickname: check.nickname, onboarded: true } }));
+        return true;
+      },
 
       resetAll: () => set(initialState()),
 

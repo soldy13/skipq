@@ -110,7 +110,6 @@
   left: var(--sq-3);
   bottom: calc(var(--sq-tabbar-h) + var(--sq-safe-bottom) + var(--sq-pill-lift, var(--sq-3)));
   z-index: var(--sq-z-demo-pill);
-  transition: bottom var(--sq-base);
   display: inline-flex;
   align-items: center;
   gap: var(--sq-2);
@@ -123,7 +122,9 @@
   line-height: 16px;
   box-shadow: var(--sq-e1);
   opacity: 0.92;
-  transition: opacity var(--sq-quick);
+  transition:
+    bottom var(--sq-base),
+    opacity var(--sq-quick);
 }
 
 /* A 44 px hit area around the slim pill. */

@@ -18,7 +18,7 @@ export function DailyLimit({ used, max, tr, actions, variant = 'tile' }: DailyLi
   const reached = !noPlan && used >= max;
   return (
     <section className={[styles.limit, styles[variant], reached && styles.reached].filter(Boolean).join(' ')} aria-label={tr.t('limit.title')}>
-      <h3 className={styles.title}>{tr.t('limit.title')}</h3>
+      <h2 className={styles.title}>{tr.t('limit.title')}</h2>
       {noPlan ? (
         <>
           <p className={styles.value}>{tr.t('limit.noPlan')}</p>

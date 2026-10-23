@@ -5,7 +5,7 @@ import o from '../order/OrderScreen.module.css';
 import g from './Gift.module.css';
 import { giftFromLine, redeemErrorText, redeemFailureText } from './giftText';
 import { ScreenHeader } from '../ScreenHeader';
-import { useDock } from '../useDock';
+import { CTA_DOCK, useDock } from '../useDock';
 import { slotLabel } from '../order/orderText';
 import { Button } from '../../components/Button';
 import { Chip, ChipGroup } from '../../components/Chip';
@@ -20,7 +20,6 @@ import { useUi } from '../../store/useUi';
 import { useNow, useSlotGrid } from '../../store/hooks';
 import { useT } from '../../i18n/useT';
 
-const CTA_DOCK = 80;
 
 /** Brief F12: a valid code shows the gifted drink; the receiver may change the milk and picks a time. No payment. */
 export function RedeemScreen() {

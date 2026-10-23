@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import m from './MeScreen.module.css';
 import { StatTile } from '../../components/StatTile';
 import { WeekBars } from '../../components/WeekBars';
-import { IconBolt, IconCup, IconFlame, IconStar } from '../../components/icons';
+import { IconBolt, IconChevronRight, IconCup, IconFlame, IconStar } from '../../components/icons';
 import { boardRows, caffeineEquivalents, yourRank } from '../../domain/board';
 import { formatOrdinal, formatShortDay } from '../../domain/format';
 import { caffeineThisMonth, coffeesThisMonth, favouriteDrink, streak, weeklyCounts } from '../../domain/stats';
@@ -27,6 +28,24 @@ export function MeStats() {
     }),
     [world, orders, now],
   );
+
+  // Before the first pickup there is nothing to count; one sentence and a way in beat a grid of zeros.
+  if (!orders.some((o) => o.pickedUpAt !== null && o.pickedUpAt <= now)) {
+    return (
+      <section className={m.section} aria-labelledby="stats-title">
+        <h2 id="stats-title" className={m.heading}>
+          {tr.t('me.stats')}
+        </h2>
+        <div className={m.empty}>
+          <p className={m.body}>{tr.t('stat.empty')}</p>
+          <Link to="/menu" className="sq-link">
+            {tr.t('home.browseAll')}
+            <IconChevronRight size={18} />
+          </Link>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={m.section} aria-labelledby="stats-title">

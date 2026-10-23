@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-23T12:00:00.000Z",
+  "generatedAt": "2026-10-23T18:00:00.000Z",
   "title": "Design System: SkipQ",
   "extensions": {
     "colorMeta": {
@@ -396,7 +396,7 @@
       {
         "name": "base",
         "value": "240ms cubic-bezier(.2,.8,.2,1)",
-        "purpose": "Sheets, scrims, fills, switch thumb."
+        "purpose": "Sheets, scrims, fills, switch thumb, the Demo pill moving into a dock lane, and the onboarding step entering (a 12 px slide and fade)."
       },
       {
         "name": "reward",
@@ -479,6 +479,22 @@
       "description": "64 px gift-code field; Coffee border and halo on focus.",
       "html": "<label class=\"ds-code\"><input class=\"ds-code-input\" placeholder=\"SKQ-XXXX\" aria-label=\"Gift code\"></label>",
       "css": ".ds-code{display:flex;border-radius:var(--sq-r-md);background:var(--sq-surface);border:1.5px solid var(--sq-line);transition:border-color var(--sq-quick),box-shadow var(--sq-quick)}.ds-code:focus-within{border-color:var(--sq-coffee);box-shadow:0 0 0 4px var(--sq-coffee-100)}.ds-code-input{flex:1;min-width:0;height:64px;padding:0 16px;border:0;outline:none;background:transparent;font:500 26px/1 var(--sq-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sq-espresso)}.ds-code-input::placeholder{color:var(--sq-stone);opacity:.55}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "text-field",
+      "description": "52 px labelled field with CodeInput's states: Coffee focus halo, Expired error with a one-tap fix, Ready success.",
+      "html": "<div class=\"ds-tf\"><label class=\"ds-tf-label\" for=\"ds-tf-a\">Pick a nickname</label><div class=\"ds-tf-field ds-tf-invalid\"><input id=\"ds-tf-a\" class=\"ds-tf-input\" value=\"espresso_eva\" aria-invalid=\"true\"></div><p class=\"ds-tf-error\" role=\"alert\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 7.5v5\"/><path d=\"M12 16.25v.01\" stroke-width=\"2.4\"/></svg><span>espresso_eva is already on the board. Add a number or pick another.</span></p><button class=\"ds-tf-fix\" type=\"button\">Use espresso_eva_2</button></div><div class=\"ds-tf\"><label class=\"ds-tf-label\" for=\"ds-tf-b\">Pick a nickname</label><div class=\"ds-tf-field ds-tf-valid\"><input id=\"ds-tf-b\" class=\"ds-tf-input\" value=\"crema_new\"><svg class=\"ds-tf-mark\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7.5\"/></svg></div><p class=\"ds-tf-success\">crema_new is available.</p></div>",
+      "css": ".ds-tf{display:grid;gap:8px;margin-bottom:20px}.ds-tf-label{font:var(--sq-body-sm);font-weight:600;color:var(--sq-espresso)}.ds-tf-field{display:flex;align-items:center;border-radius:var(--sq-r-md);background:var(--sq-surface);border:1.5px solid var(--sq-line);transition:border-color var(--sq-quick),box-shadow var(--sq-quick)}.ds-tf-field:focus-within{border-color:var(--sq-coffee);box-shadow:0 0 0 4px var(--sq-coffee-100)}.ds-tf-input{flex:1;min-width:0;height:52px;padding:0 16px;border:0;outline:none;background:transparent;font:var(--sq-body);color:var(--sq-espresso)}.ds-tf-valid{border-color:var(--sq-ready)}.ds-tf-invalid,.ds-tf-invalid:focus-within{border-color:var(--sq-expired);box-shadow:0 0 0 4px var(--sq-expired-bg)}.ds-tf-mark{flex:none;margin-inline-end:16px;color:var(--sq-ready)}.ds-tf-error,.ds-tf-success{display:flex;gap:8px;align-items:flex-start;margin:0;font:var(--sq-body-sm)}.ds-tf-error{color:var(--sq-expired)}.ds-tf-error svg{flex:none;margin-top:1px}.ds-tf-success{color:var(--sq-ready)}.ds-tf-fix{justify-self:start;margin:-4px 0 0 -8px;min-height:44px;padding:8px;border:0;background:none;color:var(--sq-coffee);font:var(--sq-button);text-decoration:underline 1px;text-underline-offset:.22em;cursor:pointer}.ds-tf-fix:hover{text-decoration-thickness:2px}.ds-tf-fix:focus-visible{outline:2px solid transparent;box-shadow:var(--sq-focus);border-radius:var(--sq-r-sm)}"
+    },
+    {
+      "name": "Onboarding Progress Track",
+      "kind": "custom",
+      "refersTo": "progress-segment",
+      "description": "Onboarding step header: wordmark (or Back) and one 4 px pill segment per step (done and current 24 px Coffee, next 12 px Caramel Line), never the allowance's cup pip.",
+      "html": "<div class=\"ds-steps\"><span class=\"ds-steps-mark\">SkipQ</span><p class=\"ds-steps-track\"><span class=\"ds-sr\">Step 1 of 2</span><span class=\"ds-seg ds-seg-on\" aria-hidden=\"true\"></span><span class=\"ds-seg\" aria-hidden=\"true\"></span></p></div>",
+      "css": ".ds-steps{display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:0 20px;background:var(--sq-foam)}.ds-steps-mark{font:var(--sq-wordmark);color:var(--sq-coffee)}.ds-steps-track{display:flex;gap:4px;margin:0}.ds-seg{width:12px;height:4px;border-radius:var(--sq-r-pill);background:var(--sq-coffee-400);transition:width var(--sq-base),background-color var(--sq-base)}.ds-seg-on{width:24px;background:var(--sq-coffee)}.ds-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}"
     },
     {
       "name": "Tab Bar",
@@ -623,7 +639,7 @@
       },
       {
         "name": "The Bound Phrase Rule",
-        "body": "A no-break space keeps together what must never split at a line end: a price with its unit (\"229 Kč / week\"), a tier label (\"Up to 3 a day\", \"Až 3 denně\"), a count with its noun (\"7 credits left\"), a brand name (\"Red Bull\"), and every em dash with the word before it. The middle dot binds to what follows: every \" · \" in both dictionaries and every dot that code puts between parts is `DOT_SEP` (a space, the dot, then a no-break space), so a wrapped pair starts its new line with \"·\" and a line never ends on a dangling dot.",
+        "body": "A no-break space keeps together what must never split at a line end: a price with its unit (\"229 Kč / week\"), a tier label (\"Up to 3 a day\", \"Až 3 denně\"), a count with its noun (\"7 credits left\"), a brand name (\"Red Bull\"), and every em dash with the word before it. In Czech, the one-letter prepositions and conjunctions (a, i, k, o, s, u, v, z) bind to the next word with a no-break space (\"v Rajské\", \"a balíčky\"). Ranges are glued with word joiners around the en dash (U+2060 – U+2060), so \"3–16\", \"a–z\" and \"0–9\" never break, in both languages. The middle dot binds to what follows: every \" · \" in both dictionaries and every dot that code puts between parts is `DOT_SEP` (a space, the dot, then a no-break space), so a wrapped pair starts its new line with \"·\" and a line never ends on a dangling dot.",
         "section": "typography"
       },
       {
@@ -633,7 +649,7 @@
       },
       {
         "name": "The Docked Action Rule",
-        "body": "A screen's committing action docks at the bottom, on the tab bar, inside the bottom third. Short content never lifts it into the middle of the screen.",
+        "body": "A screen's committing action docks at the bottom, on the tab bar (or the bottom edge where there is none), inside the bottom third. Short content never lifts it into the middle of the screen.",
         "section": "layout"
       },
       {
@@ -650,6 +666,16 @@
         "name": "The Chevron Link Rule",
         "body": "Going somewhere is a text link with a trailing chevron; changing something is a button. The Tertiary button never navigates, and a text link never commits.",
         "section": "components"
+      },
+      {
+        "name": "The Named Fix Rule",
+        "body": "Every input error names its fix (\"Add a number or pick another.\", \"Use _ instead.\", \"Check the letters?\"); when a valid value is close, the fix is offered as a one-tap Tertiary \"Use …\" under the message.",
+        "section": "components"
+      },
+      {
+        "name": "The Progress Is Not a Pip Rule",
+        "body": "Steps are thin pill segments, never the cup pip. The cup shape belongs to the allowance, so filling steps never reads as coffees used up.",
+        "section": "components"
       }
     ],
     "dos": [
@@ -662,10 +688,13 @@
       "Do dock a screen's committing action (order, unlock) at the bottom on the tab bar, with the Demo pill lane above it, and float the toast above the dock.",
       "Do show the box as the Vanilla plate plus the mini locker map from Scheduled onwards.",
       "Do keep touch targets at 44 px or more (52 for primary, 64 for unlock), and let labels wrap or step down instead of fixing widths.",
-      "Do group thousands with the glued thin space (\"1 199 Kč\"), and bind prices to units, tier labels, counts to nouns, brand names, and em dashes to the word before them with no-break spaces.",
+      "Do group thousands with the glued thin space (\"1 199 Kč\"), and bind prices to units, tier labels, counts to nouns, brand names, and em dashes to the word before them with no-break spaces; in Czech, bind one-letter prepositions to the next word, and glue ranges (\"3–16\") with word joiners around the en dash.",
       "Do join parts with `DOT_SEP` (\" ·\" plus a no-break space), so a wrapped line starts with the dot.",
       "Do navigate with the Coffee text link and its chevron (› for another screen, ⌄ for more in place), and keep the Tertiary button for actions that change something.",
-      "Do mark the current item in a chart with a word as well as a colour (\"This week\" in Espresso 600 under the full Coffee bar)."
+      "Do mark the current item in a chart with a word as well as a colour (\"This week\" in Espresso 600 under the full Coffee bar).",
+      "Do name the fix in every input error, and offer a close valid value as a one-tap Tertiary \"Use …\".",
+      "Do make every section and tile title an h2 under the screen's one h1, whatever its visual style.",
+      "Do show one sentence and a way in (a text link) where a data view has nothing to count yet."
     ],
     "donts": [
       "Don't use a hex value outside `tokens.css`.",
@@ -679,7 +708,8 @@
       "Don't use glyph or emoji icons. Icons are the 24 px, 1.75-stroke line set.",
       "Don't write a four-digit number without its thin space (\"1199 Kč\"), and don't use U+202F for it.",
       "Don't draw a dashed line anywhere except the gift ticket's perforation.",
-      "Don't set names or nicknames in DM Mono. Mono is for figures, not decoration."
+      "Don't set names or nicknames in DM Mono. Mono is for figures, not decoration.",
+      "Don't draw step progress with cup pips. Pips are the allowance; steps are thin pill segments."
     ]
   }
 }

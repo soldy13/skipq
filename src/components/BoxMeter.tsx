@@ -19,7 +19,7 @@ export function BoxMeter({ free, total, mine = 0, tr, fewThreshold = 3 }: BoxMet
   const label = free === 0 ? tr.t('boxes.full') : tr.t('boxes.free', { free, total });
   return (
     <section className={`${styles.meter} ${styles[state]}`} aria-label={tr.t('boxes.title')}>
-      <h3 className={styles.title}>{tr.t('boxes.title')}</h3>
+      <h2 className={styles.title}>{tr.t('boxes.title')}</h2>
       <p className={styles.value} aria-live="polite">
         {free === 0 ? (
           label

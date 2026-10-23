@@ -37,26 +37,6 @@
   gap: var(--sq-3);
 }
 
-.wip {
-  display: grid;
-  gap: var(--sq-3);
-  padding: var(--sq-5);
-  border-radius: var(--sq-r-lg);
-  background: var(--sq-coffee-100);
-}
-
-.wip p {
-  font: var(--sq-body-sm);
-  color: var(--sq-coffee-900);
-  text-wrap: pretty;
-}
-
-.wip a {
-  font: var(--sq-body-sm);
-  font-weight: 600;
-  justify-self: start;
-}
-
 .stack {
   display: grid;
   gap: var(--sq-3);

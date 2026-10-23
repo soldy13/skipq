@@ -30,9 +30,9 @@ export function ChipGroup({ label, children, showLabel = false }: { label: strin
   return (
     <div className={styles.section}>
       {showLabel ? (
-        <h3 id={id} className={styles.groupLabel}>
+        <h2 id={id} className={styles.groupLabel}>
           {label}
-        </h3>
+        </h2>
       ) : null}
       <div role="group" aria-label={showLabel ? undefined : label} aria-labelledby={showLabel ? id : undefined} className={styles.group}>
         {children}

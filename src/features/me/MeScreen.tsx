@@ -27,7 +27,8 @@ export function MeScreen() {
     <div className={styles.screen}>
       <header className={styles.header}>
         <h1 className={styles.title}>{profile.displayName ?? profile.nickname ?? tr.t('screen.me')}</h1>
-        {profile.nickname ? <p className={m.nick}>{profile.nickname}</p> : null}
+        {/* The nickname under a first name; without one, the nickname is the title already. */}
+        {profile.displayName && profile.nickname ? <p className={m.nick}>{profile.nickname}</p> : null}
       </header>
 
       <MeStats />

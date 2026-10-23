@@ -31,3 +31,6 @@ export const LEADERBOARD: readonly BoardEntry[] = [
   { nickname: 'hayek_hana', coffees: 12, avgMg: 70 },
   { nickname: 'tomas_lungo', coffees: 10, avgMg: 75 },
 ];
+
+/** Nicknames already on the board; a new user can't take one (brief F16). */
+export const TAKEN_NICKNAMES: readonly string[] = LEADERBOARD.map((e) => e.nickname);

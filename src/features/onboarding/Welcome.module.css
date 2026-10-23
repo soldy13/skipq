@@ -1,0 +1,106 @@
+/* Onboarding (brief F16). No tab bar here; the docked Continue is the only Coffee fill on each step. */
+
+.step {
+  animation: enter var(--sq-base) both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--sq-tap);
+}
+
+.wordmark {
+  font: var(--sq-wordmark);
+  color: var(--sq-coffee);
+}
+
+.steps {
+  display: flex;
+}
+
+/* Progress, not coffee: thin segments, so two filled steps never read as an allowance used up. */
+.track {
+  display: flex;
+  gap: 4px;
+}
+
+.segment {
+  width: 12px;
+  height: 4px;
+  border-radius: var(--sq-r-pill);
+  /* Coffee-200 nearly vanishes on Foam; the meters' Coffee-400 keeps the next step visible. */
+  background: var(--sq-coffee-400);
+  transition:
+    width var(--sq-base),
+    background-color var(--sq-base);
+}
+
+/* Done and current steps are longer as well as darker, so progress never rests on colour alone. */
+.segmentOn {
+  width: 24px;
+  background: var(--sq-coffee);
+}
+
+.title:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.lead {
+  max-width: 34ch;
+  font: var(--sq-body);
+  color: var(--sq-stone);
+  text-wrap: pretty;
+}
+
+/* The machine as proof: the same Espresso locker front the pickup screen uses, live from the simulation. */
+.machine {
+  display: grid;
+  justify-items: center;
+  gap: var(--sq-3);
+  padding: var(--sq-5) var(--sq-4) var(--sq-4);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-surface);
+  border: 1px solid var(--sq-line);
+}
+
+/* Full-size doors (readable numerals, handles clear of two-digit numbers), capped so the nickname field stays in view. */
+.machineGrid {
+  width: 100%;
+  max-width: 264px;
+}
+
+.machineNote {
+  font: var(--sq-body-sm);
+  color: var(--sq-stone);
+  text-align: center;
+}
+
+.machineNote :global(.sq-mono) {
+  color: var(--sq-espresso);
+  font-weight: 500;
+}
+
+/* Scrolled into view after a failed Continue: stop short of the docked bar. */
+.form {
+  scroll-margin-bottom: calc(var(--sq-dock, 0px) + var(--sq-4));
+}
+
+.choices {
+  display: grid;
+  gap: var(--sq-3);
+}
+
+.cards {
+  display: grid;
+  gap: var(--sq-3);
+}

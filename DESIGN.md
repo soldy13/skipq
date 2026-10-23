@@ -277,6 +277,29 @@ components:
     rounded: "{rounded.md}"
     padding: "0 16px"
     height: "52px"
+  text-field-label:
+    textColor: "{colors.espresso}"
+    typography: "{typography.body-sm}"
+  progress-segment:
+    backgroundColor: "{colors.coffee-400}"
+    rounded: "{rounded.pill}"
+    width: "12px"
+    height: "4px"
+  progress-segment-on:
+    backgroundColor: "{colors.coffee}"
+    width: "24px"
+  machine-card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.stone}"
+    typography: "{typography.body-sm}"
+    rounded: "{rounded.lg}"
+    padding: "20px 16px 16px"
+  stats-empty-card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.espresso}"
+    typography: "{typography.body}"
+    rounded: "{rounded.lg}"
+    padding: "20px 16px 8px"
   stat-tile:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.espresso}"
@@ -359,10 +382,10 @@ The world refuses the coffee-app defaults it was briefed against: no product-pho
 A warm coffee-house palette, one brand hue in six steps plus a cream accent, over warm neutrals, with three status pairs that each come as text-on-tint.
 
 ### Primary
-- **Roasted Coffee** (coffee): primary actions, the active tab, links, the "used" allowance pips, a switch that is on, the selected-radio fill, the current week's bar, the board's "you" badge and podium ranks (1 to 3), and the 16 px stat-tile icons. Hover and pressed states step down to **Dark Roast** (coffee-700), which is also the text colour on tonal Coffee fills.
-- **Steamed Milk** (coffee-100): tonal fills. The secondary button, the segmented track, the active-tab icon lozenge, badges, the work-in-progress note, the focus halo, the hover on board rows (and at 50 % on gift-list rows), the icon square on the Apple Health tile, and the desktop stage behind the phone.
+- **Roasted Coffee** (coffee): primary actions, the active tab, links, the "used" allowance pips, a switch that is on, the selected-radio fill, the current week's bar, the board's "you" badge and podium ranks (1 to 3), the 16 px stat-tile icons, the onboarding wordmark, and the done and current segments of the onboarding progress track. Hover and pressed states step down to **Dark Roast** (coffee-700), which is also the text colour on tonal Coffee fills.
+- **Steamed Milk** (coffee-100): tonal fills. The secondary button, the segmented track, the active-tab icon lozenge, badges, the focus halo, the hover on board rows (and at 50 % on gift-list rows), the icon square on the Apple Health tile, and the desktop stage behind the phone.
 - **Latte** (coffee-200): boxes in use on the locker and strip, empty allowance pip outlines, the scrollbar thumb.
-- **Caramel Line** (coffee-400): meter accents, the past weeks' bars in the week chart, and the hover border on chips, slots, plan cards and the Apple Health tile.
+- **Caramel Line** (coffee-400): meter accents, the past weeks' bars in the week chart, the next-step segment of the onboarding progress track (Latte nearly vanishes on Foam), and the hover border on chips, slots, plan cards and the Apple Health tile.
 - **Bean** (coffee-900): text on Vanilla. It replaces Stone wherever the background is Vanilla.
 
 ### Secondary
@@ -402,14 +425,14 @@ A warm coffee-house palette, one brand hue in six steps plus a cream accent, ove
 **Character:** A narrow, slightly theatrical editorial serif for the human moments, set against a friendly geometric sans that does the work. Mono numerals make times and box numbers read like a ticket.
 
 ### Hierarchy
-- **Wordmark** (italic 400, 32 px, line-height 1): the "SkipQ" mark, used on the desktop aside.
-- **Display** (400, 40/44, -0.01em, balanced): the Home greeting ("Morning, Frederika."). One per screen.
-- **Title** (400, 28/32): screen titles (on Me, the user's name), bottom-sheet titles, the ready line on the order card, and text values in stat tiles (the Favourite drink).
+- **Wordmark** (italic 400, 32 px, line-height 1): the "SkipQ" mark, used on the desktop aside and, in Coffee, at the top left of the first onboarding step.
+- **Display** (400, 40/44, -0.01em, balanced): the Home greeting ("Morning, Frederika.") and the onboarding welcome ("Coffee without the queue.", "Káva bez fronty."). One per screen.
+- **Title** (400, 28/32): screen titles (on Me, the user's name or, without one, the nickname; the onboarding payment step's "How will you pay?"), bottom-sheet titles, the ready line on the order card, and text values in stat tiles (the Favourite drink).
 - **Heading** (DM Sans 600, 20/26): section titles ("On its way", "This month", "Plan"), drink names on the order card, plan names, and the visible option headings on the order screen ("Milk", "Beans", "Pickup time", "Pay with").
 - **Heading Small** (DM Sans 600, 18/24): drink names on usual cards and menu rows, and the Unlock label.
 - **Body** (400, 16/24): default text and tile values such as "2 of 3 used" (set at 600).
 - **Button** (600, 16/24): all button labels and the toast action.
-- **Body Small** (400, 14/20): secondary lines, dates, hints, sheet subtitles, chip labels (at 500).
+- **Body Small** (400, 14/20): secondary lines, dates, hints, sheet subtitles, chip labels (at 500), and text-field labels (at 600).
 - **Caption** (500, 12/16): tab labels, pill text (at 600), badges, legends, stat-tile labels (beside a 16 px Coffee icon), and the week chart's title and axis labels (at 400; the current week at 600 Espresso).
 - **Overline** (600, 12/16, +0.08em, uppercase): the label naming a data tile ("Today", "Boxes at Rajská") and the group titles inside the Demo panel. Nowhere else.
 - **Numeric** (DM Mono 500, 28/32, tabular): big counters, stat values, the Demo clock, the pickup countdown. The `.sq-mono` utility sets DM Mono with tabular figures on any inline number.
@@ -417,9 +440,11 @@ A warm coffee-house palette, one brand hue in six steps plus a cream accent, ove
 
 Lettering drawn on the machine is object detail, not a step of the ramp: the 9 px numerals on mini locker doors and the 10–11 px "BOX" word on small and medium plates belong to the drawn object and never set interface text.
 
-Mono is for figures a student reads against a clock or a count, never decoration. Names stay in the text faces: on Me the name is serif Title and the nickname sits under it in DM Sans 14 px Stone; on the board, nicknames are Body at 500.
+Mono is for figures a student reads against a clock or a count, never decoration. Names stay in the text faces: on Me the first name is serif Title and the nickname sits under it in DM Sans 14 px Stone; without a first name, the nickname itself is the serif Title and nothing repeats under it. On the board, nicknames are Body at 500.
 
 A label reused inside a sentence is lower-cased at its first letter ("Your plan: Milk plan, up to 3 a day", "Až 3 denně" becoming "až 3 denně"); on its own, as a segment, chip or card line, it keeps sentence case.
+
+Headings follow the document outline, not the type ramp. Each screen has one h1 (Display or Title); every section and tile title under it is an h2, whatever style it wears: visible chip group labels, the Slot Grid title, the payment heading, the Daily Limit and Box Meter tile titles (in Overline), and the Me and Plans section Headings. No level is skipped. Where a section needs a title it does not show (the plan choices on the onboarding payment step), the h2 is for screen readers only.
 
 ### Named Rules
 **The Serif Floor Rule.** Instrument Serif never goes below 24 px. It's for greetings, titles and the ready moment, never for UI labels.
@@ -430,7 +455,7 @@ A label reused inside a sentence is lower-cased at its first letter ("Your plan:
 
 **The Thin Space Rule.** Thousands are grouped with a thin space glued by word joiners (U+2060 U+2009 U+2060), so a number reads "1 199 Kč" or "2 990 mg" everywhere, in both languages, and never "1199". U+202F is not used, because DM Sans draws it almost invisibly. Haléře appear only in per-coffee comparisons ("26.90 Kč", "26,90 Kč"), ungrouped.
 
-**The Bound Phrase Rule.** A no-break space keeps together what must never split at a line end: a price with its unit ("229 Kč / week"), a tier label ("Up to 3 a day", "Až 3 denně"), a count with its noun ("7 credits left"), a brand name ("Red Bull"), and every em dash with the word before it. The middle dot binds to what follows: every " · " in both dictionaries and every dot that code puts between parts is `DOT_SEP` (a space, the dot, then a no-break space), so a wrapped pair starts its new line with "·" and a line never ends on a dangling dot.
+**The Bound Phrase Rule.** A no-break space keeps together what must never split at a line end: a price with its unit ("229 Kč / week"), a tier label ("Up to 3 a day", "Až 3 denně"), a count with its noun ("7 credits left"), a brand name ("Red Bull"), and every em dash with the word before it. In Czech, the one-letter prepositions and conjunctions (a, i, k, o, s, u, v, z) bind to the next word with a no-break space ("v Rajské", "a balíčky"). Ranges are glued with word joiners around the en dash (U+2060 – U+2060), so "3–16", "a–z" and "0–9" never break, in both languages. The middle dot binds to what follows: every " · " in both dictionaries and every dot that code puts between parts is `DOT_SEP` (a space, the dot, then a no-break space), so a wrapped pair starts its new line with "·" and a line never ends on a dangling dot.
 
 ## Layout
 
@@ -442,11 +467,13 @@ Touch targets are at least 44 x 44. Primary buttons are 52 px tall, slots 56 px,
 
 A docked bottom action (the order button, Unlock) sits in a Foam bar at the bottom of the screen, directly on the tab bar, even when the content is short; the screen becomes a flex column and the bar takes the remaining space above it. The bar spans the full width with the 20 px gutter inside, separates from the content with a 1 px Line hairline rather than a shadow, and keeps a 44 px lane above its button where the Demo pill sits, so the pill never covers content. Docked screens drop the 56 px bottom padding.
 
+Onboarding (/welcome) has no tab bar. The shell sets the tab-bar height to 0 px on that route, so the docked commit sits on the bottom edge (above the safe area) and the Demo pill and toasts measure from there; every other rule of the dock holds.
+
 Screens reached from another screen open with a header row: a 44 px filled back button on the left and an optional trailing control on the right (an info button, or the md status pill). The row pulls 16 px into the top padding.
 
 Layering uses named z-levels: tab bar 10, Demo pill 20, sheet 40, toast 50, push banner 60. There is one push banner and one toast slot at a time, and the toast floats above any dock.
 
-**The Docked Action Rule.** A screen's committing action docks at the bottom, on the tab bar, inside the bottom third. Short content never lifts it into the middle of the screen.
+**The Docked Action Rule.** A screen's committing action docks at the bottom, on the tab bar (or the bottom edge where there is none), inside the bottom third. Short content never lifts it into the middle of the screen.
 
 ## Elevation & Depth
 
@@ -506,7 +533,6 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Border:** 1 px Line. Hover on interactive cards changes it to Caramel Line. A ready order card blends 30 % Ready into its border.
 - **Internal Padding:** 16 px, or 16 / 16 / 16 / 20 on the order card.
 - **Ready order card:** when the order is ready, the card names the box in serif Title on the reward curve, and the drink steps down to Body at 600.
-- **Notes:** the work-in-progress note is a borderless Steamed Milk block with Bean text and a link.
 
 ### Usual Card and Drink Row
 - **Usual card:** a 22 px Surface card holding the drink as a pressable 14 px inner area (Steamed Milk at 55 % on hover, a Stone chevron) and a compact Secondary "Order · Now" button for the one-tap order. Name in Heading Small, the milk summary in Body Small Espresso, and "Ordered 23×" in caption Stone. One-tap is tonal, so Home keeps no Coffee fill.
@@ -526,7 +552,14 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Focus:** the border turns Coffee, with a 4 px Steamed Milk halo.
 - **Complete:** a Ready border and a Ready check mark.
 - **Invalid:** an Expired border, a 4 px Expired-tint halo, and an inline error with an icon in Expired. Every message names a next step ("Check the letters?", "Ask the sender for a new one.").
-- **Text field:** 52 px tall, Surface fill, 1.5 px Line border, 14 px corners, Body text, a Stone placeholder; focus turns the border Coffee with the 4 px Steamed Milk halo. Labelled by a visible Heading with a Body Small Stone hint below (the gift recipient's name).
+- **Text field:** 52 px tall, Surface fill, 1.5 px Line border, 14 px corners, Body text, a Stone placeholder; focus turns the border Coffee with the 4 px Steamed Milk halo. The gift recipient's name is labelled by a visible Heading with a Body Small Stone hint below.
+- **TextField (component):** the labelled field with message states, built on the Code input's anatomy. The label sits above in Body Small at 600, 8 px between label, field and message. It has no placeholder: the hint under the field carries the rules, so they stay visible while you type. Its message line is one of three, in Body Small:
+  - **Hint:** Stone, at rest ("It's all the board shows of you. 3–16 characters: a–z, 0–9 and _.").
+  - **Error:** an Expired border with the 4 px Expired-tint halo (focused or not), and an 18 px Expired icon plus words in Expired, announced as an alert. An optional action slot under the message holds a one-tap fix, a Tertiary "Use espresso_eva_2", pulled 8 px left so its text lines up with the message.
+  - **Success:** a Ready border, a Ready check inside the field at its end, and a Ready line ("crema_new is available.").
+- **Feedback timing:** success shows as soon as the value is valid; problems wait for a blur or a submit, then update as you type.
+**The Named Fix Rule.** Every input error names its fix ("Add a number or pick another.", "Use _ instead.", "Check the letters?"); when a valid value is close, the fix is offered as a one-tap Tertiary "Use …" under the message.
+
 - **Switch:** a 52 x 32 track inside a 44 px target, with a 28 px white thumb. Pewter when off, Coffee when on. Uses `role="switch"`.
 - **Segmented:** a Steamed Milk track with a 4 px inset. The checked option is Surface with Lift. Unavailable options are muted to Stone with no strike-through, because strike-through means Full. Each reason is listed below the control: the option name in Espresso 600, a middle dot, then the neutral reason in Body Small Stone. A dark variant for the Demo panel uses Espresso Raised, with a Foam checked option.
 
@@ -561,7 +594,7 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Checkout sheet:** line items as label and value rows in Body, the label in Stone and the value at 500 right-aligned, divided by Line. The total row has an Espresso 600 label and a 20 px amount. The footer holds the Coffee "Pay N Kč · simulated" button with a centred caption Stone note under it. Payment is simulated with a one-second Spinner and never asks for card data.
 
 ### Demo Pill and Demo Panel
-- Tester tooling is Espresso so it reads as an instrument, not as part of the product. The pill sits bottom-left above the tab bar: 32 px tall, with a 44 px hit area, 92 % opacity, the word "DEMO" in bold (+0.1em), and the mono clock. A Vanilla fast-forward badge appears while time is fast-forwarding.
+- Tester tooling is Espresso so it reads as an instrument, not as part of the product. The pill sits bottom-left above the tab bar: 32 px tall, with a 44 px hit area, 92 % opacity, the word "DEMO" in bold (+0.1em), and the mono clock. A Vanilla fast-forward badge appears while time is fast-forwarding. When a dock mounts, the pill moves into the dock's 44 px lane: one transition carries its bottom offset at the base speed and its opacity at the quick speed. With no tab bar (onboarding), it measures from the bottom edge.
 
 ### Push Banner
 - A simulated OS notification. It drops in from the top, with Surface at 94 % behind a 16 px backdrop blur, 22 px corners, a Line border and Float. The app mark is a Vanilla locker door on a Coffee tile.
@@ -574,6 +607,7 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 
 ### Stat Tile and Week Bars
 - **Stat tile:** a flat 22 px Surface card with a Line border and 16 px padding, paired two across at a 12 px gap (Me shows a 2 x 2 under the "This month" Heading). The label is caption Stone led by a 16 px Coffee line icon; the value is Numeric with its unit in Sans (Mono Numbers), or serif Title when the value is a word (the Favourite drink, with a star icon); an optional Body Small Stone line explains it ("12th on the board", "That's about 37 cans of Red Bull.", "weekdays in a row"). Board places are ordinals: "12th" in English, "12." in Czech.
+- **Before the first pickup:** there is nothing to count, so the "This month" Heading sits over one flat 22 px Surface card with a Line border (20 / 16 / 8 padding, 8 px gap) instead of the tiles and the week bars: a Body sentence that names what will appear ("Your stats start with your first pickup: coffees, caffeine, your favourite and your streak.") and a "Browse all drinks ›" text link to the menu. Never a grid of zeros.
 - **Week bars:** coffees per calendar week (Monday first) for the last four weeks, oldest on the left, in a flat 22 px Surface card with 16 px padding. It is one series, so there is no legend: a caption Stone title names it ("Last 4 weeks") and each bar carries its value above it in mono 14 px at 500 Espresso. Bars sit in four equal columns 12 px apart, at most 40 px wide in a 96 px plot, in Caramel Line with the pip's cup corners, standing on a 1 px Line baseline; heights grow at the base speed. The current week is full Coffee and its axis label is a word ("This week", "Tento týden") at 600 Espresso instead of a date, so it is never marked by colour alone. Past weeks are labelled by their Monday in caption Stone.
 
 ### Board Row
@@ -590,6 +624,16 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - A pressable flat 22 px Surface card with a solid 1 px Line border (Caramel Line on hover), 16 px padding: a 40 px Steamed Milk square with a Coffee icon, the title in Body at 600 beside a caption "Coming soon" badge (the Steamed Milk badge style: Steamed Milk pill, Dark Roast text, like "Your plan"), a Body Small Stone description, and a Stone chevron. It opens a sheet that explains the feature and offers a disabled primary "Notify me when it’s ready".
 - The heart icon belongs to Apple Health alone. "Apple Health" is a brand and stays untranslated in Czech, where the app itself is "Zdraví".
 
+### Onboarding
+First launch, at /welcome: a nickname, then how to pay, then Home. Nothing is saved until the last step.
+- **Shell:** no tab bar (see Layout). Both steps are docked screens: a full-height column with no bottom padding and one docked Coffee commit. The step body enters with a 12 px slide from the right and a fade at the base speed.
+- **Step header:** a 44 px row. On the left, the Coffee wordmark on step 1, or the filled Back icon button on step 2. On the right, the progress track: one 4 px tall pill segment per step, 4 px apart. Done and current steps are 24 px long in Coffee; the next is 12 px in Caramel Line, so length carries the state as well as colour, with "Step n of 2" for screen readers only. On a step change, focus moves to the new step's h1.
+- **Step 1, the nickname:** a Display title and a Body Stone lead (at most 34 ch). Then the machine as proof: a flat 22 px Surface card with a Line border (20 / 16 / 16 padding) holding the live, full-size Locker Grid without its legend, capped at 264 px wide and hidden from screen readers, over a centred Body Small Stone caption with the free count in DM Mono 500 Espresso ("13 of 30 boxes free right now"). Then the nickname TextField and a docked "Continue".
+- **Nickname:** 3–16 characters of a–z, 0–9 and _, lowercased as typed; a name already on the board is refused. The one-tap fix drops accents, turns spaces, dots and dashes into _, cuts to 16, or appends _2 when the name is taken. A failed Continue focuses the input without scrolling, then scrolls the form to the nearest edge; the form keeps a bottom scroll margin of the dock height plus 16 px, so the message and its fix land above the dock.
+- **Step 2, how to pay:** a Title and a Body Stone lead, then the tier Segmented ("1 a day" / "Up to 3 a day") over one group of three Plan Cards 12 px apart: Milk plan, Black plan, and Pay per coffee ("No commitment · Any drink", the per-coffee price "/ coffee"). The docked commit is "Subscribe · 229 Kč / week", which opens the Checkout sheet, or "Continue without a plan". Both end on Home with a toast ("Milk plan is on — up to 3 a day.", or "You're in, {name}. Pick your first coffee.").
+
+**The Progress Is Not a Pip Rule.** Steps are thin pill segments, never the cup pip. The cup shape belongs to the allowance, so filling steps never reads as coffees used up.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -602,10 +646,13 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Do** dock a screen's committing action (order, unlock) at the bottom on the tab bar, with the Demo pill lane above it, and float the toast above the dock.
 - **Do** show the box as the Vanilla plate plus the mini locker map from Scheduled onwards.
 - **Do** keep touch targets at 44 px or more (52 for primary, 64 for unlock), and let labels wrap or step down instead of fixing widths.
-- **Do** group thousands with the glued thin space ("1 199 Kč"), and bind prices to units, tier labels, counts to nouns, brand names, and em dashes to the word before them with no-break spaces.
+- **Do** group thousands with the glued thin space ("1 199 Kč"), and bind prices to units, tier labels, counts to nouns, brand names, and em dashes to the word before them with no-break spaces; in Czech, bind one-letter prepositions to the next word, and glue ranges ("3–16") with word joiners around the en dash.
 - **Do** join parts with `DOT_SEP` (" ·" plus a no-break space), so a wrapped line starts with the dot.
 - **Do** navigate with the Coffee text link and its chevron (› for another screen, ⌄ for more in place), and keep the Tertiary button for actions that change something.
 - **Do** mark the current item in a chart with a word as well as a colour ("This week" in Espresso 600 under the full Coffee bar).
+- **Do** name the fix in every input error, and offer a close valid value as a one-tap Tertiary "Use …".
+- **Do** make every section and tile title an h2 under the screen's one h1, whatever its visual style.
+- **Do** show one sentence and a way in (a text link) where a data view has nothing to count yet.
 
 ### Don't:
 - **Don't** use a hex value outside `tokens.css`.
@@ -620,3 +667,4 @@ Tactile and plain. They shrink to 0.98 when pressed, and colour changes take 150
 - **Don't** write a four-digit number without its thin space ("1199 Kč"), and don't use U+202F for it.
 - **Don't** draw a dashed line anywhere except the gift ticket's perforation.
 - **Don't** set names or nicknames in DM Mono. Mono is for figures, not decoration.
+- **Don't** draw step progress with cup pips. Pips are the allowance; steps are thin pill segments.

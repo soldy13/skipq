@@ -15,7 +15,7 @@ const NAV: readonly { group: string; items: readonly [string, string][] }[] = [
   { group: 'Foundations', items: [['color', 'Colour'], ['type', 'Type'], ['icons', 'Icons']] },
   {
     group: 'Actions',
-    items: [['button', 'Button'], ['chip', 'Chip'], ['slotchip', 'SlotChip'], ['slotgrid', 'SlotGrid'], ['segmented', 'Segmented'], ['switch', 'Switch'], ['codeinput', 'CodeInput']],
+    items: [['button', 'Button'], ['chip', 'Chip'], ['slotchip', 'SlotChip'], ['slotgrid', 'SlotGrid'], ['segmented', 'Segmented'], ['switch', 'Switch'], ['codeinput', 'CodeInput'], ['textfield', 'TextField']],
   },
   { group: 'Status', items: [['statuspill', 'StatusPill'], ['dailylimit', 'DailyLimit'], ['boxmeter', 'BoxMeter'], ['lockergrid', 'LockerGrid']] },
   {

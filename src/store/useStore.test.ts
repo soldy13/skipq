@@ -257,3 +257,22 @@ describe('store: gifts', () => {
     expect(state().gifts.find((g) => g.code === 'SKQ-7M4T')?.expiresAt).toBe(state().clock.now);
   });
 });
+
+describe('store: onboarding (brief F16)', () => {
+  beforeEach(() => state().switchPersona('new'));
+
+  it('starts the new user without a nickname, not onboarded', () => {
+    expect(state().profile).toMatchObject({ nickname: null, onboarded: false });
+  });
+
+  it('finishes onboarding with a valid nickname', () => {
+    expect(state().completeOnboarding('Crema_New')).toBe(true);
+    expect(state().profile).toMatchObject({ nickname: 'crema_new', onboarded: true });
+  });
+
+  it('refuses an invalid or taken nickname and stays on onboarding', () => {
+    expect(state().completeOnboarding('šárka')).toBe(false);
+    expect(state().completeOnboarding('espresso_eva')).toBe(false);
+    expect(state().profile).toMatchObject({ nickname: null, onboarded: false });
+  });
+});

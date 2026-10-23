@@ -28,6 +28,16 @@
   text-wrap: pretty;
 }
 
+/* Before the first pickup: what will appear here, and the way to make it appear. */
+.empty {
+  display: grid;
+  gap: var(--sq-2);
+  padding: var(--sq-5) var(--sq-4) var(--sq-2);
+  border-radius: var(--sq-r-lg);
+  background: var(--sq-surface);
+  border: 1px solid var(--sq-line);
+}
+
 .tiles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

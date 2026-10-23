@@ -1,0 +1,96 @@
+.wrap {
+  display: grid;
+  gap: var(--sq-2);
+  min-width: 0;
+}
+
+.label {
+  font: var(--sq-body-sm);
+  font-weight: 600;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  border-radius: var(--sq-r-md);
+  background: var(--sq-surface);
+  border: 1.5px solid var(--sq-line);
+  transition:
+    border-color var(--sq-quick),
+    box-shadow var(--sq-quick);
+}
+
+.field:focus-within {
+  border-color: var(--sq-coffee);
+  box-shadow: 0 0 0 4px var(--sq-coffee-100);
+}
+
+.input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: var(--sq-btn-l);
+  padding: 0 var(--sq-4);
+  border: 0;
+  background: transparent;
+  font: var(--sq-body);
+  color: var(--sq-espresso);
+}
+
+.input:focus-visible {
+  box-shadow: none;
+}
+
+.input::placeholder {
+  color: var(--sq-stone);
+}
+
+.mark {
+  flex: none;
+  margin-inline-end: var(--sq-4);
+  color: var(--sq-ready);
+}
+
+.valid {
+  border-color: var(--sq-ready);
+}
+
+.invalid,
+.invalid:focus-within {
+  border-color: var(--sq-expired);
+  box-shadow: 0 0 0 4px var(--sq-expired-bg);
+}
+
+.hint,
+.success,
+.error {
+  display: flex;
+  gap: var(--sq-2);
+  align-items: flex-start;
+  font: var(--sq-body-sm);
+  text-wrap: pretty;
+}
+
+.hint {
+  color: var(--sq-stone);
+}
+
+.success {
+  color: var(--sq-ready);
+}
+
+.error {
+  color: var(--sq-expired);
+}
+
+.error svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.action {
+  justify-self: start;
+  /* The tertiary button's own padding lines its text up with the message above. */
+  margin-inline-start: calc(-1 * var(--sq-2));
+  margin-top: calc(-1 * var(--sq-1));
+}

@@ -32,9 +32,9 @@ export function SlotGrid({ grid, selected, onSelect, now, tr, hideTitle = false 
       {hideTitle && !otherDay ? null : (
         <div className={styles.head}>
           {hideTitle ? null : (
-            <h3 id={titleId} className={styles.title}>
+            <h2 id={titleId} className={styles.title}>
               {tr.t('slot.grid')}
-            </h3>
+            </h2>
           )}
           {otherDay && first ? <span className={styles.day}>{tr.date(first)}</span> : null}
         </div>

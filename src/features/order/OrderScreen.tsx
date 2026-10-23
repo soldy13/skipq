@@ -3,7 +3,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import styles from '../Screen.module.css';
 import o from './OrderScreen.module.css';
 import { ScreenHeader } from '../ScreenHeader';
-import { useDock } from '../useDock';
+import { CTA_DOCK, useDock } from '../useDock';
 import { OptionChips } from './OptionChips';
 import { AddOnSheet } from './AddOnSheet';
 import { DrinkInfoSheet } from './DrinkInfoSheet';
@@ -24,7 +24,6 @@ import { useT } from '../../i18n/useT';
 import { drinkMeta, drinkName, drinkNameInline } from '../../i18n/drinkText';
 
 /** Dock height: 12 top + 52 button + 16 bottom. */
-const CTA_DOCK = 80;
 
 function parseParams(drinkId: DrinkId, params: URLSearchParams): { milk: Milk | null; bean: Bean; slot: number | null } {
   const isMilk = drinkById(drinkId).type === 'milk';
@@ -117,9 +116,9 @@ function OrderForm({ drinkId }: { drinkId: DrinkId }) {
       </section>
 
       <section className={o.section} aria-labelledby="pay-title">
-        <h3 id="pay-title" className={o.label}>
+        <h2 id="pay-title" className={o.label}>
           {tr.t('payment.title')}
-        </h3>
+        </h2>
         <Segmented<PaymentChoice> label={tr.t('payment.title')} value={payment} onChange={setChosenPayment} options={paymentSegments(opts, tr)} />
         {planOption?.reason === 'notCovered' ? (
           <Button variant="tertiary" className={o.upgrade} onClick={() => navigate('/plans?type=milk')}>

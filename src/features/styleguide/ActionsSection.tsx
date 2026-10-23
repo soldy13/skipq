@@ -7,6 +7,7 @@ import { SlotGrid } from '../../components/SlotGrid';
 import { Segmented } from '../../components/Segmented';
 import { Switch } from '../../components/Switch';
 import { CodeInput } from '../../components/CodeInput';
+import { TextField } from '../../components/TextField';
 import { IconInfo, IconUnlock, IconClose } from '../../components/icons';
 import { RAJSKA } from '../../data/machines';
 import { DEMO_START } from '../../domain/clock';
@@ -35,6 +36,7 @@ export function ActionsSection({ tr }: { tr: Translator }) {
   const [busySlot, setBusySlot] = useState<number | null>(at('10:30'));
   const [pay, setPay] = useState<PaymentMethod>('plan');
   const [code, setCode] = useState('');
+  const [nick, setNick] = useState('');
   const [milk, setMilk] = useState<'cow' | 'oat' | 'soy'>('oat');
   const [on, setOn] = useState(true);
   const fullNext = nextFreeSlot(RAJSKA, DEMO_START, FULL);
@@ -204,6 +206,24 @@ export function ActionsSection({ tr }: { tr: Translator }) {
             <CodeInput value="SKQ-9PRW" onChange={() => undefined} label={tr.t('code.label')} error={tr.t('code.error.expired')} />
             <CodeInput value="SKQ-4H7P" onChange={() => undefined} label={tr.t('code.label')} error={tr.t('code.error.own')} />
           </div>
+        </State>
+      </Section>
+
+      <Section id="textfield" name="TextField" note="52 px, CodeInput's error anatomy. Onboarding's nickname: a hint, then “available” or the problem plus a one-tap fix.">
+        <State label="Interactive">
+          <TextField value={nick} onChange={(v) => setNick(v.toLowerCase())} label={tr.t('nick.label')} hint={tr.t('nick.hint')} autoCapitalize="none" spellCheck={false} />
+        </State>
+        <State label="Valid">
+          <TextField value="crema_new" onChange={() => undefined} label={tr.t('nick.label')} success={tr.t('nick.free', { name: 'crema_new' })} />
+        </State>
+        <State label="Error with a fix">
+          <TextField
+            value="šárka k"
+            onChange={() => undefined}
+            label={tr.t('nick.label')}
+            error={tr.t('nick.error.char', { char: 'š' })}
+            action={<Button variant="tertiary">{tr.t('nick.use', { name: 'sarka_k' })}</Button>}
+          />
         </State>
       </Section>
     </>

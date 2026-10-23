@@ -4,7 +4,7 @@ import styles from '../Screen.module.css';
 import o from '../order/OrderScreen.module.css';
 import g from './Gift.module.css';
 import { ScreenHeader } from '../ScreenHeader';
-import { useDock } from '../useDock';
+import { CTA_DOCK, useDock } from '../useDock';
 import { OptionChips } from '../order/OptionChips';
 import { AddOnSheet } from '../order/AddOnSheet';
 import { CheckoutSheet } from '../order/CheckoutSheet';
@@ -22,7 +22,6 @@ import { useNow, useWorld } from '../../store/hooks';
 import { useT } from '../../i18n/useT';
 import { configSummary, drinkName, drinkNameInline } from '../../i18n/drinkText';
 
-const CTA_DOCK = 80;
 const MAX_NAME = 24;
 
 export function GiftSendScreen() {
@@ -94,9 +93,9 @@ function SendForm({ drinkId }: { drinkId: DrinkId }) {
       </section>
 
       <section className={o.section} aria-labelledby="gift-pay">
-        <h3 id="gift-pay" className={o.label}>
+        <h2 id="gift-pay" className={o.label}>
           {tr.t('payment.title')}
-        </h3>
+        </h2>
         <Segmented<PaymentChoice> label={tr.t('payment.title')} value={payment} onChange={setChosenPayment} options={paymentSegments(opts, tr)} />
         <p className={g.note}>{tr.t('gift.valid')}</p>
       </section>

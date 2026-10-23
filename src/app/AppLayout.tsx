@@ -56,6 +56,8 @@ export function AppLayout() {
             '--sq-demo-lane': `${DEMO_LANE}px`,
             // Docked: the pill sits in the bar's lane (bar height − lane padding − pill); otherwise just above the tab bar.
             '--sq-pill-lift': dock > 0 ? `${dock - DEMO_LANE}px` : 'var(--sq-3)',
+            // Onboarding has no tab bar, so the pill and toasts measure from the bottom edge.
+            ...(onWelcome ? { '--sq-tabbar-h': '0px' } : {}),
           } as CSSProperties
         }
       >
